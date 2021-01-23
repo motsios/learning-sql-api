@@ -89,7 +89,7 @@ router.post('/upload', async (req, res) => {
     console.log(req.files);
     var file = req.files.file_upload
     var filename = file.name
-    await file.mv('C:/Users/Pc/Desktop/diplwmatiki project/uploads/' + filename, function (err) {
+    await file.mv(dir+'/' + filename, function (err) {
         if (err) {
             res.send({ error: err })
         } else {
