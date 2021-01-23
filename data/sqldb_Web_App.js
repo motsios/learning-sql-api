@@ -8,10 +8,10 @@ var fill_field_questions = require('../models/Fill_Field_Questions')
 var Sequelize = require("sequelize");
 const bcrypt = require('bcryptjs');
 const db = require('../database/db.js')
-const { QueryTypes } = require('sequelize');
 const nodemailer = require('nodemailer');
 const { v4: uuidv4 } = require('uuid');
 const { where } = require('sequelize');
+
 var dbOperations = {
 
     createUser: async (req, res) => {
@@ -361,10 +361,10 @@ var dbOperations = {
                 })
             }
             for (k in getForeignKeys[0]) {
-                if(getForeignKeys[0][k]!=undefined)
-              temparray2.push({OTHER_VALUES: getForeignKeys[0][k]})
+                if (getForeignKeys[0][k] != undefined)
+                    temparray2.push({ OTHER_VALUES: getForeignKeys[0][k] })
             }
-            tablecolumnslist.push({ table_name: tablenamelist[i], temparray,temparray2 })
+            tablecolumnslist.push({ table_name: tablenamelist[i], temparray, temparray2 })
         }
         return tablecolumnslist
     },
@@ -381,10 +381,10 @@ var dbOperations = {
 
     deleteATable: async (req, res) => {
         var sqlQueryString = req.body.sqlQueryString
-        const data = await db.sequelize.query(sqlQueryString) .then(print => {
+        const data = await db.sequelize.query(sqlQueryString).then(print => {
             console.log(print)
             return print
-        })       
+        })
         if (data[0].length == 0 && data[1].length == 0)
             return 'Empty Table'
         else {

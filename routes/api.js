@@ -25,6 +25,7 @@ function verifyTeacherToken(req, res, next) {
         res.send({ error: "Unauthorized" });
     }
 }
+
 function verifyStudentToken(req, res, next) {
     const bearerHeader = req.headers['authorization']
     var decoded = jwt_decode(bearerHeader)
@@ -36,6 +37,7 @@ function verifyStudentToken(req, res, next) {
         res.send({ error: "Unauthorized" });
     }
 }
+
 function verifyTeacherAndStudentToken(req, res, next) {
     const bearerHeader = req.headers['authorization']
     var decoded = jwt_decode(bearerHeader)
@@ -99,8 +101,6 @@ router.post('/upload', async (req, res) => {
 // *******************************************************************************************************
 //  PDF ENDS
 // *******************************************************************************************************
-
-
 
 
 //create a user
