@@ -1,6 +1,7 @@
 
 var users = require('../models/User');
 var scores = require('../models/Score');
+var rates = require('../models/SuccessRate');
 var questions = require('../models/Questions');
 var randomQueries = require('../models/RandomQueries');
 var excersice_tables = require('../models/ExcersiceTables')
@@ -182,6 +183,21 @@ var dbOperations = {
         return findUserScore
     },
 
+    rateOfOneUser: async (req, res) => {
+        const findUserScore = await users.findAll({
+
+            where: {
+                id: req.params.userid,
+            },
+            include: [{
+                model: rates, separate: true,
+                order: [['created_at', 'desc']]
+            }],
+        });
+        return findUserScore
+    },
+
+
     bestScoresOfAllUsers: async (req, res) => {
         var lowestToHighest = [];
         const findBestUserScore = await users.findAll({
@@ -240,6 +256,28 @@ var dbOperations = {
             return "This user are not a student";
         }
     },
+
+    addRate: async (req, res) => {
+        const userid = req.params.userid;
+        const checkUserid = await users.findOne({
+            where: {
+                id: userid,
+                role: 'student'
+            }
+        })
+        if (checkUserid != null) {
+            await rates.create({
+                id_student: userid,
+                rate: req.body.rate,
+                table_name: req.body.table_name,
+                time: req.body.time,
+            })
+            return "Rate added";
+        } else {
+            return "This user are not a student";
+        }
+    },
+
 
     getQuestionsByDifficulty: async (req, res) => {
         const difficulty = req.params.difficulty
@@ -344,7 +382,7 @@ var dbOperations = {
         var tablecolumnslist = [];
         const alltables = await db.sequelize.query(`SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE' AND TABLE_SCHEMA='diplwmatiki'`)
         for (i in alltables[0]) {
-            if (alltables[0][i].TABLE_NAME != 'score_table' && alltables[0][i].TABLE_NAME != 'sql_questions' && alltables[0][i].TABLE_NAME != 'user_table' && alltables[0][i].TABLE_NAME != 'sql_random_queries' && alltables[0][i].TABLE_NAME != 'excersice_tables' && alltables[0][i].TABLE_NAME != 'fill_fields_questions') {
+            if (alltables[0][i].TABLE_NAME != 'score_table' && alltables[0][i].TABLE_NAME != 'sql_questions' && alltables[0][i].TABLE_NAME != 'user_table' && alltables[0][i].TABLE_NAME != 'sql_random_queries' && alltables[0][i].TABLE_NAME != 'excersice_tables' && alltables[0][i].TABLE_NAME != 'fill_fields_questions' && alltables[0][i].TABLE_NAME != 'success_rate') {
                 tablenamelist.push(alltables[0][i].TABLE_NAME)
             }
         }

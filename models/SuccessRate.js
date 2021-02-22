@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../database/db.js')
-const Scores = db.sequelize.define(
-  'score_table',
+const SuccessRates = db.sequelize.define(
+  'success_rate',
   {
     id: {
       type: Sequelize.INTEGER,
@@ -9,23 +9,19 @@ const Scores = db.sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-    student_id: {
+    id_student: {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
-    score: {
-      type: Sequelize.INTEGER,
+    rate: {
+      type: Sequelize.STRING,
       allowNull: false,
     },
     time: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    category: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    difficulty: {
+    table_name: {
       type: Sequelize.STRING,
       allowNull: false,
     },
@@ -39,8 +35,8 @@ const Scores = db.sequelize.define(
     },
   },
   {
-    tableName: 'score_table',
+    tableName: 'success_rate',
     timestamps: true
   }
 )
-module.exports = Scores;
+module.exports = SuccessRates;

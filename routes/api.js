@@ -196,6 +196,17 @@ router.get('/scores/:userid', verifyTeacherAndStudentToken, async (req, res, nex
         }));
 });
 
+//Edw tha deixnei ta sinolika rate kathe xristi
+router.get('/rates/:userid', verifyTeacherAndStudentToken, async (req, res, next) => {
+    sqldb_Web_App.rateOfOneUser(req, res)
+        .then(result => {
+            res.send({ result: result });
+        })
+        .catch(error => error => res.json({
+            error: error
+        }));
+});
+
 //Edw tha deixnei ton pinaka me ta sinolika score kathe xristi
 router.get('/bestscores/:category', verifyTeacherAndStudentToken, async (req, res, next) => {
     sqldb_Web_App.bestScoresOfAllUsers(req, res)
@@ -208,6 +219,17 @@ router.get('/bestscores/:category', verifyTeacherAndStudentToken, async (req, re
 //add a score
 router.post('/addascore/:userid', verifyStudentToken, async (req, res, next) => {
     sqldb_Web_App.addScore(req, res)
+        .then(result => {
+            res.send({ result: result });
+        })
+        .catch(error => res.json({
+            error: error
+        }));
+});
+
+//add a rate
+router.post('/addarate/:userid', verifyStudentToken, async (req, res, next) => {
+    sqldb_Web_App.addRate(req, res)
         .then(result => {
             res.send({ result: result });
         })
