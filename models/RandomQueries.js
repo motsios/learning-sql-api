@@ -13,6 +13,10 @@ const sql_random_queries= db.sequelize.define('sql_random_queries',
             type: Sequelize.STRING,
             allowNull: false,
         },
+        hideWord: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
         table_id: {
             type: Sequelize.INTEGER,
             allowNull: false,

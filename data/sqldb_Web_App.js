@@ -500,14 +500,14 @@ var dbOperations = {
     },
 
     addSqlRandomQueryForSpecificTable: async (req, res) => {
-        console.log(1)
         const findTableid = await excersice_tables.findOne({
             where: {
                 table_name: req.body.tablename
             }
         })
         const createquery = await randomQueries.create({
-            sql_query: req.body.query,
+            sql_query: req.body.sql_query,
+            hideWord:req.body.hideWord,
             table_id: findTableid.id
         })
         return createquery;

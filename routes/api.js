@@ -89,7 +89,7 @@ router.post('/upload', async (req, res) => {
     console.log(req.files);
     var file = req.files.file_upload
     var filename = file.name
-    await file.mv(dir+'/' + filename, function (err) {
+    await file.mv(dir + '/' + filename, function (err) {
         if (err) {
             res.send({ error: err })
         } else {
@@ -395,7 +395,7 @@ router.put('/updateonesqlqueryfromspecifictable/:id', verifyTeacherToken, async 
         .then(result => {
             res.send({ result: result });
         })
-        .catch(error => error => res.json({
+        .catch( error => res.json({
             error: error
         }));
 });
@@ -406,7 +406,7 @@ router.delete('/deleteonesqlqueryfromspecifictable/:id', verifyTeacherToken, asy
         .then(result => {
             res.send({ result: result });
         })
-        .catch(error => error => res.json({
+        .catch(error => res.json({
             error: error
         }));
 });
@@ -417,7 +417,9 @@ router.post('/addonesqlqueryfromspecifictable', verifyTeacherToken, async (req, 
         .then(result => {
             res.send({ result: result });
         })
-        .catch(error => error => console.log(error));
+        .catch(error => res.json({
+            error: error
+        }));
 });
 
 //execute a sql query to dynamic tables
