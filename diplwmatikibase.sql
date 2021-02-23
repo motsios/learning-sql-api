@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `players` (
   KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.players: ~0 rows (approximately)
+-- Dumping data for table diplwmatiki.players: ~4 rows (approximately)
 /*!40000 ALTER TABLE `players` DISABLE KEYS */;
 REPLACE INTO `players` (`id`, `name`, `surname`, `isPlayed`) VALUES
 	(1, 'Dimitris', 'Motsios', 1),
@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `scores` (
   CONSTRAINT `player_id` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.scores: ~0 rows (approximately)
+-- Dumping data for table diplwmatiki.scores: ~6 rows (approximately)
 /*!40000 ALTER TABLE `scores` DISABLE KEYS */;
 REPLACE INTO `scores` (`id`, `player_id`, `score`) VALUES
 	(1, 4, '23'),
@@ -281,30 +281,31 @@ DROP TABLE IF EXISTS `sql_random_queries`;
 CREATE TABLE IF NOT EXISTS `sql_random_queries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sql_query` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `hideWord` varchar(200) COLLATE utf8_bin NOT NULL,
   `table_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `table_id_idx` (`table_id`),
   CONSTRAINT `table_id` FOREIGN KEY (`table_id`) REFERENCES `excersice_tables` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=371 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=377 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.sql_random_queries: ~13 rows (approximately)
+-- Dumping data for table diplwmatiki.sql_random_queries: ~14 rows (approximately)
 /*!40000 ALTER TABLE `sql_random_queries` DISABLE KEYS */;
-REPLACE INTO `sql_random_queries` (`id`, `sql_query`, `table_id`) VALUES
-	(351, 'SELECT id FROM players ORDER BY RAND() LIMIT 1', 104),
-	(352, 'SELECT * FROM players WHERE surname = (SELECT MAX(id) FROM players)', 104),
-	(353, 'SELECT name FROM players UNION SELECT surname FROM players ORDER BY \'name\'', 104),
-	(354, 'SELECT id, isPlayed FROM players WHERE id BETWEEN 1 AND 10 ORDER BY \'isPlayed\'', 104),
-	(355, 'SELECT COUNT(id), SUM(id) FROM players WHERE id NOT BETWEEN \'0\' AND \'10\'', 104),
-	(356, 'SELECT id, player_id FROM scores', 105),
-	(357, 'SELECT DISTINCT id, score, player_id FROM scores', 105),
-	(358, 'SELECT id, player_id FROM scores ORDER BY \'id\' ASC', 105),
-	(359, 'SELECT * FROM scores ORDER BY \'score\' ASC, id DESC', 105),
-	(360, 'SELECT MIN(id) AS minValue  FROM scores', 105),
-	(366, 'SELECT id FROM testalone ORDER BY RAND() LIMIT 1', 107),
-	(367, 'SELECT * FROM testalone WHERE id = (SELECT MAX(id) FROM testalone)', 107),
-	(368, 'SELECT name FROM testalone UNION SELECT surname FROM testalone ORDER BY \'name\'', 107),
-	(369, 'SELECT isOk, number FROM testalone WHERE isOk BETWEEN 1 AND 10 ORDER BY \'number\'', 107),
-	(370, 'SELECT COUNT(isOk), SUM(isOk) FROM testalone WHERE id NOT BETWEEN \'0\' AND \'10\'', 107);
+REPLACE INTO `sql_random_queries` (`id`, `sql_query`, `hideWord`, `table_id`) VALUES
+	(351, 'SELECT id FROM players ORDER BY RAND() LIMIT 1', 'id,players,RAND()', 104),
+	(352, 'SELECT * FROM players WHERE surname = (SELECT MAX(id) FROM players)', '', 104),
+	(353, 'SELECT name FROM players UNION SELECT surname FROM players ORDER BY \'name\'', '', 104),
+	(354, 'SELECT id, isPlayed FROM players  ORDER BY isPlayed', '', 104),
+	(355, 'SELECT COUNT(id), SUM(id) FROM players WHERE id NOT BETWEEN \'0\' AND \'10\'', '', 104),
+	(356, 'SELECT id, player_id FROM scores', '', 105),
+	(357, 'SELECT DISTINCT player_id FROM scores', '', 105),
+	(358, 'SELECT id, player_id FROM scores ORDER BY \'id\' ASC', '', 105),
+	(359, 'SELECT * FROM scores ORDER BY \'score\' ASC, id DESC', '', 105),
+	(366, 'SELECT id FROM testalone ORDER BY RAND() LIMIT 1', '', 107),
+	(367, 'SELECT * FROM testalone WHERE id = (SELECT MAX(id) FROM testalone)', '', 107),
+	(368, 'SELECT name FROM testalone UNION SELECT surname FROM testalone ORDER BY \'name\'', '', 107),
+	(369, 'SELECT isOk, number FROM testalone WHERE isOk BETWEEN 1 AND 10 ORDER BY \'number\'', '', 107),
+	(370, 'SELECT COUNT(isOk), SUM(isOk) FROM testalone WHERE id NOT BETWEEN \'0\' AND \'10\'', '', 107),
+	(371, 'SELECT * FROM players', '', 104);
 /*!40000 ALTER TABLE `sql_random_queries` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.success_rate
@@ -320,9 +321,9 @@ CREATE TABLE IF NOT EXISTS `success_rate` (
   PRIMARY KEY (`id`),
   KEY `id_student_idx` (`id_student`),
   CONSTRAINT `id_student` FOREIGN KEY (`id_student`) REFERENCES `user_table` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.success_rate: ~0 rows (approximately)
+-- Dumping data for table diplwmatiki.success_rate: ~19 rows (approximately)
 /*!40000 ALTER TABLE `success_rate` DISABLE KEYS */;
 REPLACE INTO `success_rate` (`id`, `id_student`, `rate`, `time`, `table_name`, `created_at`, `updated_at`) VALUES
 	(1, 5, 'Σωστές 5 στις 5', '00:00:09', 'okok', '2021-02-22 16:01:33', '2021-02-22 16:01:33'),
@@ -338,7 +339,12 @@ REPLACE INTO `success_rate` (`id`, `id_student`, `rate`, `time`, `table_name`, `
 	(11, 16, 'Σωστές 3 στις 5', '00:00:21', 'scores', '2021-02-22 16:32:40', '2021-02-22 16:32:40'),
 	(12, 5, 'Σωστές 0 στις 5', '00:00:13', 'scores', '2021-02-22 17:00:52', '2021-02-22 17:00:52'),
 	(13, 5, 'Σωστές 2 στις 5', '00:00:48', 'players', '2021-02-22 17:50:39', '2021-02-22 17:50:39'),
-	(14, 5, 'Σωστές 5 στις 5', '00:00:26', 'testalone', '2021-02-22 18:52:58', '2021-02-22 18:52:58');
+	(14, 5, 'Σωστές 5 στις 5', '00:00:26', 'testalone', '2021-02-22 18:52:58', '2021-02-22 18:52:58'),
+	(15, 5, 'Σωστές 1 στις 6', '00:00:16', 'players', '2021-02-23 14:12:31', '2021-02-23 14:12:31'),
+	(16, 5, 'Σωστές 2 στις 5', '00:00:34', 'scores', '2021-02-23 15:15:59', '2021-02-23 15:15:59'),
+	(17, 5, 'Σωστές 3 στις 6', '00:00:19', 'players', '2021-02-23 15:16:26', '2021-02-23 15:16:26'),
+	(18, 5, 'Σωστές 1 στις 5', '00:00:27', 'scores', '2021-02-23 15:17:01', '2021-02-23 15:17:01'),
+	(19, 5, 'Σωστές 2 στις 6', '00:00:17', 'players', '2021-02-23 15:17:25', '2021-02-23 15:17:25');
 /*!40000 ALTER TABLE `success_rate` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.testalone
