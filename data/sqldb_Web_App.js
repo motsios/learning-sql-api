@@ -432,6 +432,7 @@ var dbOperations = {
 
     addRandomSqlQueries: async (req, res) => {
         const queriesArray = req.body.queriesArray
+        const hiddenWordsArray=req.body.hiddenWordsArray
         console.log(queriesArray)
         console.log(req.body.table_name)
         const findTableFromExcersiceTable = await excersice_tables.findOne({
@@ -442,6 +443,7 @@ var dbOperations = {
         for (question in queriesArray) {
             await randomQueries.create({
                 sql_query: queriesArray[question],
+                hideWord: hiddenWordsArray[question],
                 table_id: findTableFromExcersiceTable.id
             })
         }
