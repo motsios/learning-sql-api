@@ -17,40 +17,22 @@ DROP DATABASE IF EXISTS `diplwmatiki`;
 CREATE DATABASE IF NOT EXISTS `diplwmatiki` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `diplwmatiki`;
 
--- Dumping structure for table diplwmatiki.actors
-DROP TABLE IF EXISTS `actors`;
-CREATE TABLE IF NOT EXISTS `actors` (
-  `id` int(12) NOT NULL,
-  `isPlayed` tinyint(4) DEFAULT NULL,
-  `name` varchar(12) COLLATE utf8_bin DEFAULT NULL,
-  `surname` varchar(12) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- Dumping data for table diplwmatiki.actors: ~0 rows (approximately)
-/*!40000 ALTER TABLE `actors` DISABLE KEYS */;
-REPLACE INTO `actors` (`id`, `isPlayed`, `name`, `surname`) VALUES
-	(1, 0, 'MOTSIOS', 'KOTSIOS'),
-	(2, 1, 'LOILO', 'KOKI'),
-	(3, 1, 'OPWS', 'MAMA');
-/*!40000 ALTER TABLE `actors` ENABLE KEYS */;
-
 -- Dumping structure for table diplwmatiki.excersice_tables
 DROP TABLE IF EXISTS `excersice_tables`;
 CREATE TABLE IF NOT EXISTS `excersice_tables` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `table_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=144 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.excersice_tables: ~3 rows (approximately)
+-- Dumping data for table diplwmatiki.excersice_tables: ~8 rows (approximately)
 /*!40000 ALTER TABLE `excersice_tables` DISABLE KEYS */;
 REPLACE INTO `excersice_tables` (`id`, `table_name`) VALUES
 	(104, 'players'),
 	(105, 'scores'),
-	(107, 'testalone'),
-	(108, 'actors'),
-	(112, 'okok');
+	(116, 'asdsad'),
+	(125, 'test2'),
+	(143, 'test22');
 /*!40000 ALTER TABLE `excersice_tables` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.fill_fields_questions
@@ -66,50 +48,38 @@ CREATE TABLE IF NOT EXISTS `fill_fields_questions` (
 -- Dumping data for table diplwmatiki.fill_fields_questions: ~31 rows (approximately)
 /*!40000 ALTER TABLE `fill_fields_questions` DISABLE KEYS */;
 REPLACE INTO `fill_fields_questions` (`id`, `question`, `fill_field_question`, `hideWord`) VALUES
-	(1, 'Εισάγετε τη δήλωση που λείπει για να λάβετε όλες τις στήλες από τον πίνακα Πελάτες.', 'SELECT * FROM Customers', 'SELECT,*'),
-	(2, 'Γράψτε μια δήλωση που θα επιλέξει τη στήλη Πόλη από τον πίνακα Πελάτες.', 'SELECT City FROM Customers', 'SELECT,City,FROM'),
-	(15, 'Επιλέξτε όλες τις διαφορετικές τιμές από τη στήλη Χώρα στον πίνακα Πελάτες.', 'SELECT DISTINCT Country FROM Customers;', 'SELECT,DISTINCT'),
-	(16, 'Επιλέξτε όλες τις εγγραφές όπου η στήλη Πόλη έχει την τιμή "Βερολίνο".', 'SELECT * FROM Customers WHERE City = \'Berlin\'', 'WHERE,City,\'Berlin\''),
-	(17, 'Χρησιμοποιήστε τη λέξη-κλειδί NOT για να επιλέξετε όλες τις εγγραφές όπου η πόλη ΔΕΝ είναι "Βερολίνο".', 'SELECT * FROM Customers WHERE NOT City =  \'Berlin\'', 'WHERE,NOT,City,\'Berlin\''),
+	(1, 'Εισάγετε τη δήλωση που λείπει για να λάβετε όλες τις στήλες από τον πίνακα Customers.', 'SELECT * FROM Customers', 'SELECT,*'),
+	(2, 'Γράψτε μια δήλωση που θα επιλέξει τη στήλη City από τον πίνακα Customers.', 'SELECT City FROM Customers', 'SELECT,City,FROM'),
+	(15, 'Επιλέξτε όλες τις διαφορετικές τιμές από τη στήλη Country στον πίνακα Customers.', 'SELECT DISTINCT Country FROM Customers;', 'SELECT,DISTINCT'),
+	(16, 'Επιλέξτε όλες τις εγγραφές όπου η στήλη City έχει την τιμή \'Berlin\'.', 'SELECT * FROM Customers WHERE City = \'Berlin\'', 'WHERE,City,\'Berlin\''),
+	(17, 'Χρησιμοποιήστε τη λέξη-κλειδί NOT για να επιλέξετε όλες τις εγγραφές όπου η στήλη City ΔΕΝ είναι \'Berlin\'.', 'SELECT * FROM Customers WHERE NOT City =  \'Berlin\'', 'WHERE,NOT,City,\'Berlin\''),
 	(18, 'Επιλέξτε όλες τις εγγραφές όπου η στήλη CustomerID έχει την τιμή 32.', 'SELECT * FROM Customers WHERE CustomerID = 32', 'WHERE,=,32'),
-	(19, 'Επιλέξτε όλες τις εγγραφές από τον πίνακα Πελάτες, ταξινομήστε το αποτέλεσμα που αντιστρέφεται αλφαβητικά από τη στήλη Πόλη.', 'SELECT * FROM Customers ORDER BY City DESC', 'ORDER BY,City,DESC'),
-	(20, 'Εισαγάγετε μια νέα εγγραφή στον πίνακα Πελάτες.', 'INSERT INTO Customers (CustomerName ) VALUES (\'Hekkan Burger\')', 'INSERT INTO,(,),VALUES,(,)'),
-	(21, 'Επιλέξτε όλες τις εγγραφές από τους πελάτες όπου η στήλη PostalCode ΔΕΝ είναι κενή', 'SELECT * FROM Customers WHERE PostalCode IS NOT NULL', 'PostalCode,IS,NOT,NULL'),
-	(22, 'Ορίστε την τιμή των στηλών Πόλη σε "Όσλο", αλλά μόνο εκείνες όπου η στήλη Χώρα έχει την τιμή "Νορβηγία".', 'UPDATE Customers SET City = \'Oslo\' WHERE Country=\'Norway\';', 'UPDATE,SET,WHERE'),
-	(23, 'Διαγράψτε όλες τις εγγραφές από τον πίνακα Πελάτες.', 'DELETE FROM Customers', 'DELETE,FROM'),
-	(24, 'Χρησιμοποιήστε μια συνάρτηση SQL για να επιλέξετε την εγγραφή με την υψηλότερη τιμή της στήλης Τιμή.', 'SELECT MAX(Price) FROM Products;', 'MAX(Price)'),
-	(25, 'Χρησιμοποιήστε τη συνάρτηση MIN για να επιλέξετε την εγγραφή με τη μικρότερη τιμή στη στήλη Τιμή.', 'SELECT MIN(Price) FROM Products;', 'MIN(Price)'),
-	(26, 'Χρησιμοποιήστε μια συνάρτηση SQL για να υπολογίσετε το άθροισμα όλων των τιμών της στήλης Τιμή στον πίνακα Προϊόντα.', 'SELECT SUM(Price) FROM Products;', 'SUM(Price)'),
-	(27, 'Επιλέξτε όλες τις εγγραφές όπου η τιμή της στήλης Πόλη τελειώνει με το γράμμα "a".', 'SELECT * FROM Customers WHERE City LIKE \'%a\'', 'WHERE,City,LIKE,\'%a\''),
-	(28, 'Επιλέξτε όλες τις εγγραφές όπου η τιμή της στήλης Πόλη ξεκινά με το γράμμα "a" και τελειώνει με το γράμμα "b".', 'SELECT * FROM Customers WHERE City LIKE \'a%b\'', 'WHERE,City,LIKE ,\'a%b\''),
+	(19, 'Επιλέξτε όλες τις εγγραφές από τον πίνακαCustomers, ταξινομήστε το αποτέλεσμα που αντιστρέφεται αλφαβητικά από τη στήλη City.', 'SELECT * FROM Customers ORDER BY City DESC', 'ORDER BY,City,DESC'),
+	(20, 'Εισαγάγετε μια νέα εγγραφή στον πίνακα Customers.', 'INSERT INTO Customers (CustomerName ) VALUES (\'Hekkan Burger\')', 'INSERT INTO,(,),VALUES,(,)'),
+	(21, 'Επιλέξτε όλες τις εγγραφές από τους Customers όπου η στήλη PostalCode ΔΕΝ είναι κενή', 'SELECT * FROM Customers WHERE PostalCode IS NOT NULL', 'PostalCode,IS,NOT,NULL'),
+	(22, 'Ορίστε την τιμή των στηλών City σε \'Oslo\', αλλά μόνο εκείνες όπου η στήλη Countryέχει την τιμή "Norway".', 'UPDATE Customers SET City = \'Oslo\' WHERE Country=\'Norway\';', 'UPDATE,SET,WHERE'),
+	(23, 'Διαγράψτε όλες τις εγγραφές από τον πίνακα Customers.', 'DELETE FROM Customers', 'DELETE,FROM'),
+	(24, 'Χρησιμοποιήστε μια συνάρτηση SQL για να επιλέξετε την εγγραφή με την υψηλότερη Price της στήλης Products.', 'SELECT MAX(Price) FROM Products;', 'MAX(Price)'),
+	(25, 'Χρησιμοποιήστε τη συνάρτηση MIN για να επιλέξετε την εγγραφή με τη μικρότερη Price στη στήλη Products.', 'SELECT MIN(Price) FROM Products;', 'MIN(Price)'),
+	(26, 'Χρησιμοποιήστε μια συνάρτηση SQL για να υπολογίσετε το άθροισμα όλων των τιμών της στήλης Price στον πίνακα Products.', 'SELECT SUM(Price) FROM Products;', 'SUM(Price)'),
+	(27, 'Επιλέξτε όλες τις εγγραφές όπου η τιμή της στήλης City τελειώνει με το γράμμα "a".', 'SELECT * FROM Customers WHERE City LIKE \'%a\'', 'WHERE,City,LIKE,\'%a\''),
+	(28, 'Επιλέξτε όλες τις εγγραφές όπου η τιμή της στήλης City ξεκινά με το γράμμα "a" και τελειώνει με το γράμμα "b".', 'SELECT * FROM Customers WHERE City LIKE \'a%b\'', 'WHERE,City,LIKE ,\'a%b\''),
 	(29, 'Επιλέξτε όλες τις εγγραφές όπου το πρώτο γράμμα της πόλης είναι "a" ή "c" ή "s".', 'SELECT * FROM Customers WHERE City LIKE \'[acs]%\'', '[acs]'),
-	(30, 'Επιλέξτε όλες τις εγγραφές όπου το πρώτο γράμμα της Πόλης ξεκινά με οτιδήποτε από "a" έως "f".', 'SELECT * FROM Customers WHERE City LIKE \'[a-f]%\'', '[a-f]'),
-	(31, 'Χρησιμοποιήστε τον τελεστή IN για να επιλέξετε όλες τις εγγραφές όπου η χώρα ΔΕΝ είναι "Νορβηγία" και ΔΕΝ "Γαλλία".', 'SELECT * FROM Customers WHERE Country NOT IN (\'Norway\', \'France\');', 'WHERE,Country,NOT,IN'),
-	(32, 'Χρησιμοποιήστε τον τελεστή IN για να επιλέξετε όλες τις εγγραφές όπου η χώρα είναι είτε "Νορβηγία" είτε "Γαλλία".', 'SELECT * FROM Customers WHERE Country IN (\'Norway\', \'France\' )', 'WHERE,Country,IN,(\'Norway\',)'),
-	(33, 'Χρησιμοποιήστε τον τελεστή BETWEEN για να επιλέξετε όλες τις εγγραφές όπου η τιμή της στήλης Τιμή είναι μεταξύ 10 και 20.', 'SELECT * FROM Products WHERE Price BETWEEN 10 AND 20', 'BETWEEN,10,AND,20'),
-	(34, 'Χρησιμοποιήστε τον χειριστή ΜΕΤΑΞΥ για να επιλέξετε όλες τις εγγραφές όπου η τιμή της στήλης Τιμή ΔΕΝ είναι μεταξύ 10 και 20.', 'SELECT * FROM Products WHERE Price NOT BETWEEN 10 AND 20', 'NOT,BETWEEN'),
-	(35, 'Κατά την εμφάνιση του πίνακα Πελάτες, δημιουργήστε ένα ALIAS της στήλης PostalCode, η στήλη θα πρέπει να ονομάζεται Pno.', 'SELECT CustomerName,Address,PostalCode AS Pno FROM Customers;', 'AS,Pno'),
-	(36, 'Εισαγάγετε τα μέρη που λείπουν στον όρο JOIN για να ενωθείτε με τους δύο πίνακες Παραγγελίες και Πελάτες, χρησιμοποιώντας το πεδίο CustomerID και στους δύο πίνακες ως σχέση μεταξύ των δύο πινάκων.', 'SELECT * FROM Orders LEFT JOIN Customers ON Orders.CustomerID=Customers.CustomerID', 'ON,Orders.CustomerID,Customers.CustomerID'),
+	(30, 'Επιλέξτε όλες τις εγγραφές όπου το πρώτο γράμμα της στήλης City ξεκινά με οτιδήποτε από "a" έως "f".', 'SELECT * FROM Customers WHERE City LIKE \'[a-f]%\'', '[a-f]'),
+	(31, 'Χρησιμοποιήστε τον τελεστή IN για να επιλέξετε όλες τις εγγραφές όπου η στήλη Country ΔΕΝ είναι "Norway" και ΔΕΝ "France".', 'SELECT * FROM Customers WHERE Country NOT IN (\'Norway\', \'France\');', 'WHERE,Country,NOT,IN'),
+	(32, 'Χρησιμοποιήστε τον τελεστή IN για να επιλέξετε όλες τις εγγραφές όπου η στήλη Country είναι είτε "Norway" είτε "France".', 'SELECT * FROM Customers WHERE Country IN (\'Norway\', \'France\' )', 'WHERE,Country,IN,(\'Norway\',)'),
+	(33, 'Χρησιμοποιήστε τον τελεστή BETWEEN για να επιλέξετε όλες τις εγγραφές όπου η τιμή της στήλης Price είναι μεταξύ 10 και 20.', 'SELECT * FROM Products WHERE Price BETWEEN 10 AND 20', 'BETWEEN,10,AND,20'),
+	(34, 'Χρησιμοποιήστε τον χειριστή BETWEEN για να επιλέξετε όλες τις εγγραφές όπου η τιμή της στήλης Price ΔΕΝ είναι μεταξύ 10 και 20.', 'SELECT * FROM Products WHERE Price NOT BETWEEN 10 AND 20', 'NOT,BETWEEN'),
+	(35, 'Κατά την εμφάνιση του πίνακα Customers, δημιουργήστε ένα ALIAS της στήλης PostalCode, η στήλη θα πρέπει να ονομάζεται Pno.', 'SELECT CustomerName,Address,PostalCode AS Pno FROM Customers;', 'AS,Pno'),
+	(36, 'Εισαγάγετε τα μέρη που λείπουν στον όρο JOIN για να ενωθείτε με τους δύο πίνακες Orders και Customers, χρησιμοποιώντας το πεδίο CustomerID και στους δύο πίνακες ως σχέση μεταξύ των δύο πινάκων.', 'SELECT * FROM Orders LEFT JOIN Customers ON Orders.CustomerID=Customers.CustomerID', 'ON,Orders.CustomerID,Customers.CustomerID'),
 	(37, 'Επιλέξτε τη σωστή ρήτρα JOIN για να επιλέξετε όλες τις εγγραφές από τους δύο πίνακες όπου υπάρχει αντιστοιχία και στους δύο πίνακες.', 'SELECT * FROM Orders INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;', 'INNER JOIN,Customers'),
-	(38, 'Επιλέξτε τη σωστή ρήτρα JOIN για να επιλέξετε όλες τις εγγραφές από τον πίνακα Πελάτες συν όλους τους αγώνες στον πίνακα Παραγγελίες.', 'SELECT * FROM Orders RIGHT JOIN Customers ON Orders.CustomerID=Customers.CustomerID;', 'RIGHT JOIN,Customers'),
-	(39, 'Αναφέρετε τον αριθμό των πελατών σε κάθε χώρα.', 'SELECT COUNT (CustomerID),Country FROM Customers GROUP BY Country', 'COUNT,GROUP BY,Country'),
-	(40, 'Αναφέρετε πρώτα τον αριθμό των πελατών σε κάθε χώρα, κατά σειρά με τη σειρά με τους περισσότερους πελάτες.', 'SELECT COUNT (CustomerID),Country FROM Customers GROUP BY Country ORDER BY COUNT(CustomerID) DESC', 'COUNT,GROUP BY,Country,COUNT(CustomerID),DESC'),
-	(41, 'Κατά την εμφάνιση του πίνακα Πελάτες, δημιουργήστε ένα ALIAS της στήλης PostalCode, η στήλη θα πρέπει να ονομάζεται Pno.', 'SELECT CustomerName,Address,PostalCode AS Pno FROM Customers;', 'AS Pno'),
+	(38, 'Επιλέξτε τη σωστή ρήτρα JOIN για να επιλέξετε όλες τις εγγραφές από τον πίνακα Customers συν όλους τους αγώνες στον πίνακα Orders.', 'SELECT * FROM Orders RIGHT JOIN Customers ON Orders.CustomerID=Customers.CustomerID;', 'RIGHT JOIN,Customers'),
+	(39, 'Αναφέρετε τον αριθμό των Customers σε κάθε Country.', 'SELECT COUNT (CustomerID),Country FROM Customers GROUP BY Country', 'COUNT,GROUP BY,Country'),
+	(40, 'Αναφέρετε πρώτα τον αριθμό των Customers σε κάθε Country, κατά σειρά με τους περισσότερους Customers.', 'SELECT COUNT (CustomerID),Country FROM Customers GROUP BY Country ORDER BY COUNT(CustomerID) DESC', 'COUNT,GROUP BY,Country,COUNT(CustomerID),DESC'),
+	(41, 'Κατά την εμφάνιση του πίνακα Customers, δημιουργήστε ένα ALIAS της στήλης PostalCode, η στήλη θα πρέπει να ονομάζεται Pno.', 'SELECT CustomerName,Address,PostalCode AS Pno FROM Customers;', 'AS Pno'),
 	(43, 'Εμφάνισε όλα τα δεδομένα του πίνακα Scores', 'SELECT * FROM Scores', 'SELECT,FROM'),
 	(44, 'Διαγράψτε από τον πίνακα users όσες εγγραφές έχουν id μεγαλύτερο του 5', 'DELETE FROM users WHERE id>5', 'DELETE,FROM,>');
 /*!40000 ALTER TABLE `fill_fields_questions` ENABLE KEYS */;
-
--- Dumping structure for table diplwmatiki.okok
-DROP TABLE IF EXISTS `okok`;
-CREATE TABLE IF NOT EXISTS `okok` (
-  `id` int(23) NOT NULL,
-  `name` varchar(23) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- Dumping data for table diplwmatiki.okok: ~0 rows (approximately)
-/*!40000 ALTER TABLE `okok` DISABLE KEYS */;
-/*!40000 ALTER TABLE `okok` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.players
 DROP TABLE IF EXISTS `players`;
@@ -167,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `score_table` (
   PRIMARY KEY (`id`),
   KEY `student_id_idx` (`student_id`),
   CONSTRAINT `student_id` FOREIGN KEY (`student_id`) REFERENCES `user_table` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=186 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=189 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.score_table: ~46 rows (approximately)
 /*!40000 ALTER TABLE `score_table` DISABLE KEYS */;
@@ -226,7 +196,10 @@ REPLACE INTO `score_table` (`id`, `student_id`, `score`, `time`, `category`, `di
 	(182, 5, 48, '00:00:18', '15 Questions', 'hard', '2021-02-18 22:43:07', '2021-02-18 22:43:07'),
 	(183, 5, 30, '00:00:16', '15 Questions', 'easy', '2021-02-20 15:14:35', '2021-02-20 15:14:35'),
 	(184, 5, 45, '00:00:19', '15 Questions', 'hard', '2021-02-21 13:55:37', '2021-02-21 13:55:37'),
-	(185, 5, 20, '00:00:18', '15 Questions', 'easy', '2021-02-23 21:15:59', '2021-02-23 21:15:59');
+	(185, 5, 20, '00:00:18', '15 Questions', 'easy', '2021-02-23 21:15:59', '2021-02-23 21:15:59'),
+	(186, 5, 36, '00:00:37', '25 Questions', 'hard', '2021-02-27 15:09:28', '2021-02-27 15:09:28'),
+	(187, 5, 21, '00:00:17', '15 Questions', 'easy', '2021-02-27 15:11:03', '2021-02-27 15:11:03'),
+	(188, 5, 20, '00:00:37', '15 Questions', 'easy', '2021-03-03 14:42:37', '2021-03-03 14:42:37');
 /*!40000 ALTER TABLE `score_table` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.sql_questions
@@ -242,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `sql_questions` (
   `score` int(11) NOT NULL,
   `difficulty` varchar(400) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.sql_questions: ~60 rows (approximately)
 /*!40000 ALTER TABLE `sql_questions` DISABLE KEYS */;
@@ -255,32 +228,32 @@ REPLACE INTO `sql_questions` (`id`, `question`, `a`, `b`, `c`, `d`, `correct_ans
 	(13, 'Τι σημαίνει η SQL;', 'Structured Query Language  ', 'Structured Question Language', 'Strong Question Language', 'Strong Question Language', 'a', 5, 'easy'),
 	(14, 'Ποια δήλωση SQL χρησιμοποιείται για τη διαγραφή δεδομένων από μια βάση δεδομένων;', 'COLLAPSE  ', 'REMOVE', 'SELECT', 'DELETE    ', 'd', 5, 'easy'),
 	(21, 'Ποια δήλωση SQL χρησιμοποιείται για την εισαγωγή νέων δεδομένων σε μια βάση δεδομένων;', 'INSERT INTO  ', 'ADD RECORD', 'ADD NEW', 'INSERT NEW', 'a', 5, 'easy'),
-	(22, 'Με το SQL, πώς επιλέγετε μια στήλη με το όνομα "FirstName" από έναν πίνακα με το όνομα "Persons";', 'SELECT FirstName FROM Persons  ', 'SELECT Persons.FirstName', 'EXTRACT FirstName FROM Persons', 'SELECT *.Persons', 'a', 5, 'easy'),
-	(23, 'Με το SQL, πώς επιλέγετε όλες τις εγγραφές από έναν πίνακα με το όνομα "Άτομα" όπου η τιμή της στήλης "FirstName" είναι "Peter";', 'SELECT [all] FROM Persons WHERE FirstName LIKE \'Peter\'  ', 'SELECT * FROM Persons WHERE FirstName=\'Peter\'  ', 'SELECT [all] FROM Persons WHERE FirstName=\'Peter\'', 'SELECT * FROM Persons WHERE FirstName<>\'Peter\'', 'b', 5, 'easy'),
-	(24, 'Με το SQL, πώς επιλέγετε όλες τις εγγραφές από έναν πίνακα με το όνομα "Άτομα" όπου η τιμή της στήλης "FirstName" ξεκινά με "a";', 'SELECT * FROM Persons WHERE FirstName LIKE \'%a\'  ', 'SELECT * FROM Persons WHERE FirstName=\'%a%\'', 'SELECT * FROM Persons WHERE FirstName=\'a\'', 'SELECT * FROM Persons WHERE FirstName LIKE \'a%\'  ', 'd', 5, 'easy'),
+	(22, 'Με την SQL, πώς επιλέγετε μια στήλη με το όνομα "FirstName" από έναν πίνακα με το όνομα "Persons";', 'SELECT FirstName FROM Persons  ', 'SELECT Persons.FirstName', 'EXTRACT FirstName FROM Persons', 'SELECT *.Persons', 'a', 5, 'easy'),
+	(23, 'Με την SQL, πώς επιλέγετε όλες τις εγγραφές από έναν πίνακα με το όνομα Persons όπου η τιμή της στήλης "FirstName" είναι "Peter";', 'SELECT [all] FROM Persons WHERE FirstName LIKE \'Peter\'  ', 'SELECT * FROM Persons WHERE FirstName=\'Peter\'  ', 'SELECT [all] FROM Persons WHERE FirstName=\'Peter\'', 'SELECT * FROM Persons WHERE FirstName<>\'Peter\'', 'b', 5, 'easy'),
+	(24, 'Με την SQL, πώς επιλέγετε όλες τις εγγραφές από έναν πίνακα με το όνομα Persons όπου η τιμή της στήλης "FirstName" ξεκινά με "a";', 'SELECT * FROM Persons WHERE FirstName LIKE \'%a\'  ', 'SELECT * FROM Persons WHERE FirstName=\'%a%\'', 'SELECT * FROM Persons WHERE FirstName=\'a\'', 'SELECT * FROM Persons WHERE FirstName LIKE \'a%\'  ', 'd', 5, 'easy'),
 	(25, 'Ο τελεστής OR εμφανίζει μια εγγραφή εάν ΚΑΝΕΤΕ οι καταχωρισμένες συνθήκες είναι αληθείς Ο τελεστής AND εμφανίζει μια εγγραφή εάν ΟΛΕΣ οι αναφερόμενες συνθήκες είναι αληθείς', 'False    ', 'True  ', '.', '.', 'b', 5, 'easy'),
-	(26, 'Με το SQL, πώς επιλέγετε όλες τις εγγραφές από έναν πίνακα με το όνομα "Persons" όπου το "FirstName" είναι "Peter" και το "LastName" είναι "Jackson";', 'SELECT * FROM Persons WHERE FirstName=\'Peter\' AND LastName=\'Jackson\'  ', 'SELECT * FROM Persons WHERE FirstName<>\'Peter\' AND LastName<>\'Jackson\'', 'SELECT FirstName=\'Peter\', LastName=\'Jackson\' FROM Persons', 'SELECT * FROM Persons WHERE LastName>\'Hansen\' AND LastName<\'Pettersen\'  ', 'a', 5, 'easy'),
-	(27, 'Με το SQL, πώς επιλέγετε όλες τις εγγραφές από έναν πίνακα με το όνομα "Persons" όπου το "LastName" βρίσκεται αλφαβητικά μεταξύ (και περιλαμβάνει) "Hansen" και "Pettersen";', 'SELECT * FROM Persons WHERE LastName>\'Hansen\' AND LastName<\'Pettersen\'  ', 'SELECT * FROM Persons WHERE LastName BETWEEN \'Hansen\' AND \'Pettersen\'  ', 'SELECT LastName>\'Hansen\' AND LastName<\'Pettersen\' FROM Persons', 'SELECT FirstName=\'Peter\', LastName=\'Jackson\' FROM Persons', 'b', 5, 'easy'),
+	(26, 'Με την SQL, πώς επιλέγετε όλες τις εγγραφές από έναν πίνακα με το όνομα "Persons" όπου το "FirstName" είναι "Peter" και το "LastName" είναι "Jackson";', 'SELECT * FROM Persons WHERE FirstName=\'Peter\' AND LastName=\'Jackson\'  ', 'SELECT * FROM Persons WHERE FirstName<>\'Peter\' AND LastName<>\'Jackson\'', 'SELECT FirstName=\'Peter\', LastName=\'Jackson\' FROM Persons', 'SELECT * FROM Persons WHERE LastName>\'Hansen\' AND LastName<\'Pettersen\'  ', 'a', 5, 'easy'),
+	(27, 'Με την SQL, πώς επιλέγετε όλες τις εγγραφές από έναν πίνακα με το όνομα "Persons" όπου το "LastName" βρίσκεται αλφαβητικά μεταξύ (και περιλαμβάνει) "Hansen" και "Pettersen";', 'SELECT * FROM Persons WHERE LastName>\'Hansen\' AND LastName<\'Pettersen\'  ', 'SELECT * FROM Persons WHERE LastName BETWEEN \'Hansen\' AND \'Pettersen\'  ', 'SELECT LastName>\'Hansen\' AND LastName<\'Pettersen\' FROM Persons', 'SELECT FirstName=\'Peter\', LastName=\'Jackson\' FROM Persons', 'b', 5, 'easy'),
 	(28, 'Ποια δήλωση SQL χρησιμοποιείται για την επιστροφή μόνο διαφορετικών τιμών;', 'SELECT DIFFERENT  ', 'SELECT UNIQUE', 'SELECT DISTINCT  ', 'SELECT * FROM Persons WHERE LastName BETWEEN \'Hansen\' AND \'Pettersen\'  ', 'c', 5, 'easy'),
 	(29, 'Ποια λέξη-κλειδί SQL χρησιμοποιείται για την ταξινόμηση του συνόλου αποτελεσμάτων;', 'SORT  ', 'ORDER BY  ', 'ORDER', 'SORT BY', 'b', 5, 'easy'),
-	(30, 'Με το SQL, πώς μπορείτε να επιστρέψετε όλες τις εγγραφές από έναν πίνακα με το όνομα "Άτομα" ταξινομημένο κατά φθίνουσα κατά "FirstName";', 'SELECT * FROM Persons SORT \'FirstName\' DESC  ', 'SELECT * FROM Persons SORT BY \'FirstName\' DESC', 'SELECT * FROM Persons ORDER BY FirstName DESC  ', 'SELECT * FROM Persons ORDER FirstName DESC', 'c', 5, 'easy'),
-	(31, 'Με το SQL, πώς μπορείτε να εισαγάγετε μια νέα εγγραφή στον πίνακα "Πρόσωπα";', 'INSERT VALUES (\'Jimmy\', \'Jackson\') INTO Persons', 'INSERT (\'Jimmy\', \'Jackson\') INTO Persons', 'INSERT INTO Persons VALUES (\'Jimmy\', \'Jackson\')  ', 'INSERT (\'Olsen\') INTO Persons (LastName)', 'c', 5, 'easy'),
-	(32, 'Με το SQL, πώς μπορείτε να εισαγάγετε το "Olsen" ως "LastName" στον πίνακα "Persons";', 'INSERT INTO Persons (LastName) VALUES (\'Olsen\')  ', 'INSERT (\'Olsen\') INTO Persons (LastName)', 'INSERT INTO Persons (\'Olsen\') INTO LastName', 'INSERT (\'Jimmy\', \'Jackson\') INTO Persons', 'a', 5, 'easy'),
+	(30, 'Με την SQL, πώς μπορείτε να επιστρέψετε όλες τις εγγραφές από έναν πίνακα με το όνομα Persons ταξινομημένο κατά φθίνουσα κατά "FirstName";', 'SELECT * FROM Persons SORT \'FirstName\' DESC  ', 'SELECT * FROM Persons SORT BY \'FirstName\' DESC', 'SELECT * FROM Persons ORDER BY FirstName DESC  ', 'SELECT * FROM Persons ORDER FirstName DESC', 'c', 5, 'easy'),
+	(31, 'Με την SQL, πώς μπορείτε να εισαγάγετε μια νέα εγγραφή στον πίνακα Persons;', 'INSERT VALUES (\'Jimmy\', \'Jackson\') INTO Persons', 'INSERT (\'Jimmy\', \'Jackson\') INTO Persons', 'INSERT INTO Persons VALUES (\'Jimmy\', \'Jackson\')  ', 'INSERT (\'Olsen\') INTO Persons (LastName)', 'c', 5, 'easy'),
+	(32, 'Με την SQL, πώς μπορείτε να εισαγάγετε το "Olsen" ως "LastName" στον πίνακα "Persons";', 'INSERT INTO Persons (LastName) VALUES (\'Olsen\')  ', 'INSERT (\'Olsen\') INTO Persons (LastName)', 'INSERT INTO Persons (\'Olsen\') INTO LastName', 'INSERT (\'Jimmy\', \'Jackson\') INTO Persons', 'a', 5, 'easy'),
 	(33, 'Πώς μπορείτε να αλλάξετε το "Hansen" σε "Nilsen" στη στήλη "LastName" στον πίνακα Persons;', 'MODIFY Persons SET LastName=\'Nilsen\' WHERE LastName=\'Hansen\'  ', 'UPDATE Persons SET LastName=\'Nilsen\' WHERE LastName=\'Hansen\'  ', 'MODIFY Persons SET LastName=\'Hansen\' INTO LastName=\'Nilsen', 'UPDATE Persons SET LastName=\'Hansen\' INTO LastName=\'Nilsen\'', 'b', 12, 'hard'),
-	(34, 'Με το SQL, πώς μπορείτε να διαγράψετε τις εγγραφές όπου το "FirstName" είναι "Peter" στον πίνακα Persons;', 'DELETE ROW FirstName=\'Peter\' FROM Persons', 'DELETE FirstName=\'Peter\' FROM Persons', 'DELETE FROM Persons WHERE FirstName = \'Peter\'  ', '.', 'c', 11, 'hard'),
-	(35, 'Με το SQL, πώς μπορείτε να επιστρέψετε τον αριθμό των εγγραφών στον πίνακα "Πρόσωπα";', 'SELECT NO(*) FROM Persons', 'SELECT COUNT(*) FROM Persons  ', 'SELECT LEN(*) FROM Persons', 'SELECT COLUMNS(*) FROM Persons', 'b', 20, 'hard'),
+	(34, 'Με την SQL, πώς μπορείτε να διαγράψετε τις εγγραφές όπου το "FirstName" είναι "Peter" στον πίνακα Persons;', 'DELETE ROW FirstName=\'Peter\' FROM Persons', 'DELETE FirstName=\'Peter\' FROM Persons', 'DELETE FROM Persons WHERE FirstName = \'Peter\'  ', '.', 'c', 11, 'hard'),
+	(35, 'Με την SQL, πώς μπορείτε να επιστρέψετε τον αριθμό των εγγραφών στον πίνακα Persons;', 'SELECT NO(*) FROM Persons', 'SELECT COUNT(*) FROM Persons  ', 'SELECT LEN(*) FROM Persons', 'SELECT COLUMNS(*) FROM Persons', 'b', 20, 'hard'),
 	(36, 'Ποιος είναι ο πιο κοινός τύπος συμμετοχής;', 'JOINED', 'INSIDE JOIN', 'INNER JOIN  ', 'JOINED TABLE', 'c', 11, 'hard'),
 	(37, 'Ποιος χειριστής χρησιμοποιείται για την επιλογή τιμών εντός ενός εύρους;', 'WITHIN', 'BETWEEN    ', 'RANGE', 'JOINED', 'b', 11, 'hard'),
 	(38, 'Ποιος χειριστής χρησιμοποιείται για την επιλογή τιμών εντός ενός εύρους;', 'WITHIN', 'BETWEEN    ', 'RANGE', 'JOINED TABLE', 'b', 11, 'hard'),
 	(39, 'Ο περιορισμός NOT NULL επιβάλλει μια στήλη για να μην δέχεται τιμές NULL.', 'True', 'False', '.', '.', 'b', 11, 'hard'),
 	(40, 'Ποιος χειριστής χρησιμοποιείται για την αναζήτηση ενός συγκεκριμένου μοτίβου σε μια στήλη;', 'FROM    ', 'GET', 'LIKE    ', 'RANGE', 'c', 11, 'hard'),
 	(41, 'Ποιος είναι ο πιο κοινός τύπος συμμετοχής;', 'JOINED', 'INSIDE JOIN', 'INNER JOIN  ', 'JOINED TABLE', 'c', 11, 'hard'),
-	(42, 'Μπορείτε να προσθέσετε μια σειρά χρησιμοποιώντας SQL σε μια βάση δεδομένων με ποιο από τα παρακάτω;', 'ADD', 'CREATE', 'INSERT', 'MAKE', 'c', 5, 'easy'),
-	(43, 'Η εντολή για την κατάργηση σειρών από τον πίνακα "ΠΕΛΑΤΗΣ" είναι:', 'REMOVE FROM CUSTOMER ...', 'DROP FROM CUSTOMER ...', 'DELETE FROM CUSTOMER WHERE ...', 'UPDATE FROM CUSTOMER ...', 'c', 5, 'easy'),
-	(44, 'Η ρήτρα SQL WHERE:', 'limits the column data that are returned.', 'limits the row data are returned.', 'Both A and B are correct.', 'Neither A nor B are correct.', 'b', 10, 'hard'),
-	(45, 'Ποιο από τα παρακάτω είναι ο αρχικός σκοπός του SQL;', 'To specify the syntax and semantics of SQL data definition language', 'To specify the syntax and semantics of SQL manipulation language', 'To define the data structures', 'All of the above.', 'd', 10, 'hard'),
-	(46, 'Η μπαλαντέρ σε μια ρήτρα WHERE είναι χρήσιμη πότε;', 'An exact match is necessary in a SELECT statement.', 'An exact match is not possible in a SELECT statement.', 'An exact match is necessary in a CREATE statement.', 'An exact match is not possible in a CREATE statement.', 'b', 7, 'easy'),
-	(47, 'Μια άποψη είναι ποια από τις ακόλουθες;', 'A virtual table that can be accessed via SQL commands', 'A virtual table that cannot be accessed via SQL commands', 'A base table that can be accessed via SQL commands', 'A base table that cannot be accessed via SQL commands', 'a', 5, 'easy'),
+	(42, 'Πώς μπορείτε να προσθέσετε μια σειρά χρησιμοποιώντας SQL σε μια βάση δεδομένων με ποιο από τα παρακάτω;', 'ADD', 'CREATE', 'INSERT', 'MAKE', 'c', 5, 'easy'),
+	(43, 'Η εντολή για την κατάργηση σειρών από τον πίνακα "CUSTOMER" είναι:', 'REMOVE FROM CUSTOMER ...', 'DROP FROM CUSTOMER ...', 'DELETE FROM CUSTOMER WHERE ...', 'UPDATE FROM CUSTOMER ...', 'c', 5, 'easy'),
+	(44, 'Η ρήτρα SQL WHERE:', 'περιορίζει τα δεδομένα της στήλης που επιστρέφονται.', 'περιορίζει τα δεδομένα γραμμής που επιστρέφονται..', 'Α και Β σωστά', 'Ούτε το Α ούτε το Β σωστά', 'b', 10, 'hard'),
+	(45, 'Ποιο από τα παρακάτω είναι ο αρχικός σκοπός του SQL;', 'Για να καθορίσετε τη σύνταξη και τη σημασιολογία της γλώσσας ορισμού δεδομένων SQL', 'Για να καθορίσετε τη σύνταξη και τη σημασιολογία της γλώσσας χειρισμού SQL', 'Για να ορίσετε τις δομές δεδομένων', 'Ολα τα παραπανω.', 'd', 10, 'hard'),
+	(46, 'Η μπαλαντέρ σε μια ρήτρα WHERE είναι χρήσιμη πότε;', 'Απαιτείται ακριβής αντιστοίχιση σε μια δήλωση SELECT.', 'Δεν είναι δυνατή η ακριβής αντιστοίχιση σε μια δήλωση SELECT.', 'Απαιτείται ακριβής αντιστοίχιση σε μια δήλωση CREATE.', 'Δεν είναι δυνατή η ακριβής αντιστοίχιση σε μια δήλωση CREATE.', 'b', 7, 'easy'),
+	(47, 'Μια πρόταση από τις παρακάτω είναι σωστή.', 'Ένας εικονικός πίνακας στον οποίο μπορείτε να έχετε πρόσβαση μέσω εντολών SQL', 'Ένας εικονικός πίνακας στον οποίο δεν είναι δυνατή η πρόσβαση μέσω εντολών SQL', 'Ένας βασικός πίνακας στον οποίο μπορείτε να έχετε πρόσβαση μέσω εντολών SQL', 'Ένας βασικός πίνακας στον οποίο δεν είναι δυνατή η πρόσβαση μέσω εντολών SQL', 'a', 5, 'easy'),
 	(48, 'Η εντολή για την εξάλειψη ενός πίνακα από μια βάση δεδομένων είναι:', 'REMOVE TABLE CUSTOMER;', 'DROP TABLE CUSTOMER;', 'DELETE TABLE CUSTOMER;', 'UPDATE TABLE CUSTOMER;', 'b', 5, 'easy'),
 	(49, 'ON UPDATE CASCADE εξασφαλίζει ποιο από τα παρακάτω;', 'Normalization', 'Data Integrity', 'Materialized Views', 'All of the above.', 'b', 5, 'easy'),
 	(50, 'ON UPDATE CASCADE εξασφαλίζει ποιο από τα παρακάτω;', 'DDL', 'DML', 'HTML', 'XML', 'a', 7, 'hard'),
@@ -288,12 +261,12 @@ REPLACE INTO `sql_questions` (`id`, `question`, `a`, `b`, `c`, `d`, `correct_ans
 	(52, 'Η λέξη-κλειδί SQL ________ χρησιμοποιείται με χαρακτήρες μπαλαντέρ.', 'LIKE only', 'IN only', 'NOT IN only', 'IN and NOT IN', 'a', 5, 'hard'),
 	(53, 'Ποιο από τα παρακάτω είναι η σωστή σειρά λέξεων-κλειδιών για δηλώσεις SQL SELECT;', 'SELECT, FROM, WHERE', 'FROM, WHERE, SELECT', 'WHERE, FROM,SELECT', 'SELECT,WHERE,FROM', 'a', 5, 'hard'),
 	(54, 'Το αποτέλεσμα μιας δήλωσης SQL SELECT είναι ένα α(n) ________.', 'report', 'form', 'file', 'table', 'd', 5, 'easy'),
-	(55, 'Η λέξη-κλειδί SQL  BETWEEN  χρησιμοποιείται:', 'for ranges.', 'to limit the columns displayed.', 'as a wildcard.', 'None of the above is correct.', 'a', 7, 'hard'),
+	(55, 'Η λέξη-κλειδί SQL  BETWEEN  χρησιμοποιείται:', 'για διαστήματα', 'για να περιορίσετε τις εμφανιζόμενες στήλες.', 'ως wildcard.', 'Κανένα από τα παραπάνω δεν είναι σωστό.', 'a', 7, 'hard'),
 	(56, 'Το ________ υιοθετήθηκε ως εθνικό πρότυπο από την ANSI το 1992.', 'Oracle', 'SQL', 'Microsoft Access', 'DBase', 'b', 5, 'easy'),
 	(57, 'Ποιο από τα παρακάτω πρέπει να λάβετε υπόψη όταν δημιουργείτε έναν πίνακα σε SQL;', 'Data types', 'Primary keys', 'Default values', 'All of the above.', 'd', 7, 'hard'),
 	(58, 'Ποια από τις παρακάτω σειρές ταξινομεί στο SQL;', 'SORT BY', 'ALIGN BY', 'ORDER BY', 'GROUP BY', 'c', 7, 'hard'),
-	(59, 'Για να ορίσετε ποιες στήλες πρέπει να εμφανίζονται σε μια δήλωση SQL SELECT:', 'use FROM to name the source table(s) and list the columns to be shown after SELECT.', 'use USING to name the source table(s) and list the columns to be shown after SELECT.', 'use SELECT to name the source table(s) and list the columns to be shown after USING.', 'use USING to name the source table(s) and list the columns to be shown after WHERE.', 'a', 7, 'hard'),
-	(60, 'Το SQL μπορεί να χρησιμοποιηθεί για:', 'create database structures only.', 'query database data only.', 'modify database data only.', 'All of the above can be done by SQL.', 'd', 9, 'hard'),
+	(59, 'Για να ορίσετε ποιες στήλες πρέπει να εμφανίζονται σε μια δήλωση SQL SELECT:', 'Χρησιμοποιήστε το FROM για να ονομάσετε τους πίνακες (ες) προέλευσης και να απαριθμήσετε τις στήλες που θα εμφανίζονται μετά την επιλογή.', 'χρησιμοποιήστε το USING για να ονομάσετε τους πίνακες (ες) προέλευσης και να αναφέρετε τις στήλες που θα εμφανίζονται μετά την επιλογή.', 'Χρησιμοποιήστε το SELECT για να ονομάσετε τους πίνακες προέλευσης και να αναφέρετε τις στήλες που θα εμφανίζονται μετά τη χρήση.', 'Χρησιμοποιήστε το USING για να ονομάσετε τους πίνακες (ες) προέλευσης και να αναφέρετε τις στήλες που θα εμφανίζονται μετά το WHERE.', 'a', 7, 'hard'),
+	(60, 'Το SQL μπορεί να χρησιμοποιηθεί για:', 'δημιουργία μόνο δομές βάσεων δεδομένων.', 'μόνο δεδομένα βάσης δεδομένων ερωτήματος.', 'τροποποίηση δεδομένων βάσης δεδομένων μόνο.', 'Όλα τα παραπάνω μπορούν να γίνουν με SQL.', 'd', 9, 'hard'),
 	(61, 'Ποιο από τα παρακάτω είναι μια νομική έκφραση στο SQL;', 'SELECT NULL FROM SALES;', 'SELECT NAME FROM SALES;', 'SELECT * FROM SALES WHEN PRICE = NULL;', 'SELECT # FROM SALES;', 'b', 10, 'hard'),
 	(62, 'Το DCL παρέχει εντολές σε λειτουργίες όπως', 'Change thestructureof Tables', 'Insert, Update or Delete Records and Values', 'Authorizing Access and othercontrolover Database', 'None of Above', 'c', 5, 'easy'),
 	(63, 'Η συνάρτηση COUNT στο SQL επιστρέφει τον αριθμό ______________', 'Values', 'Distinct values', 'Group By', 'Columns', 'a', 10, 'hard'),
@@ -319,36 +292,43 @@ CREATE TABLE IF NOT EXISTS `sql_random_queries` (
   PRIMARY KEY (`id`),
   KEY `table_id_idx` (`table_id`),
   CONSTRAINT `table_id` FOREIGN KEY (`table_id`) REFERENCES `excersice_tables` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=389 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=534 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.sql_random_queries: ~14 rows (approximately)
+-- Dumping data for table diplwmatiki.sql_random_queries: ~56 rows (approximately)
 /*!40000 ALTER TABLE `sql_random_queries` DISABLE KEYS */;
 REPLACE INTO `sql_random_queries` (`id`, `sql_query`, `hideWord`, `table_id`) VALUES
 	(351, 'SELECT id FROM players ORDER BY RAND() LIMIT 1', 'id,players,RAND()', 104),
-	(352, 'SELECT * FROM players WHERE surname = (SELECT MAX(id) FROM players)', 'SELECT', 104),
-	(353, 'SELECT name FROM players UNION SELECT surname FROM players ORDER BY \'name\'', 'name,UNION', 104),
-	(354, 'SELECT id, isPlayed FROM players  ORDER BY isPlayed', 'SELECT,ORDER BY', 104),
-	(355, 'SELECT COUNT(id), SUM(id) FROM players WHERE id NOT BETWEEN \'0\' AND \'10\'', '', 104),
+	(352, 'SELECT * FROM players WHERE surname = (SELECT MAX(id) FROM players)', 'SELECT,players,FROM', 104),
+	(353, 'SELECT name FROM players UNION SELECT surname FROM players ORDER BY \'name\'', 'name,UNION,players', 104),
+	(354, 'SELECT id, isPlayed FROM players ORDER BY isPlayed', 'SELECT,ORDER BY', 104),
+	(355, 'SELECT COUNT(id), SUM(id) FROM players WHERE id NOT BETWEEN \'0\' AND \'10\'', 'SUM,players,SELECT', 104),
 	(356, 'SELECT id, player_id FROM scores', '', 105),
 	(357, 'SELECT DISTINCT player_id FROM scores', '', 105),
 	(358, 'SELECT id, player_id FROM scores ORDER BY \'id\' ASC', '', 105),
 	(359, 'SELECT * FROM scores ORDER BY \'score\' ASC, id DESC', '', 105),
-	(366, 'SELECT id FROM testalone ORDER BY RAND() LIMIT 1', '', 107),
-	(367, 'SELECT * FROM testalone WHERE id = (SELECT MAX(id) FROM testalone)', '', 107),
-	(368, 'SELECT name FROM testalone UNION SELECT surname FROM testalone ORDER BY \'name\'', '', 107),
-	(369, 'SELECT isOk, number FROM testalone WHERE isOk BETWEEN 1 AND 10 ORDER BY \'number\'', '', 107),
-	(370, 'SELECT COUNT(isOk), SUM(isOk) FROM testalone WHERE id NOT BETWEEN \'0\' AND \'10\'', '', 107),
-	(371, 'SELECT * FROM players', '', 104),
-	(379, 'SELECT * FROM actors WHERE id=2', 'id,=,2', 108),
-	(380, 'SELECT * FROM actors', '*,actors', 108),
-	(381, 'SELECT id FROM actors', 'id,actors', 108),
-	(382, 'SELECT id,COUNT(*) FROM actors', 'COUNT(*)', 108),
-	(383, 'SELECT id,isPlayed FROM actors WHERE id BETWEEN 1 AND 10', 'id,BETWEEN,1,10', 108),
-	(384, 'SELECT id, name FROM okok WHERE id BETWEEN 1 AND 10 ORDER BY \'name\'', 'SELECT,okok,o', 112),
-	(385, 'SELECT COUNT(id), SUM(id) FROM okok WHERE id NOT BETWEEN \'0\' AND \'10\'', 'opop,po', 112),
-	(386, 'SELECT * FROM okok', 'sdsd', 112),
-	(387, 'SELECT id, name FROM okok', 'ddd', 112),
-	(388, 'SELECT DISTINCT id FROM okok', 'ds', 112);
+	(371, 'SELECT * FROM players', '*', 104),
+	(465, 'SELECT * FROM scores RIGHT JOIN players ON scores.player_id = players.id;', 'RIGHT JOIN', 105),
+	(487, 'SELECT * FROM test2', '*,test2', 125),
+	(488, 'SELECT id, name FROM test2', 'id,name', 125),
+	(489, 'SELECT DISTINCT surname FROM test2', 'DISTINCT', 125),
+	(490, 'SELECT COUNT(id) FROM test2', 'COUNT,FROM', 125),
+	(491, 'SELECT COUNT(DISTINCT surname) FROM test2', 'DISTINCT', 125),
+	(492, 'SELECT * FROM test2 WHERE id=7', 'WHERE,id', 125),
+	(493, 'SELECT * FROM test2 WHERE id IN ("1","4")', 'IN', 125),
+	(494, 'SELECT * FROM test2 WHERE id BETWEEN 2 AND 7', 'BETWEEN,AND', 125),
+	(495, 'SELECT * FROM test2 ORDER BY id', 'ORDER BY', 125),
+	(496, 'SELECT * FROM test2 ORDER BY surname DESC', 'ORDER BY,DESC', 125),
+	(497, 'SELECT * FROM test2 ORDER BY surname ASC, id DESC', 'ORDER BY,ASC,DESC', 125),
+	(498, 'SELECT * FROM test2 LIMIT 3', 'LIMIT', 125),
+	(499, 'SELECT MIN(id) FROM test2', 'MIN', 125),
+	(500, 'SELECT MAX(id) FROM test2', 'MAX', 125),
+	(501, 'SELECT COUNT(id), name FROM test2 GROUP BY name', 'COUNT,GROUP BY', 125),
+	(502, 'SELECT COUNT(name), surname FROM test2 GROUP BY surname ORDER BY COUNT(name) DESC', 'ORDER BY,DESC', 125),
+	(503, 'SELECT COUNT(surname) FROM test2 GROUP BY score HAVING COUNT(surname) >=1', 'GROUP BY,HAVING COUNT', 125),
+	(504, 'SELECT SUM(id) FROM test2', 'SUM', 125),
+	(505, 'SELECT AVG(id) FROM test2', 'AVG', 125),
+	(506, 'SELECT * FROM test2 WHERE id IS NULL', 'IS NULL', 125),
+	(533, 'SADASDD', 'FDSFSDF', 143);
 /*!40000 ALTER TABLE `sql_random_queries` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.success_rate
@@ -364,9 +344,9 @@ CREATE TABLE IF NOT EXISTS `success_rate` (
   PRIMARY KEY (`id`),
   KEY `id_student_idx` (`id_student`),
   CONSTRAINT `id_student` FOREIGN KEY (`id_student`) REFERENCES `user_table` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.success_rate: ~19 rows (approximately)
+-- Dumping data for table diplwmatiki.success_rate: ~32 rows (approximately)
 /*!40000 ALTER TABLE `success_rate` DISABLE KEYS */;
 REPLACE INTO `success_rate` (`id`, `id_student`, `rate`, `time`, `table_name`, `created_at`, `updated_at`) VALUES
 	(1, 5, 'Σωστές 5 στις 5', '00:00:09', 'okok', '2021-02-22 16:01:33', '2021-02-22 16:01:33'),
@@ -391,25 +371,72 @@ REPLACE INTO `success_rate` (`id`, `id_student`, `rate`, `time`, `table_name`, `
 	(20, 5, 'Σωστές 0 στις 6', '00:00:40', 'players', '2021-02-23 17:56:58', '2021-02-23 17:56:58'),
 	(21, 5, 'Σωστές 0 στις 4', '00:00:18', 'scores', '2021-02-23 17:57:37', '2021-02-23 17:57:37'),
 	(22, 5, 'Σωστές 0 στις 5', '00:00:31', 'actors', '2021-02-23 18:43:50', '2021-02-23 18:43:50'),
-	(23, 5, 'Σωστές 5 στις 5', '00:01:32', 'actors', '2021-02-23 21:13:41', '2021-02-23 21:13:41');
+	(23, 5, 'Σωστές 5 στις 5', '00:01:32', 'actors', '2021-02-23 21:13:41', '2021-02-23 21:13:41'),
+	(24, 5, 'Σωστές 2 στις 5', '00:00:25', 'okok', '2021-02-24 15:00:09', '2021-02-24 15:00:09'),
+	(25, 5, 'Σωστές 2 στις 6', '00:00:12', 'players', '2021-02-24 22:44:42', '2021-02-24 22:44:42'),
+	(26, 5, 'Σωστές 0 στις 1', '00:00:26', 'actors', '2021-02-24 22:58:10', '2021-02-24 22:58:10'),
+	(27, 5, 'Σωστές 0 στις 1', '00:00:07', 'actors', '2021-02-24 23:15:01', '2021-02-24 23:15:01'),
+	(28, 5, 'Σωστές 0 στις 1', '00:00:57', 'actors', '2021-02-24 23:16:05', '2021-02-24 23:16:05'),
+	(29, 5, 'Σωστές 1 στις 1', '00:00:09', 'actors', '2021-02-24 23:18:40', '2021-02-24 23:18:40'),
+	(30, 5, 'Σωστές 1 στις 1', '00:00:08', 'actors', '2021-02-24 23:22:16', '2021-02-24 23:22:16'),
+	(31, 5, 'Σωστές 0 στις 1', '00:00:08', 'actors', '2021-02-24 23:23:49', '2021-02-24 23:23:49'),
+	(32, 5, 'Σωστές 1 στις 1', '00:00:07', 'actors', '2021-02-24 23:28:48', '2021-02-24 23:28:48'),
+	(33, 5, 'Σωστές 0 στις 1', '00:00:05', 'actors', '2021-02-24 23:29:01', '2021-02-24 23:29:01'),
+	(34, 5, 'Σωστές 2 στις 6', '00:01:05', 'players', '2021-02-24 23:58:31', '2021-02-24 23:58:31'),
+	(35, 5, 'Σωστές 1 στις 1', '00:00:22', 'actors', '2021-02-25 00:01:12', '2021-02-25 00:01:12'),
+	(36, 5, 'Σωστές 0 στις 18', '00:05:06', 'test1', '2021-02-26 22:49:24', '2021-02-26 22:49:24'),
+	(37, 5, 'Σωστές 0 στις 1', '00:00:03', 'test2', '2021-02-27 01:32:39', '2021-02-27 01:32:39'),
+	(38, 5, 'Σωστές 0 στις 1', '00:00:23', 'test2', '2021-02-27 01:33:08', '2021-02-27 01:33:08'),
+	(39, 5, 'Σωστές 1 στις 1', '00:00:04', 'test2', '2021-02-27 01:33:17', '2021-02-27 01:33:17'),
+	(40, 5, 'Σωστές 8 στις 19', '00:01:49', 'test1', '2021-02-28 14:47:13', '2021-02-28 14:47:13'),
+	(41, 5, 'Σωστές 16 στις 20', '00:02:20', 'test20', '2021-02-28 16:43:18', '2021-02-28 16:43:18'),
+	(42, 5, 'Σωστές 9 στις 20', '00:03:32', 'test2', '2021-03-03 23:33:15', '2021-03-03 23:33:15');
 /*!40000 ALTER TABLE `success_rate` ENABLE KEYS */;
 
--- Dumping structure for table diplwmatiki.testalone
-DROP TABLE IF EXISTS `testalone`;
-CREATE TABLE IF NOT EXISTS `testalone` (
-  `id` int(123) NOT NULL,
-  `name` varchar(23) COLLATE utf8_bin NOT NULL,
-  `surname` varchar(23) COLLATE utf8_bin NOT NULL,
-  `number` int(23) NOT NULL,
-  `isOk` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+-- Dumping structure for table diplwmatiki.test2
+DROP TABLE IF EXISTS `test2`;
+CREATE TABLE IF NOT EXISTS `test2` (
+  `id` int(12) NOT NULL,
+  `name` varchar(23) COLLATE utf8_bin DEFAULT NULL,
+  `surname` varchar(23) COLLATE utf8_bin DEFAULT NULL,
+  `score` int(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.testalone: ~0 rows (approximately)
-/*!40000 ALTER TABLE `testalone` DISABLE KEYS */;
-REPLACE INTO `testalone` (`id`, `name`, `surname`, `number`, `isOk`) VALUES
-	(1, 'motsi', 'sadasdd', 45, 0);
-/*!40000 ALTER TABLE `testalone` ENABLE KEYS */;
+-- Dumping data for table diplwmatiki.test2: ~9 rows (approximately)
+/*!40000 ALTER TABLE `test2` DISABLE KEYS */;
+REPLACE INTO `test2` (`id`, `name`, `surname`, `score`) VALUES
+	(1, 'dimi', 'motsios', 10),
+	(2, 'ok', 'ok', 10),
+	(3, 'panos', 'panou', 80),
+	(4, 'kostas', 'pappas', 30),
+	(5, 'ilias', 'mpampis', 30),
+	(6, 'georgia', 'pappa', 30),
+	(7, 'iliana', 'pappa', 30),
+	(8, 'dimi', 'pappa', 30),
+	(9, 'toula', 'pappa', 30);
+/*!40000 ALTER TABLE `test2` ENABLE KEYS */;
+
+-- Dumping structure for table diplwmatiki.test22
+DROP TABLE IF EXISTS `test22`;
+CREATE TABLE IF NOT EXISTS `test22` (
+  `id` int(22) NOT NULL,
+  `city` varchar(100) COLLATE utf8_bin NOT NULL,
+  `test2_id` int(12) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `test2_id` (`test2_id`),
+  CONSTRAINT `test2_id` FOREIGN KEY (`test2_id`) REFERENCES `test2` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- Dumping data for table diplwmatiki.test22: ~0 rows (approximately)
+/*!40000 ALTER TABLE `test22` DISABLE KEYS */;
+REPLACE INTO `test22` (`id`, `city`, `test2_id`) VALUES
+	(1, 'ioannina', 2),
+	(2, 'preveza', 1),
+	(3, 'konitsa', 1),
+	(4, 'athina', 3);
+/*!40000 ALTER TABLE `test22` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.user_table
 DROP TABLE IF EXISTS `user_table`;
@@ -431,7 +458,7 @@ CREATE TABLE IF NOT EXISTS `user_table` (
 -- Dumping data for table diplwmatiki.user_table: ~7 rows (approximately)
 /*!40000 ALTER TABLE `user_table` DISABLE KEYS */;
 REPLACE INTO `user_table` (`id`, `first_name`, `last_name`, `sex`, `phone`, `email`, `username`, `password`, `role`, `verification_code`) VALUES
-	(3, 'dimitris', 'motsios', 'male', '6312546987', 'www.motsios@hotmail.com', 'motsios', '$2a$10$pwvAyg.DFKNXkjfn/aVl4uMA2aNZ1Or4D58y/XNpIqB8RoHlU016.', 'teacher', ''),
+	(3, 'dimitris', 'motsios', 'male', '6312546987', 'www.motsios@hotmail.com', 'motsios', '$2a$10$mtEI3cv.MUrfF66x9nXam.VVPk4l74e3PqDQd2gHmt5GS3EUURCoG', 'teacher', ''),
 	(4, 'giorgos', 'pappas', 'male', '6935146987', 'giorgos@gmail.com', 'giorgos', '$2a$10$1X8vht1REou23F.xMl51reymvMVky653wd7ElT5q/JEHGRpuZOFxy', 'teacher', NULL),
 	(5, 'kostas', 'kakkos', 'male', '6935123697', 'kostas@gmail.com', 'kostas', '$2a$10$mezTsIwg.Md7Guklprtk6uLrxmIQy4iUfsu5LxD15DutxhIM9yldq', 'student', '4c2b079d-42bf-4d14-b541-cfd688f22f5c'),
 	(16, 'dionisis', 'papakwstas', 'male', '6936547892', 'dionisis@gmail.com', 'dioni', '$2a$10$AJQJhxAZVVTDbJwU75qGm.BW9LDld1qvaGy/n7dkU9Jw2j9jDSMbq', 'student', NULL),

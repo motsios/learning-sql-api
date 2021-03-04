@@ -102,7 +102,7 @@ var dbOperations = {
                 secure: false, // true for 465, false for other ports
                 auth: {
                     user: 'dimitristerracom@gmail.com', // generated ethereal user
-                    pass: 'dimitristerracom1.', // generated ethereal password
+                    pass: 'dimitristerracom1!', // generated ethereal password
                 },
             });
 
