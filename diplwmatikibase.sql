@@ -23,14 +23,14 @@ CREATE TABLE IF NOT EXISTS `excersice_tables` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `table_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=168 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.excersice_tables: ~3 rows (approximately)
+-- Dumping data for table diplwmatiki.excersice_tables: ~2 rows (approximately)
 /*!40000 ALTER TABLE `excersice_tables` DISABLE KEYS */;
 REPLACE INTO `excersice_tables` (`id`, `table_name`) VALUES
 	(116, 'asdsad'),
-	(125, 'test2'),
-	(151, 'test20');
+	(166, 'players'),
+	(167, 'location');
 /*!40000 ALTER TABLE `excersice_tables` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.fill_fields_questions
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `fill_fields_questions` (
   `fill_field_question` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `hideWord` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.fill_fields_questions: ~31 rows (approximately)
 /*!40000 ALTER TABLE `fill_fields_questions` DISABLE KEYS */;
@@ -79,6 +79,60 @@ REPLACE INTO `fill_fields_questions` (`id`, `question`, `fill_field_question`, `
 	(44, 'Διαγράψτε από τον πίνακα users όσες εγγραφές έχουν id μεγαλύτερο του 5', 'DELETE FROM users WHERE id>5', 'DELETE,FROM,>');
 /*!40000 ALTER TABLE `fill_fields_questions` ENABLE KEYS */;
 
+-- Dumping structure for table diplwmatiki.location
+DROP TABLE IF EXISTS `location`;
+CREATE TABLE IF NOT EXISTS `location` (
+  `idlocation` int(12) NOT NULL,
+  `address` varchar(22) COLLATE utf8_bin NOT NULL,
+  `city` varchar(22) COLLATE utf8_bin NOT NULL,
+  `player_id` int(12) DEFAULT NULL,
+  PRIMARY KEY (`idlocation`),
+  KEY `player_id` (`player_id`),
+  CONSTRAINT `player_id` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- Dumping data for table diplwmatiki.location: ~0 rows (approximately)
+/*!40000 ALTER TABLE `location` DISABLE KEYS */;
+REPLACE INTO `location` (`idlocation`, `address`, `city`, `player_id`) VALUES
+	(1, 'antwni samaraki 16', 'ioannina', 4),
+	(2, 'euergetwn 8', 'ioannina', 5),
+	(3, 'akragantos 18a', 'preveza', 6),
+	(4, 'euergetwn 16', 'ioannina', 6),
+	(5, 'akragantos 22', 'preveza', 7),
+	(7, 'papagewrgiou 16', 'ioannina', 1),
+	(8, 'mabili 22', 'ioannina', 6),
+	(9, 'katsimixa 23', 'larisa', NULL),
+	(10, 'palermou 19', 'trikala', NULL);
+/*!40000 ALTER TABLE `location` ENABLE KEYS */;
+
+-- Dumping structure for table diplwmatiki.players
+DROP TABLE IF EXISTS `players`;
+CREATE TABLE IF NOT EXISTS `players` (
+  `id` int(12) NOT NULL,
+  `name` varchar(22) COLLATE utf8_bin NOT NULL,
+  `surname` varchar(22) COLLATE utf8_bin NOT NULL,
+  `score` varchar(22) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- Dumping data for table diplwmatiki.players: ~0 rows (approximately)
+/*!40000 ALTER TABLE `players` DISABLE KEYS */;
+REPLACE INTO `players` (`id`, `name`, `surname`, `score`) VALUES
+	(1, 'dimitris', 'motsios', '100'),
+	(2, 'georgia', 'pappa', '85'),
+	(3, 'dimitra', 'motsiou', '83'),
+	(4, 'stefanos', 'pappas', '88'),
+	(5, 'iliana', 'kakkou', '36'),
+	(6, 'stefania', 'papathanasiou', '93'),
+	(7, 'kostas', 'pappas', '78'),
+	(8, 'kostas', 'motsios', '88'),
+	(9, 'nikos', 'motsios', '100'),
+	(10, 'thanasis', 'motsios', '88'),
+	(11, 'dimitra', 'pappathanasiou', '100'),
+	(12, 'georgia', 'liakou', '100');
+/*!40000 ALTER TABLE `players` ENABLE KEYS */;
+
 -- Dumping structure for table diplwmatiki.score_table
 DROP TABLE IF EXISTS `score_table`;
 CREATE TABLE IF NOT EXISTS `score_table` (
@@ -93,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `score_table` (
   PRIMARY KEY (`id`),
   KEY `student_id_idx` (`student_id`),
   CONSTRAINT `student_id` FOREIGN KEY (`student_id`) REFERENCES `user_table` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.score_table: ~46 rows (approximately)
 /*!40000 ALTER TABLE `score_table` DISABLE KEYS */;
@@ -156,7 +210,11 @@ REPLACE INTO `score_table` (`id`, `student_id`, `score`, `time`, `category`, `di
 	(186, 5, 36, '00:00:37', '25 Questions', 'hard', '2021-02-27 15:09:28', '2021-02-27 15:09:28'),
 	(187, 5, 21, '00:00:17', '15 Questions', 'easy', '2021-02-27 15:11:03', '2021-02-27 15:11:03'),
 	(188, 5, 20, '00:00:37', '15 Questions', 'easy', '2021-03-03 14:42:37', '2021-03-03 14:42:37'),
-	(189, 5, 25, '00:00:48', '15 Questions', 'hard', '2021-03-06 20:58:41', '2021-03-06 20:58:41');
+	(189, 5, 25, '00:00:48', '15 Questions', 'hard', '2021-03-06 20:58:41', '2021-03-06 20:58:41'),
+	(190, 5, 15, '00:00:23', '15 Questions', 'easy', '2021-03-08 18:20:01', '2021-03-08 18:20:01'),
+	(191, 5, 0, '00:00:05', '15 Questions', 'easy', '2021-03-08 18:20:58', '2021-03-08 18:20:58'),
+	(192, 5, 5, '00:00:02', '15 Questions', 'easy', '2021-03-08 18:22:48', '2021-03-08 18:22:48'),
+	(193, 5, 0, '00:00:11', '15 Questions', 'easy', '2021-03-15 15:26:02', '2021-03-15 15:26:02');
 /*!40000 ALTER TABLE `score_table` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.sql_questions
@@ -209,7 +267,7 @@ REPLACE INTO `sql_questions` (`id`, `question`, `a`, `b`, `c`, `d`, `correct_ans
 	(43, 'Η εντολή για την κατάργηση σειρών από τον πίνακα "CUSTOMER" είναι:', 'REMOVE FROM CUSTOMER ...', 'DROP FROM CUSTOMER ...', 'DELETE FROM CUSTOMER WHERE ...', 'UPDATE FROM CUSTOMER ...', 'c', 5, 'easy'),
 	(44, 'Η ρήτρα SQL WHERE:', 'περιορίζει τα δεδομένα της στήλης που επιστρέφονται.', 'περιορίζει τα δεδομένα γραμμής που επιστρέφονται..', 'Α και Β σωστά', 'Ούτε το Α ούτε το Β σωστά', 'b', 10, 'hard'),
 	(45, 'Ποιο από τα παρακάτω είναι ο αρχικός σκοπός του SQL;', 'Για να καθορίσετε τη σύνταξη και τη σημασιολογία της γλώσσας ορισμού δεδομένων SQL', 'Για να καθορίσετε τη σύνταξη και τη σημασιολογία της γλώσσας χειρισμού SQL', 'Για να ορίσετε τις δομές δεδομένων', 'Ολα τα παραπανω.', 'd', 10, 'hard'),
-	(46, 'Η μπαλαντέρ σε μια ρήτρα WHERE είναι χρήσιμη πότε;', 'Απαιτείται ακριβής αντιστοίχιση σε μια δήλωση SELECT.', 'Δεν είναι δυνατή η ακριβής αντιστοίχιση σε μια δήλωση SELECT.', 'Απαιτείται ακριβής αντιστοίχιση σε μια δήλωση CREATE.', 'Δεν είναι δυνατή η ακριβής αντιστοίχιση σε μια δήλωση CREATE.', 'b', 7, 'easy'),
+	(46, 'Η wildcard σε μια ρήτρα WHERE είναι χρήσιμη πότε;', 'Απαιτείται ακριβής αντιστοίχιση σε μια δήλωση SELECT.', 'Δεν είναι δυνατή η ακριβής αντιστοίχιση σε μια δήλωση SELECT.', 'Απαιτείται ακριβής αντιστοίχιση σε μια δήλωση CREATE.', 'Δεν είναι δυνατή η ακριβής αντιστοίχιση σε μια δήλωση CREATE.', 'b', 7, 'easy'),
 	(47, 'Μια πρόταση από τις παρακάτω είναι σωστή.', 'Ένας εικονικός πίνακας στον οποίο μπορείτε να έχετε πρόσβαση μέσω εντολών SQL', 'Ένας εικονικός πίνακας στον οποίο δεν είναι δυνατή η πρόσβαση μέσω εντολών SQL', 'Ένας βασικός πίνακας στον οποίο μπορείτε να έχετε πρόσβαση μέσω εντολών SQL', 'Ένας βασικός πίνακας στον οποίο δεν είναι δυνατή η πρόσβαση μέσω εντολών SQL', 'a', 5, 'easy'),
 	(48, 'Η εντολή για την εξάλειψη ενός πίνακα από μια βάση δεδομένων είναι:', 'REMOVE TABLE CUSTOMER;', 'DROP TABLE CUSTOMER;', 'DELETE TABLE CUSTOMER;', 'UPDATE TABLE CUSTOMER;', 'b', 5, 'easy'),
 	(49, 'ON UPDATE CASCADE εξασφαλίζει ποιο από τα παρακάτω;', 'Normalization', 'Data Integrity', 'Materialized Views', 'All of the above.', 'b', 5, 'easy'),
@@ -249,41 +307,41 @@ CREATE TABLE IF NOT EXISTS `sql_random_queries` (
   PRIMARY KEY (`id`),
   KEY `table_id_idx` (`table_id`),
   CONSTRAINT `table_id` FOREIGN KEY (`table_id`) REFERENCES `excersice_tables` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=588 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=739 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.sql_random_queries: ~30 rows (approximately)
+-- Dumping data for table diplwmatiki.sql_random_queries: ~23 rows (approximately)
 /*!40000 ALTER TABLE `sql_random_queries` DISABLE KEYS */;
 REPLACE INTO `sql_random_queries` (`id`, `sql_query`, `hideWord`, `table_id`) VALUES
-	(487, 'SELECT * FROM test2', '*,test2', 125),
-	(488, 'SELECT id, name FROM test2', 'id,name', 125),
-	(489, 'SELECT DISTINCT surname FROM test2', 'DISTINCT', 125),
-	(490, 'SELECT COUNT(id) FROM test2', 'COUNT,FROM', 125),
-	(491, 'SELECT COUNT(DISTINCT surname) FROM test2', 'DISTINCT', 125),
-	(492, 'SELECT * FROM test2 WHERE id=7', 'WHERE,id', 125),
-	(493, 'SELECT * FROM test2 WHERE id IN ("1","4")', 'IN', 125),
-	(494, 'SELECT * FROM test2 WHERE id BETWEEN 2 AND 7', 'BETWEEN,AND', 125),
-	(495, 'SELECT * FROM test2 ORDER BY id', 'ORDER BY', 125),
-	(496, 'SELECT * FROM test2 ORDER BY surname DESC', 'ORDER BY,DESC', 125),
-	(497, 'SELECT * FROM test2 ORDER BY surname ASC, id DESC', 'ORDER BY,ASC,DESC', 125),
-	(498, 'SELECT * FROM test2 LIMIT 3', 'LIMIT', 125),
-	(499, 'SELECT MIN(id) FROM test2', 'MIN', 125),
-	(500, 'SELECT MAX(id) FROM test2', 'MAX', 125),
-	(501, 'SELECT COUNT(id), name FROM test2 GROUP BY name', 'COUNT,GROUP BY', 125),
-	(502, 'SELECT COUNT(name), surname FROM test2 GROUP BY surname ORDER BY COUNT(name) DESC', 'ORDER BY,DESC', 125),
-	(503, 'SELECT COUNT(surname) FROM test2 GROUP BY score HAVING COUNT(surname) >=1', 'GROUP BY,HAVING COUNT', 125),
-	(504, 'SELECT SUM(id) FROM test2', 'SUM', 125),
-	(505, 'SELECT AVG(id) FROM test2', 'AVG', 125),
-	(506, 'SELECT * FROM test2 WHERE id IS NULL', 'IS NULL', 125),
-	(568, 'SELECT test2.id, test2.name, test20.city, test20.id20 FROM test2, test20 WHERE test2.id=test20.test2_id', 'test2,id,=', 151),
-	(569, 'SELECT test2.id, test2.name, test20.city FROM test2 INNER JOIN test20 ON test2.id=test20.test2_id', 'INNER', 151),
-	(570, 'SELECT test2.name, test20.test2_id FROM test2 LEFT JOIN test20 ON test2.id=test20.test2_id ORDER BY test2.name', 'LEFT,ORDER BY', 151),
-	(571, 'SELECT test2.id, test20.city, test20.id20 FROM test2 RIGHT JOIN test20 ON test2.id=test20.test2_id ORDER BY test2.id DESC', 'RIGHT,DESC', 151),
-	(572, 'SELECT test2.id, test2.name, test20.city FROM test2 INNER JOIN test20 ON test2.id=test20.test2_id WHERE test2.id>3', 'WHERE,>', 151),
-	(573, 'SELECT * FROM test20 CROSS JOIN test2', 'CROSS', 151),
-	(574, 'SELECT id FROM test2 UNION SELECT test2_id FROM test20', 'UNION', 151),
-	(575, 'SELECT surname FROM test2 WHERE id = ANY ( SELECT test2_id FROM test20 WHERE test2_id>3 )', 'ANY', 151),
-	(576, 'SELECT id FROM test2 WHERE id = ALL ( SELECT test2_id FROM test20 WHERE test2_id=3 )', 'ALL', 151),
-	(577, 'SELECT score FROM test2 WHERE id IN ( SELECT test2_id FROM test20 WHERE test2_id>2 )', 'IN', 151);
+	(709, 'SELECT * FROM players', '*,players', 166),
+	(710, 'SELECT id, name FROM players', 'id,name', 166),
+	(711, 'SELECT DISTINCT surname FROM players', 'DISTINCT', 166),
+	(712, 'SELECT COUNT(score) FROM players', 'COUNT,FROM', 166),
+	(713, 'SELECT COUNT(DISTINCT surname) FROM players', 'DISTINCT', 166),
+	(714, 'SELECT * FROM players WHERE id=7', 'WHERE,id', 166),
+	(715, 'SELECT * FROM players WHERE id IN ("1","4")', 'IN', 166),
+	(716, 'SELECT * FROM players WHERE id BETWEEN 2 AND 7', 'BETWEEN,AND', 166),
+	(717, 'SELECT * FROM players ORDER BY score', 'ORDER BY', 166),
+	(718, 'SELECT * FROM players ORDER BY surname DESC', 'ORDER BY,DESC', 166),
+	(719, 'SELECT * FROM players ORDER BY surname ASC, score DESC', 'ORDER BY,ASC,DESC', 166),
+	(720, 'SELECT * FROM players LIMIT 3', 'LIMIT', 166),
+	(721, 'SELECT MIN(id) FROM players', 'MIN', 166),
+	(722, 'SELECT MAX(id) FROM players', 'MAX', 166),
+	(723, 'SELECT COUNT(surname), score FROM players GROUP BY score', 'COUNT,GROUP BY', 166),
+	(724, 'SELECT COUNT(id), name FROM players GROUP BY name ORDER BY COUNT(id) DESC', 'ORDER BY,DESC', 166),
+	(725, 'SELECT COUNT(surname) FROM players GROUP BY score HAVING COUNT(surname) >3', 'GROUP BY,HAVING COUNT', 166),
+	(726, 'SELECT SUM(id) FROM players', 'SUM', 166),
+	(727, 'SELECT AVG(id) FROM players', 'AVG', 166),
+	(728, 'SELECT * FROM players WHERE score IS NULL', 'IS NULL', 166),
+	(729, 'SELECT players.id, players.name, location.city, location.idlocation FROM players, location WHERE players.id=location.player_id', 'players,id,=', 167),
+	(730, 'SELECT players.id, players.name, location.city FROM players INNER JOIN location ON players.id=location.player_id', 'INNER', 167),
+	(731, 'SELECT players.name, location.player_id FROM players LEFT JOIN location ON players.id=location.player_id ORDER BY players.name', 'LEFT,ORDER BY', 167),
+	(732, 'SELECT players.id, location.city, location.idlocation FROM players RIGHT JOIN location ON players.id=location.player_id ORDER BY players.id DESC', 'RIGHT,DESC', 167),
+	(733, 'SELECT players.id, players.name, location.city FROM players INNER JOIN location ON players.id=location.player_id WHERE players.id>3', 'WHERE,>', 167),
+	(734, 'SELECT * FROM location CROSS JOIN players', 'CROSS', 167),
+	(735, 'SELECT id FROM players UNION SELECT player_id FROM location', 'UNION', 167),
+	(736, 'SELECT surname FROM players WHERE id = ANY ( SELECT player_id FROM location WHERE player_id>3 )', 'ANY', 167),
+	(737, 'SELECT id FROM players WHERE id = ALL ( SELECT player_id FROM location WHERE player_id=3 )', 'ALL', 167),
+	(738, 'SELECT score FROM players WHERE id IN ( SELECT player_id FROM location WHERE player_id>2 )', 'IN', 167);
 /*!40000 ALTER TABLE `sql_random_queries` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.success_rate
@@ -299,7 +357,7 @@ CREATE TABLE IF NOT EXISTS `success_rate` (
   PRIMARY KEY (`id`),
   KEY `id_student_idx` (`id_student`),
   CONSTRAINT `id_student` FOREIGN KEY (`id_student`) REFERENCES `user_table` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.success_rate: ~32 rows (approximately)
 /*!40000 ALTER TABLE `success_rate` DISABLE KEYS */;
@@ -347,58 +405,11 @@ REPLACE INTO `success_rate` (`id`, `id_student`, `rate`, `time`, `table_name`, `
 	(41, 5, 'Σωστές 16 στις 20', '00:02:20', 'test20', '2021-02-28 16:43:18', '2021-02-28 16:43:18'),
 	(42, 5, 'Σωστές 9 στις 20', '00:03:32', 'test2', '2021-03-03 23:33:15', '2021-03-03 23:33:15'),
 	(43, 5, 'Σωστές 6 στις 8', '00:00:59', 'test20', '2021-03-05 15:24:41', '2021-03-05 15:24:41'),
-	(44, 5, 'Σωστές 1 στις 10', '00:02:31', 'test20', '2021-03-06 15:02:53', '2021-03-06 15:02:53');
+	(44, 5, 'Σωστές 1 στις 10', '00:02:31', 'test20', '2021-03-06 15:02:53', '2021-03-06 15:02:53'),
+	(45, 5, 'Σωστές 13 στις 20', '00:02:13', 'table1', '2021-03-08 18:09:57', '2021-03-08 18:09:57'),
+	(46, 5, 'Σωστές 2 στις 10', '00:01:45', 'table11', '2021-03-08 18:11:59', '2021-03-08 18:11:59'),
+	(47, 5, 'Σωστές 0 στις 10', '00:01:21', 'test33', '2021-03-16 21:50:48', '2021-03-16 21:50:48');
 /*!40000 ALTER TABLE `success_rate` ENABLE KEYS */;
-
--- Dumping structure for table diplwmatiki.test2
-DROP TABLE IF EXISTS `test2`;
-CREATE TABLE IF NOT EXISTS `test2` (
-  `id` int(12) NOT NULL,
-  `name` varchar(23) COLLATE utf8_bin DEFAULT NULL,
-  `surname` varchar(23) COLLATE utf8_bin DEFAULT NULL,
-  `score` int(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- Dumping data for table diplwmatiki.test2: ~9 rows (approximately)
-/*!40000 ALTER TABLE `test2` DISABLE KEYS */;
-REPLACE INTO `test2` (`id`, `name`, `surname`, `score`) VALUES
-	(1, 'dimi', 'motsios', 10),
-	(2, 'ok', 'ok', 10),
-	(3, 'panos', 'panou', 80),
-	(4, 'kostas', 'pappas', 30),
-	(5, 'ilias', 'mpampis', 30),
-	(6, 'georgia', 'pappa', 30),
-	(7, 'iliana', 'pappa', 30),
-	(8, 'dimi', 'pappa', 30),
-	(9, 'toula', 'pappa', 30);
-/*!40000 ALTER TABLE `test2` ENABLE KEYS */;
-
--- Dumping structure for table diplwmatiki.test20
-DROP TABLE IF EXISTS `test20`;
-CREATE TABLE IF NOT EXISTS `test20` (
-  `id20` int(12) NOT NULL,
-  `address` varchar(22) COLLATE utf8_bin NOT NULL,
-  `city` varchar(22) COLLATE utf8_bin NOT NULL,
-  `test2_id` int(12) DEFAULT NULL,
-  PRIMARY KEY (`id20`),
-  KEY `test2_id` (`test2_id`),
-  CONSTRAINT `test2_id` FOREIGN KEY (`test2_id`) REFERENCES `test2` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- Dumping data for table diplwmatiki.test20: ~8 rows (approximately)
-/*!40000 ALTER TABLE `test20` DISABLE KEYS */;
-REPLACE INTO `test20` (`id20`, `address`, `city`, `test2_id`) VALUES
-	(1, 'euergetwn 8', 'ioannina', 2),
-	(2, 'antwni samaraki 16', 'ioannina', 3),
-	(3, 'akragantos 18a', 'preveza', 6),
-	(4, 'botsari 19', 'leukada', 6),
-	(5, 'iliados', 'kalamaria', 1),
-	(6, 'papandreou 21', 'ioannina', 2),
-	(7, 'papaflesa 16', 'larisa', 8),
-	(9, 'markou mpotsari 19', 'pirgos', NULL);
-/*!40000 ALTER TABLE `test20` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.user_table
 DROP TABLE IF EXISTS `user_table`;
