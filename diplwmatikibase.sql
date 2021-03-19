@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `excersice_tables` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `table_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=168 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=170 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.excersice_tables: ~2 rows (approximately)
 /*!40000 ALTER TABLE `excersice_tables` DISABLE KEYS */;
@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `score_table` (
   PRIMARY KEY (`id`),
   KEY `student_id_idx` (`student_id`),
   CONSTRAINT `student_id` FOREIGN KEY (`student_id`) REFERENCES `user_table` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.score_table: ~46 rows (approximately)
 /*!40000 ALTER TABLE `score_table` DISABLE KEYS */;
@@ -171,13 +171,6 @@ REPLACE INTO `score_table` (`id`, `student_id`, `score`, `time`, `category`, `di
 	(59, 5, 20, '00:00:15', '25 Questions', 'easy', '2021-01-07 16:56:07', '2021-01-07 16:56:07'),
 	(60, 5, 22, '00:00:19', '25 Questions', 'easy', '2021-01-07 16:57:27', '2021-01-07 16:57:27'),
 	(61, 5, 22, '00:00:25', '15 Questions', 'easy', '2021-01-07 16:58:36', '2021-01-07 16:58:36'),
-	(62, 5, 51, '00:00:19', '15 Questions', 'hard', '2021-01-07 17:38:53', '2021-01-07 17:38:53'),
-	(63, 5, 15, '00:00:18', '25 Questions', 'easy', '2021-01-09 13:00:20', '2021-01-09 13:00:20'),
-	(64, 5, 30, '00:00:18', '15 Questions', 'easy', '2021-01-09 13:03:36', '2021-01-09 13:03:36'),
-	(65, 5, 17, '00:00:18', '25 Questions', 'easy', '2021-01-09 13:04:56', '2021-01-09 13:04:56'),
-	(66, 5, 20, '00:00:18', '25 Questions', 'easy', '2021-01-09 13:07:35', '2021-01-09 13:07:35'),
-	(67, 5, 15, '00:00:17', '15 Questions', 'easy', '2021-01-09 13:21:44', '2021-01-09 13:21:44'),
-	(68, 5, 15, '00:00:15', '25 Questions', 'easy', '2021-01-09 13:28:47', '2021-01-09 13:28:47'),
 	(69, 5, 0, '00:00:18', '15 Questions', 'easy', '2021-01-09 13:39:06', '2021-01-09 13:39:06'),
 	(70, 5, 36, '00:00:19', '25 Questions', 'hard', '2021-01-09 13:41:18', '2021-01-09 13:41:18'),
 	(71, 5, 35, '00:00:17', '15 Questions', 'easy', '2021-01-09 13:42:52', '2021-01-09 13:42:52'),
@@ -185,36 +178,7 @@ REPLACE INTO `score_table` (`id`, `student_id`, `score`, `time`, `category`, `di
 	(73, 22, 72, '00:00:20', '15 Questions', 'hard', '2021-01-12 19:07:19', '2021-01-12 19:07:19'),
 	(74, 22, 88, '00:00:30', '25 Questions', 'hard', '2021-01-12 19:08:13', '2021-01-12 19:08:13'),
 	(75, 23, 82, '00:00:18', '15 Questions', 'hard', '2021-01-12 19:09:48', '2021-01-12 19:09:48'),
-	(76, 23, 45, '00:00:26', '25 Questions', 'hard', '2021-01-12 19:10:34', '2021-01-12 19:10:34'),
-	(77, 5, 20, '00:00:25', '15 Questions', 'easy', '2021-01-14 08:46:59', '2021-01-14 08:46:59'),
-	(78, 5, 21, '00:00:20', '15 Questions', 'easy', '2021-01-14 10:51:40', '2021-01-14 10:51:40'),
-	(79, 5, 40, '00:00:17', '15 Questions', 'hard', '2021-01-14 10:57:02', '2021-01-14 10:57:02'),
-	(80, 5, 20, '00:01:23', '15 Questions', 'easy', '2021-01-14 20:11:34', '2021-01-14 20:11:34'),
-	(169, 5, 18, '00:00:33', '15 Questions', 'hard', '2021-01-17 13:59:04', '2021-01-17 13:59:04'),
-	(170, 5, 0, '00:00:00', '15 Questions', 'hard', '2021-01-17 14:03:41', '2021-01-17 14:03:41'),
-	(171, 5, 0, '00:00:01', '15 Questions', 'hard', '2021-01-17 14:04:48', '2021-01-17 14:04:48'),
-	(172, 5, 0, '00:00:02', '15 Questions', 'easy', '2021-01-17 14:04:57', '2021-01-17 14:04:57'),
-	(173, 5, 0, '00:00:00', '15 Questions', 'easy', '2021-01-17 14:06:02', '2021-01-17 14:06:02'),
-	(174, 5, 10, '00:00:22', '15 Questions', 'easy', '2021-01-26 15:59:38', '2021-01-26 15:59:38'),
-	(175, 5, 26, '00:01:02', '15 Questions', 'easy', '2021-01-30 13:04:06', '2021-01-30 13:04:06'),
-	(176, 5, 7, '00:00:21', '15 Questions', 'easy', '2021-02-02 16:39:38', '2021-02-02 16:39:38'),
-	(177, 5, 15, '00:01:04', '15 Questions', 'easy', '2021-02-11 19:38:47', '2021-02-11 19:38:47'),
-	(178, 5, 5, '00:00:01', '15 Questions', 'easy', '2021-02-11 20:30:58', '2021-02-11 20:30:58'),
-	(179, 5, 15, '00:00:30', '15 Questions', 'easy', '2021-02-14 12:11:09', '2021-02-14 12:11:09'),
-	(180, 5, 0, '00:00:21', '15 Questions', 'easy', '2021-02-14 19:11:34', '2021-02-14 19:11:34'),
-	(181, 5, 27, '00:00:30', '25 Questions', 'hard', '2021-02-16 17:40:56', '2021-02-16 17:40:56'),
-	(182, 5, 48, '00:00:18', '15 Questions', 'hard', '2021-02-18 22:43:07', '2021-02-18 22:43:07'),
-	(183, 5, 30, '00:00:16', '15 Questions', 'easy', '2021-02-20 15:14:35', '2021-02-20 15:14:35'),
-	(184, 5, 45, '00:00:19', '15 Questions', 'hard', '2021-02-21 13:55:37', '2021-02-21 13:55:37'),
-	(185, 5, 20, '00:00:18', '15 Questions', 'easy', '2021-02-23 21:15:59', '2021-02-23 21:15:59'),
-	(186, 5, 36, '00:00:37', '25 Questions', 'hard', '2021-02-27 15:09:28', '2021-02-27 15:09:28'),
-	(187, 5, 21, '00:00:17', '15 Questions', 'easy', '2021-02-27 15:11:03', '2021-02-27 15:11:03'),
-	(188, 5, 20, '00:00:37', '15 Questions', 'easy', '2021-03-03 14:42:37', '2021-03-03 14:42:37'),
-	(189, 5, 25, '00:00:48', '15 Questions', 'hard', '2021-03-06 20:58:41', '2021-03-06 20:58:41'),
-	(190, 5, 15, '00:00:23', '15 Questions', 'easy', '2021-03-08 18:20:01', '2021-03-08 18:20:01'),
-	(191, 5, 0, '00:00:05', '15 Questions', 'easy', '2021-03-08 18:20:58', '2021-03-08 18:20:58'),
-	(192, 5, 5, '00:00:02', '15 Questions', 'easy', '2021-03-08 18:22:48', '2021-03-08 18:22:48'),
-	(193, 5, 0, '00:00:11', '15 Questions', 'easy', '2021-03-15 15:26:02', '2021-03-15 15:26:02');
+	(76, 23, 45, '00:00:26', '25 Questions', 'hard', '2021-01-12 19:10:34', '2021-01-12 19:10:34');
 /*!40000 ALTER TABLE `score_table` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.sql_questions
@@ -333,7 +297,7 @@ REPLACE INTO `sql_random_queries` (`id`, `sql_query`, `hideWord`, `table_id`) VA
 	(727, 'SELECT AVG(id) FROM players', 'AVG', 166),
 	(728, 'SELECT * FROM players WHERE score IS NULL', 'IS NULL', 166),
 	(729, 'SELECT players.id, players.name, location.city, location.idlocation FROM players, location WHERE players.id=location.player_id', 'players,id,=', 167),
-	(730, 'SELECT players.id, players.name, location.city FROM players INNER JOIN location ON players.id=location.player_id', 'INNER', 167),
+	(730, 'SELECT players.id, players.name, location.city FROM players INNER JOIN location ON players.id=location.player_id', 'INNER,JOIN', 167),
 	(731, 'SELECT players.name, location.player_id FROM players LEFT JOIN location ON players.id=location.player_id ORDER BY players.name', 'LEFT,ORDER BY', 167),
 	(732, 'SELECT players.id, location.city, location.idlocation FROM players RIGHT JOIN location ON players.id=location.player_id ORDER BY players.id DESC', 'RIGHT,DESC', 167),
 	(733, 'SELECT players.id, players.name, location.city FROM players INNER JOIN location ON players.id=location.player_id WHERE players.id>3', 'WHERE,>', 167),
@@ -357,58 +321,19 @@ CREATE TABLE IF NOT EXISTS `success_rate` (
   PRIMARY KEY (`id`),
   KEY `id_student_idx` (`id_student`),
   CONSTRAINT `id_student` FOREIGN KEY (`id_student`) REFERENCES `user_table` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.success_rate: ~32 rows (approximately)
 /*!40000 ALTER TABLE `success_rate` DISABLE KEYS */;
 REPLACE INTO `success_rate` (`id`, `id_student`, `rate`, `time`, `table_name`, `created_at`, `updated_at`) VALUES
-	(1, 5, 'Σωστές 5 στις 5', '00:00:09', 'okok', '2021-02-22 16:01:33', '2021-02-22 16:01:33'),
-	(2, 5, 'Σωστές 2 στις 5', '00:00:19', 'okok', '2021-02-22 16:03:21', '2021-02-22 16:03:21'),
-	(3, 5, 'Σωστές 2 στις 5', '00:00:06', 'okok', '2021-02-22 16:03:54', '2021-02-22 16:03:54'),
-	(4, 5, 'Σωστές 0 στις 5', '00:00:11', 'okok', '2021-02-22 16:05:07', '2021-02-22 16:05:07'),
-	(5, 5, 'Σωστές 2 στις 5', '00:00:15', 'players', '2021-02-22 16:06:55', '2021-02-22 16:06:55'),
-	(6, 5, 'Σωστές 0 στις 5', '00:00:05', 'okok', '2021-02-22 16:07:05', '2021-02-22 16:07:05'),
-	(7, 5, 'Σωστές 1 στις 5', '00:00:17', 'scores', '2021-02-22 16:24:07', '2021-02-22 16:24:07'),
-	(8, 5, 'Σωστές 4 στις 5', '00:00:21', 'okok', '2021-02-22 16:30:21', '2021-02-22 16:30:21'),
 	(9, 5, 'Σωστές 1 στις 5', '00:00:20', 'players', '2021-02-22 16:30:52', '2021-02-22 16:30:52'),
 	(10, 16, 'Σωστές 1 στις 5', '00:00:11', 'okok', '2021-02-22 16:32:11', '2021-02-22 16:32:11'),
 	(11, 16, 'Σωστές 3 στις 5', '00:00:21', 'scores', '2021-02-22 16:32:40', '2021-02-22 16:32:40'),
-	(12, 5, 'Σωστές 0 στις 5', '00:00:13', 'scores', '2021-02-22 17:00:52', '2021-02-22 17:00:52'),
-	(13, 5, 'Σωστές 2 στις 5', '00:00:48', 'players', '2021-02-22 17:50:39', '2021-02-22 17:50:39'),
-	(14, 5, 'Σωστές 5 στις 5', '00:00:26', 'testalone', '2021-02-22 18:52:58', '2021-02-22 18:52:58'),
-	(15, 5, 'Σωστές 1 στις 6', '00:00:16', 'players', '2021-02-23 14:12:31', '2021-02-23 14:12:31'),
-	(16, 5, 'Σωστές 2 στις 5', '00:00:34', 'scores', '2021-02-23 15:15:59', '2021-02-23 15:15:59'),
-	(17, 5, 'Σωστές 3 στις 6', '00:00:19', 'players', '2021-02-23 15:16:26', '2021-02-23 15:16:26'),
-	(18, 5, 'Σωστές 1 στις 5', '00:00:27', 'scores', '2021-02-23 15:17:01', '2021-02-23 15:17:01'),
-	(19, 5, 'Σωστές 2 στις 6', '00:00:17', 'players', '2021-02-23 15:17:25', '2021-02-23 15:17:25'),
-	(20, 5, 'Σωστές 0 στις 6', '00:00:40', 'players', '2021-02-23 17:56:58', '2021-02-23 17:56:58'),
-	(21, 5, 'Σωστές 0 στις 4', '00:00:18', 'scores', '2021-02-23 17:57:37', '2021-02-23 17:57:37'),
-	(22, 5, 'Σωστές 0 στις 5', '00:00:31', 'actors', '2021-02-23 18:43:50', '2021-02-23 18:43:50'),
-	(23, 5, 'Σωστές 5 στις 5', '00:01:32', 'actors', '2021-02-23 21:13:41', '2021-02-23 21:13:41'),
-	(24, 5, 'Σωστές 2 στις 5', '00:00:25', 'okok', '2021-02-24 15:00:09', '2021-02-24 15:00:09'),
-	(25, 5, 'Σωστές 2 στις 6', '00:00:12', 'players', '2021-02-24 22:44:42', '2021-02-24 22:44:42'),
-	(26, 5, 'Σωστές 0 στις 1', '00:00:26', 'actors', '2021-02-24 22:58:10', '2021-02-24 22:58:10'),
-	(27, 5, 'Σωστές 0 στις 1', '00:00:07', 'actors', '2021-02-24 23:15:01', '2021-02-24 23:15:01'),
-	(28, 5, 'Σωστές 0 στις 1', '00:00:57', 'actors', '2021-02-24 23:16:05', '2021-02-24 23:16:05'),
-	(29, 5, 'Σωστές 1 στις 1', '00:00:09', 'actors', '2021-02-24 23:18:40', '2021-02-24 23:18:40'),
-	(30, 5, 'Σωστές 1 στις 1', '00:00:08', 'actors', '2021-02-24 23:22:16', '2021-02-24 23:22:16'),
-	(31, 5, 'Σωστές 0 στις 1', '00:00:08', 'actors', '2021-02-24 23:23:49', '2021-02-24 23:23:49'),
-	(32, 5, 'Σωστές 1 στις 1', '00:00:07', 'actors', '2021-02-24 23:28:48', '2021-02-24 23:28:48'),
-	(33, 5, 'Σωστές 0 στις 1', '00:00:05', 'actors', '2021-02-24 23:29:01', '2021-02-24 23:29:01'),
-	(34, 5, 'Σωστές 2 στις 6', '00:01:05', 'players', '2021-02-24 23:58:31', '2021-02-24 23:58:31'),
-	(35, 5, 'Σωστές 1 στις 1', '00:00:22', 'actors', '2021-02-25 00:01:12', '2021-02-25 00:01:12'),
-	(36, 5, 'Σωστές 0 στις 18', '00:05:06', 'test1', '2021-02-26 22:49:24', '2021-02-26 22:49:24'),
-	(37, 5, 'Σωστές 0 στις 1', '00:00:03', 'test2', '2021-02-27 01:32:39', '2021-02-27 01:32:39'),
-	(38, 5, 'Σωστές 0 στις 1', '00:00:23', 'test2', '2021-02-27 01:33:08', '2021-02-27 01:33:08'),
-	(39, 5, 'Σωστές 1 στις 1', '00:00:04', 'test2', '2021-02-27 01:33:17', '2021-02-27 01:33:17'),
-	(40, 5, 'Σωστές 8 στις 19', '00:01:49', 'test1', '2021-02-28 14:47:13', '2021-02-28 14:47:13'),
-	(41, 5, 'Σωστές 16 στις 20', '00:02:20', 'test20', '2021-02-28 16:43:18', '2021-02-28 16:43:18'),
-	(42, 5, 'Σωστές 9 στις 20', '00:03:32', 'test2', '2021-03-03 23:33:15', '2021-03-03 23:33:15'),
-	(43, 5, 'Σωστές 6 στις 8', '00:00:59', 'test20', '2021-03-05 15:24:41', '2021-03-05 15:24:41'),
 	(44, 5, 'Σωστές 1 στις 10', '00:02:31', 'test20', '2021-03-06 15:02:53', '2021-03-06 15:02:53'),
 	(45, 5, 'Σωστές 13 στις 20', '00:02:13', 'table1', '2021-03-08 18:09:57', '2021-03-08 18:09:57'),
 	(46, 5, 'Σωστές 2 στις 10', '00:01:45', 'table11', '2021-03-08 18:11:59', '2021-03-08 18:11:59'),
-	(47, 5, 'Σωστές 0 στις 10', '00:01:21', 'test33', '2021-03-16 21:50:48', '2021-03-16 21:50:48');
+	(47, 5, 'Σωστές 0 στις 10', '00:01:21', 'test33', '2021-03-16 21:50:48', '2021-03-16 21:50:48'),
+	(48, 5, 'Σωστές 8 στις 10', '00:01:51', 'location', '2021-03-18 21:58:29', '2021-03-18 21:58:29');
 /*!40000 ALTER TABLE `success_rate` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.user_table
@@ -431,7 +356,7 @@ CREATE TABLE IF NOT EXISTS `user_table` (
 -- Dumping data for table diplwmatiki.user_table: ~7 rows (approximately)
 /*!40000 ALTER TABLE `user_table` DISABLE KEYS */;
 REPLACE INTO `user_table` (`id`, `first_name`, `last_name`, `sex`, `phone`, `email`, `username`, `password`, `role`, `verification_code`) VALUES
-	(3, 'dimitris', 'motsios', 'male', '6312546987', 'www.motsios@hotmail.com', 'motsios', '$2a$10$mtEI3cv.MUrfF66x9nXam.VVPk4l74e3PqDQd2gHmt5GS3EUURCoG', 'teacher', ''),
+	(3, 'dimitris', 'motsios', 'male', '6312546987', 'www.motsios@hotmail.com', 'motsios', '$2a$10$SP3LpvxK6ZJ0NVmDgX9Tb.UWKZAsYBTqcHB1EIaa2LNjgQVnbXT2u', 'teacher', ''),
 	(4, 'giorgos', 'pappas', 'male', '6935146987', 'giorgos@gmail.com', 'giorgos', '$2a$10$1X8vht1REou23F.xMl51reymvMVky653wd7ElT5q/JEHGRpuZOFxy', 'teacher', NULL),
 	(5, 'kostas', 'kakkos', 'male', '6935123697', 'kostas@gmail.com', 'kostas', '$2a$10$mezTsIwg.Md7Guklprtk6uLrxmIQy4iUfsu5LxD15DutxhIM9yldq', 'student', '4c2b079d-42bf-4d14-b541-cfd688f22f5c'),
 	(16, 'dionisis', 'papakwstas', 'male', '6936547892', 'dionisis@gmail.com', 'dioni', '$2a$10$AJQJhxAZVVTDbJwU75qGm.BW9LDld1qvaGy/n7dkU9Jw2j9jDSMbq', 'student', NULL),
