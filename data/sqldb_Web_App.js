@@ -201,7 +201,7 @@ var dbOperations = {
     bestScoresOfAllUsers: async (req, res) => {
         var lowestToHighest = [];
         const findBestUserScore = await users.findAll({
-            attributes: ['id', 'first_name', 'last_name', 'email',],
+            attributes: ['id', 'first_name', 'last_name', 'email','username'],
             where: { role: 'student' },
             include: [{
                 model: scores, separate: true,
