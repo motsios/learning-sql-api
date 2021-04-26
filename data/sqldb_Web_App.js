@@ -270,6 +270,7 @@ var dbOperations = {
                 id_student: userid,
                 rate: req.body.rate,
                 table_name: req.body.table_name,
+                type_excersice:req.body.type_excersice,
                 time: req.body.time,
             })
             return "Rate added";

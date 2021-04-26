@@ -25,6 +25,10 @@ const SuccessRates = db.sequelize.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
+    type_excersice: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
     createdAt: {
       field: 'created_at',
       type: Sequelize.DATE,
