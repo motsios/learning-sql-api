@@ -371,6 +371,15 @@ router.post('/addarrayofqueries', verifyTeacherToken, async (req, res, next) => 
         .catch(error => console.log(error));
 });
 
+//add random queries true or false
+router.post('/addarrayofqueriestrueorfalse', verifyTeacherToken, async (req, res, next) => {
+    sqldb_Web_App.addRandomSqlQueriesTrueOrFalse(req, res)
+        .then(result => {
+            res.send({ result: result });
+        })
+        .catch(error => console.log(error));
+});
+
 //get all random queries about specific table 
 router.post('/getallsqlqueriesfromspecifictable', verifyTeacherAndStudentToken, async (req, res, next) => {
     sqldb_Web_App.getSqlRandomQueriesForSpecificTable(req, res)
@@ -380,7 +389,16 @@ router.post('/getallsqlqueriesfromspecifictable', verifyTeacherAndStudentToken, 
         .catch(error => console.log(error));
 });
 
-//delete all random queries about specific table
+//get all random queries true or false about specific table 
+router.post('/getallsqlqueriestrueorfalsefromspecifictable', verifyTeacherAndStudentToken, async (req, res, next) => {
+    sqldb_Web_App.getSqlRandomQueriesTrueOrFalseForSpecificTable(req, res)
+        .then(result => {
+            res.send({ result: result });
+        })
+        .catch(error => console.log(error));
+});
+
+//delete all random queries and true or false about specific table
 router.delete('/deleteallsqlqueriesfromspecifictable/:tablename', verifyTeacherToken, async (req, res, next) => {
     sqldb_Web_App.deleteSqlRandomQueriesForSpecificTable(req, res)
         .then(result => {
@@ -389,7 +407,8 @@ router.delete('/deleteallsqlqueriesfromspecifictable/:tablename', verifyTeacherT
         .catch(error => console.log(error));
 });
 
-//update one random queriy about specific table
+
+//update one random query about specific table
 router.put('/updateonesqlqueryfromspecifictable/:id', verifyTeacherToken, async (req, res, next) => {
     sqldb_Web_App.updateSqlRandomQueryForSpecificTable(req, res)
         .then(result => {
@@ -400,9 +419,31 @@ router.put('/updateonesqlqueryfromspecifictable/:id', verifyTeacherToken, async 
         }));
 });
 
-//delete one random queriy about specific table
+//update one random query true or false about specific table
+router.put('/updateonesqlquerytrueorfalsefromspecifictable/:id', verifyTeacherToken, async (req, res, next) => {
+    sqldb_Web_App.updateSqlRandomQueryTrueOrFalseForSpecificTable(req, res)
+        .then(result => {
+            res.send({ result: result });
+        })
+        .catch( error => res.json({
+            error: error
+        }));
+});
+
+//delete one random query about specific table
 router.delete('/deleteonesqlqueryfromspecifictable/:id', verifyTeacherToken, async (req, res, next) => {
     sqldb_Web_App.deleteSqlRandomQueryForSpecificTable(req, res)
+        .then(result => {
+            res.send({ result: result });
+        })
+        .catch(error => res.json({
+            error: error
+        }));
+});
+
+//delete one random query true or false about specific table
+router.delete('/deleteonesqlquerytrueorfalsefromspecifictable/:id', verifyTeacherToken, async (req, res, next) => {
+    sqldb_Web_App.deleteSqlRandomQueryTrueOrFalseForSpecificTable(req, res)
         .then(result => {
             res.send({ result: result });
         })
@@ -414,6 +455,17 @@ router.delete('/deleteonesqlqueryfromspecifictable/:id', verifyTeacherToken, asy
 //add one random queriy about specific table
 router.post('/addonesqlqueryfromspecifictable', verifyTeacherToken, async (req, res, next) => {
     sqldb_Web_App.addSqlRandomQueryForSpecificTable(req, res)
+        .then(result => {
+            res.send({ result: result });
+        })
+        .catch(error => res.json({
+            error: error
+        }));
+});
+
+//add one random query true or false about specific table
+router.post('/addonesqlquerytrueorfalsefromspecifictable', verifyTeacherToken, async (req, res, next) => {
+    sqldb_Web_App.addSqlRandomQueryTrueOrFalseForSpecificTable(req, res)
         .then(result => {
             res.send({ result: result });
         })

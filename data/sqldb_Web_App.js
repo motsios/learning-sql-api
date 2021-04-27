@@ -4,6 +4,7 @@ var scores = require('../models/Score');
 var rates = require('../models/SuccessRate');
 var questions = require('../models/Questions');
 var randomQueries = require('../models/RandomQueries');
+var randomQueriesTrueOrFalse = require('../models/RandomQueriesTrueOrFalse')
 var excersice_tables = require('../models/ExcersiceTables')
 var fill_field_questions = require('../models/Fill_Field_Questions')
 var Sequelize = require("sequelize");
@@ -201,7 +202,7 @@ var dbOperations = {
     bestScoresOfAllUsers: async (req, res) => {
         var lowestToHighest = [];
         const findBestUserScore = await users.findAll({
-            attributes: ['id', 'first_name', 'last_name', 'email','username'],
+            attributes: ['id', 'first_name', 'last_name', 'email', 'username'],
             where: { role: 'student' },
             include: [{
                 model: scores, separate: true,
@@ -270,7 +271,7 @@ var dbOperations = {
                 id_student: userid,
                 rate: req.body.rate,
                 table_name: req.body.table_name,
-                type_excersice:req.body.type_excersice,
+                type_excersice: req.body.type_excersice,
                 time: req.body.time,
             })
             return "Rate added";
@@ -383,7 +384,7 @@ var dbOperations = {
         var tablecolumnslist = [];
         const alltables = await db.sequelize.query(`SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE' AND TABLE_SCHEMA='diplwmatiki'`)
         for (i in alltables[0]) {
-            if (alltables[0][i].TABLE_NAME != 'score_table' && alltables[0][i].TABLE_NAME != 'sql_questions' && alltables[0][i].TABLE_NAME != 'user_table' && alltables[0][i].TABLE_NAME != 'sql_random_queries' && alltables[0][i].TABLE_NAME != 'excersice_tables' && alltables[0][i].TABLE_NAME != 'fill_fields_questions' && alltables[0][i].TABLE_NAME != 'success_rate') {
+            if (alltables[0][i].TABLE_NAME != 'score_table' && alltables[0][i].TABLE_NAME != 'sql_questions' && alltables[0][i].TABLE_NAME != 'user_table' && alltables[0][i].TABLE_NAME != 'sql_random_queries' && alltables[0][i].TABLE_NAME != 'excersice_tables' && alltables[0][i].TABLE_NAME != 'fill_fields_questions' && alltables[0][i].TABLE_NAME != 'success_rate'&& alltables[0][i].TABLE_NAME != 'sql_random_queries_true_or_false') {
                 tablenamelist.push(alltables[0][i].TABLE_NAME)
             }
         }
@@ -433,7 +434,7 @@ var dbOperations = {
 
     addRandomSqlQueries: async (req, res) => {
         const queriesArray = req.body.queriesArray
-        const hiddenWordsArray=req.body.hiddenWordsArray
+        const hiddenWordsArray = req.body.hiddenWordsArray
         console.log(queriesArray)
         console.log(req.body.table_name)
         const findTableFromExcersiceTable = await excersice_tables.findOne({
@@ -451,12 +452,38 @@ var dbOperations = {
         return "Sql Queries successfully created!";
     },
 
+    addRandomSqlQueriesTrueOrFalse: async (req, res) => {
+        const queriesArray = req.body.queriesArray
+        const findTableFromExcersiceTable = await excersice_tables.findOne({
+            where: {
+                table_name: req.body.table_name
+            }
+        })
+        for (question in queriesArray) {
+            await randomQueriesTrueOrFalse.create({
+                sql_query_true_or_false: queriesArray[question],
+                exersice_table_id: findTableFromExcersiceTable.id
+            })
+        }
+        return "Sql Queries successfully created!";
+    },
+
     getSqlRandomQueriesForSpecificTable: async (req, res) => {
 
         const table = await excersice_tables.findOne({
             where: {
                 table_name: req.body.tablename
             }, include: [{ model: randomQueries, separate: true, }]
+        })
+        return table;
+    },
+
+    getSqlRandomQueriesTrueOrFalseForSpecificTable: async (req, res) => {
+
+        const table = await excersice_tables.findOne({
+            where: {
+                table_name: req.body.tablename
+            }, include: [{ model: randomQueriesTrueOrFalse, separate: true, }]
         })
         return table;
     },
@@ -474,6 +501,13 @@ var dbOperations = {
                 table_id: findTableid.id
             }
         })
+        
+        await randomQueriesTrueOrFalse.destroy({
+            where: {
+                exersice_table_id: findTableid.id
+            }
+        })
+
         const sql_queries = await excersice_tables.destroy({
             where: {
                 table_name: req.params.tablename
@@ -493,8 +527,28 @@ var dbOperations = {
             return "Updated not completed";
     },
 
+    updateSqlRandomQueryTrueOrFalseForSpecificTable: async (req, res) => {
+        const updateguery = await randomQueriesTrueOrFalse.update(
+            req.body,
+            { where: { id: req.params.id } }
+        );
+        if (updateguery)
+            return "Updated completed";
+        else
+            return "Updated not completed";
+    },
+
     deleteSqlRandomQueryForSpecificTable: async (req, res) => {
         const deletequery = await randomQueries.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+        return deletequery;
+    },
+
+    deleteSqlRandomQueryTrueOrFalseForSpecificTable: async (req, res) => {
+        const deletequery = await randomQueriesTrueOrFalse.destroy({
             where: {
                 id: req.params.id
             }
@@ -510,8 +564,21 @@ var dbOperations = {
         })
         const createquery = await randomQueries.create({
             sql_query: req.body.sql_query,
-            hideWord:req.body.hideWord,
+            hideWord: req.body.hideWord,
             table_id: findTableid.id
+        })
+        return createquery;
+    },
+
+    addSqlRandomQueryTrueOrFalseForSpecificTable: async (req, res) => {
+        const findTableid = await excersice_tables.findOne({
+            where: {
+                table_name: req.body.tablename
+            }
+        })
+        const createquery = await randomQueriesTrueOrFalse.create({
+            sql_query_true_or_false: req.body.sql_query,
+            exersice_table_id: findTableid.id
         })
         return createquery;
     },
