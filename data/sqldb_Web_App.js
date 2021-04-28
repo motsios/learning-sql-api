@@ -384,7 +384,7 @@ var dbOperations = {
         var tablecolumnslist = [];
         const alltables = await db.sequelize.query(`SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE' AND TABLE_SCHEMA='diplwmatiki'`)
         for (i in alltables[0]) {
-            if (alltables[0][i].TABLE_NAME != 'score_table' && alltables[0][i].TABLE_NAME != 'sql_questions' && alltables[0][i].TABLE_NAME != 'user_table' && alltables[0][i].TABLE_NAME != 'sql_random_queries' && alltables[0][i].TABLE_NAME != 'excersice_tables' && alltables[0][i].TABLE_NAME != 'fill_fields_questions' && alltables[0][i].TABLE_NAME != 'success_rate'&& alltables[0][i].TABLE_NAME != 'sql_random_queries_true_or_false') {
+            if (alltables[0][i].TABLE_NAME != 'score_table' && alltables[0][i].TABLE_NAME != 'sql_questions' && alltables[0][i].TABLE_NAME != 'user_table' && alltables[0][i].TABLE_NAME != 'sql_random_queries' && alltables[0][i].TABLE_NAME != 'excersice_tables' && alltables[0][i].TABLE_NAME != 'fill_fields_questions' && alltables[0][i].TABLE_NAME != 'success_rate' && alltables[0][i].TABLE_NAME != 'sql_random_queries_true_or_false') {
                 tablenamelist.push(alltables[0][i].TABLE_NAME)
             }
         }
@@ -501,7 +501,7 @@ var dbOperations = {
                 table_id: findTableid.id
             }
         })
-        
+
         await randomQueriesTrueOrFalse.destroy({
             where: {
                 exersice_table_id: findTableid.id
@@ -597,6 +597,36 @@ var dbOperations = {
             const results = await db.sequelize.query(sqlQuery)
             console.log(results[0])
             return results[0]
+        }
+    },
+
+
+    executeSQLQueryFromStudent: async (req, res) => {
+        var sqlQuery = req.body.sqlQueryString
+        var lowercasesqlQueryString = sqlQuery.toLowerCase()
+
+        const checker = await randomQueriesTrueOrFalse.findOne({
+            where: {
+                sql_query_true_or_false: sqlQuery
+            }
+        })
+
+        if (checker) {
+            return {
+                "careful": "This question exists into a Test"
+            }
+        } else {
+            console.log(sqlQuery)
+            if (lowercasesqlQueryString.includes('delete')) {
+                await db.sequelize.query(sqlQuery)
+                    .then(print => {
+                        return print
+                    })
+            } else {
+                const results = await db.sequelize.query(sqlQuery)
+                console.log(results[0])
+                return results[0]
+            }
         }
     },
 

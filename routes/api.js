@@ -485,6 +485,17 @@ router.post('/executesqlquery', verifyTeacherAndStudentToken, async (req, res, n
         }));
 });
 
+//execute a sql query to from Student and check  if exists in Test
+router.post('/executesqlquerystudent', verifyTeacherAndStudentToken, async (req, res, next) => {
+    sqldb_Web_App.executeSQLQueryFromStudent(req, res)
+        .then(result => {
+            res.send({ result: result });
+        })
+        .catch(error => res.json({
+            error: error
+        }));
+});
+
 //get all fillfieldquestions
 router.get('/getallfillfieldquestions', verifyTeacherAndStudentToken, async (req, res, next) => {
     sqldb_Web_App.getAllFillFieldQuestions(req, res)
