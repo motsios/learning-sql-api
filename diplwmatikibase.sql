@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `actors` (
   KEY `idactor` (`idactor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.actors: ~0 rows (approximately)
+-- Dumping data for table diplwmatiki.actors: ~8 rows (approximately)
 /*!40000 ALTER TABLE `actors` DISABLE KEYS */;
 REPLACE INTO `actors` (`idactor`, `name`, `surname`, `address`) VALUES
 	(1, 'dimitris', 'motsios', 'ad1'),
@@ -47,9 +47,9 @@ CREATE TABLE IF NOT EXISTS `excersice_tables` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `table_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=208 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=212 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.excersice_tables: ~7 rows (approximately)
+-- Dumping data for table diplwmatiki.excersice_tables: ~5 rows (approximately)
 /*!40000 ALTER TABLE `excersice_tables` DISABLE KEYS */;
 REPLACE INTO `excersice_tables` (`id`, `table_name`) VALUES
 	(116, 'asdsad'),
@@ -63,9 +63,9 @@ REPLACE INTO `excersice_tables` (`id`, `table_name`) VALUES
 DROP TABLE IF EXISTS `fill_fields_questions`;
 CREATE TABLE IF NOT EXISTS `fill_fields_questions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `question` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `fill_field_question` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `hideWord` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `question` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `fill_field_question` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `hideWord` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -176,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `movies` (
   CONSTRAINT `actorid` FOREIGN KEY (`actorid`) REFERENCES `actors` (`idactor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.movies: ~0 rows (approximately)
+-- Dumping data for table diplwmatiki.movies: ~6 rows (approximately)
 /*!40000 ALTER TABLE `movies` DISABLE KEYS */;
 REPLACE INTO `movies` (`idmovie`, `title`, `released`, `actorid`) VALUES
 	(1, 'title1', '2005-01-01 00:00:00', 2),
@@ -193,17 +193,17 @@ CREATE TABLE IF NOT EXISTS `score_table` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `score` int(11) NOT NULL,
-  `time` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `category` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `difficulty` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `time` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `category` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `difficulty` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `student_id_idx` (`student_id`),
   CONSTRAINT `student_id` FOREIGN KEY (`student_id`) REFERENCES `user_table` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=212 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=213 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.score_table: ~28 rows (approximately)
+-- Dumping data for table diplwmatiki.score_table: ~29 rows (approximately)
 /*!40000 ALTER TABLE `score_table` DISABLE KEYS */;
 REPLACE INTO `score_table` (`id`, `student_id`, `score`, `time`, `category`, `difficulty`, `created_at`, `updated_at`) VALUES
 	(20, 5, 65, '00:01:22', '15 Questions', 'hard', '2020-12-08 17:24:31', '2020-12-08 17:24:31'),
@@ -244,23 +244,24 @@ REPLACE INTO `score_table` (`id`, `student_id`, `score`, `time`, `category`, `di
 	(208, 5, 0, '00:00:04', '15 Questions', 'easy', '2021-04-26 14:37:17', '2021-04-26 14:37:17'),
 	(209, 5, 36, '00:00:17', '15 Questions', 'hard', '2021-04-27 21:46:11', '2021-04-27 21:46:11'),
 	(210, 5, 213, '00:06:49', '25 Questions', 'hard', '2021-04-27 21:54:34', '2021-04-27 21:54:34'),
-	(211, 5, 17, '00:00:34', '15 Questions', 'hard', '2021-04-28 16:12:43', '2021-04-28 16:12:43');
+	(211, 5, 17, '00:00:34', '15 Questions', 'hard', '2021-04-28 16:12:43', '2021-04-28 16:12:43'),
+	(212, 5, 0, '00:00:00', '25 Questions', 'easy', '2021-04-28 22:02:15', '2021-04-28 22:02:15');
 /*!40000 ALTER TABLE `score_table` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.sql_questions
 DROP TABLE IF EXISTS `sql_questions`;
 CREATE TABLE IF NOT EXISTS `sql_questions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `question` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `a` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `b` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `c` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `d` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `question` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `a` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `b` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `c` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `d` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `correct_answer` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `score` int(11) NOT NULL,
-  `difficulty` varchar(400) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `difficulty` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.sql_questions: ~60 rows (approximately)
 /*!40000 ALTER TABLE `sql_questions` DISABLE KEYS */;
@@ -325,15 +326,15 @@ REPLACE INTO `sql_questions` (`id`, `question`, `a`, `b`, `c`, `d`, `correct_ans
 DROP TABLE IF EXISTS `sql_random_queries`;
 CREATE TABLE IF NOT EXISTS `sql_random_queries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sql_query` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `hideWord` varchar(200) COLLATE utf8_bin NOT NULL,
+  `sql_query` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `hideWord` varchar(500) COLLATE utf8_bin NOT NULL,
   `table_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `table_id_idx` (`table_id`),
   CONSTRAINT `table_id` FOREIGN KEY (`table_id`) REFERENCES `excersice_tables` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1279 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=1329 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.sql_random_queries: ~90 rows (approximately)
+-- Dumping data for table diplwmatiki.sql_random_queries: ~60 rows (approximately)
 /*!40000 ALTER TABLE `sql_random_queries` DISABLE KEYS */;
 REPLACE INTO `sql_random_queries` (`id`, `sql_query`, `hideWord`, `table_id`) VALUES
 	(1179, 'SELECT * FROM actors', '*,actors', 201),
@@ -402,12 +403,12 @@ REPLACE INTO `sql_random_queries` (`id`, `sql_query`, `hideWord`, `table_id`) VA
 DROP TABLE IF EXISTS `sql_random_queries_true_or_false`;
 CREATE TABLE IF NOT EXISTS `sql_random_queries_true_or_false` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sql_query_true_or_false` varchar(200) COLLATE utf8_bin NOT NULL,
+  `sql_query_true_or_false` varchar(2000) COLLATE utf8_bin NOT NULL,
   `exersice_table_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `exersice_table_id_idx` (`exersice_table_id`),
   CONSTRAINT `exersice_table_id` FOREIGN KEY (`exersice_table_id`) REFERENCES `excersice_tables` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=162 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=213 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.sql_random_queries_true_or_false: ~57 rows (approximately)
 /*!40000 ALTER TABLE `sql_random_queries_true_or_false` DISABLE KEYS */;
@@ -479,9 +480,9 @@ DROP TABLE IF EXISTS `success_rate`;
 CREATE TABLE IF NOT EXISTS `success_rate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_student` int(11) NOT NULL,
-  `rate` varchar(100) COLLATE utf8_bin NOT NULL,
+  `rate` varchar(300) COLLATE utf8_bin NOT NULL,
   `time` varchar(100) COLLATE utf8_bin NOT NULL,
-  `table_name` varchar(100) COLLATE utf8_bin NOT NULL,
+  `table_name` varchar(300) COLLATE utf8_bin NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `type_excersice` varchar(100) COLLATE utf8_bin NOT NULL,
@@ -490,7 +491,7 @@ CREATE TABLE IF NOT EXISTS `success_rate` (
   CONSTRAINT `id_student` FOREIGN KEY (`id_student`) REFERENCES `user_table` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.success_rate: ~17 rows (approximately)
+-- Dumping data for table diplwmatiki.success_rate: ~23 rows (approximately)
 /*!40000 ALTER TABLE `success_rate` DISABLE KEYS */;
 REPLACE INTO `success_rate` (`id`, `id_student`, `rate`, `time`, `table_name`, `created_at`, `updated_at`, `type_excersice`) VALUES
 	(52, 5, 'Σωστές 0 στις 10', '00:00:16', 'books', '2021-04-26 15:39:58', '2021-04-26 15:39:58', 'Συμπλήρωσης-Κενού'),
@@ -522,12 +523,12 @@ REPLACE INTO `success_rate` (`id`, `id_student`, `rate`, `time`, `table_name`, `
 DROP TABLE IF EXISTS `user_table`;
 CREATE TABLE IF NOT EXISTS `user_table` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `last_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `first_name` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `last_name` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `sex` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `phone` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `username` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `email` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `username` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `role` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `verification_code` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
