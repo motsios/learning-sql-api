@@ -604,29 +604,16 @@ var dbOperations = {
     executeSQLQueryFromStudent: async (req, res) => {
         var sqlQuery = req.body.sqlQueryString
         var lowercasesqlQueryString = sqlQuery.toLowerCase()
-
-        const checker = await randomQueriesTrueOrFalse.findOne({
-            where: {
-                sql_query_true_or_false: sqlQuery
-            }
-        })
-
-        if (checker) {
-            return {
-                "careful": "This question exists into a Test"
-            }
+        console.log(sqlQuery)
+        if (lowercasesqlQueryString.includes('delete')) {
+            await db.sequelize.query(sqlQuery)
+                .then(print => {
+                    return print
+                })
         } else {
-            console.log(sqlQuery)
-            if (lowercasesqlQueryString.includes('delete')) {
-                await db.sequelize.query(sqlQuery)
-                    .then(print => {
-                        return print
-                    })
-            } else {
-                const results = await db.sequelize.query(sqlQuery)
-                console.log(results[0])
-                return results[0]
-            }
+            const results = await db.sequelize.query(sqlQuery)
+            console.log(results[0])
+            return results[0]
         }
     },
 
