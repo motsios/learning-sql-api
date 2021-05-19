@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `actors` (
   KEY `idactor` (`idactor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.actors: ~8 rows (approximately)
+-- Dumping data for table diplwmatiki.actors: ~13 rows (approximately)
 /*!40000 ALTER TABLE `actors` DISABLE KEYS */;
 REPLACE INTO `actors` (`idactor`, `name`, `surname`, `address`) VALUES
 	(1, 'dimitris', 'motsios', 'ad1'),
@@ -38,8 +38,94 @@ REPLACE INTO `actors` (`idactor`, `name`, `surname`, `address`) VALUES
 	(5, 'panorea', 'pappas', 'ad5'),
 	(6, 'ilianna', 'pappas', NULL),
 	(7, 'kostas', 'pappas', 'ad6'),
-	(8, 'giogos', 'apostolakis', 'as');
+	(8, 'giogos', 'apostolakis', 'as'),
+	(11, 'name11', 'surname11', 'ad5'),
+	(12, 'name12', 'surname12', NULL),
+	(13, 'name12', 'surname12', 'ad5'),
+	(14, 'name14', 'surnae14', 'ad5'),
+	(15, 'name15', 'surnam15', NULL);
 /*!40000 ALTER TABLE `actors` ENABLE KEYS */;
+
+-- Dumping structure for table diplwmatiki.books
+DROP TABLE IF EXISTS `books`;
+CREATE TABLE IF NOT EXISTS `books` (
+  `idbook` int(12) NOT NULL,
+  `title` varchar(22) COLLATE utf8_bin NOT NULL,
+  `views` int(22) NOT NULL,
+  `releaseDate` datetime DEFAULT NULL,
+  `writterid` int(12) DEFAULT NULL,
+  PRIMARY KEY (`idbook`),
+  KEY `writterid` (`writterid`),
+  CONSTRAINT `writterid` FOREIGN KEY (`writterid`) REFERENCES `writters` (`idwritter`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- Dumping data for table diplwmatiki.books: ~0 rows (approximately)
+/*!40000 ALTER TABLE `books` DISABLE KEYS */;
+REPLACE INTO `books` (`idbook`, `title`, `views`, `releaseDate`, `writterid`) VALUES
+	(1, 'title1', 34, NULL, NULL),
+	(2, 'title2', 55, '2001-02-02 00:00:00', 10),
+	(3, 'title3', 32, '1999-03-03 00:00:00', 3),
+	(4, 'title4', 20, '1999-03-03 00:00:00', 2),
+	(5, 'title5', 1, '1665-03-03 00:00:00', 5),
+	(6, 'title6', 25, '1995-03-03 00:00:00', NULL),
+	(7, 'title7', 12, '1997-02-02 00:00:00', 6);
+/*!40000 ALTER TABLE `books` ENABLE KEYS */;
+
+-- Dumping structure for table diplwmatiki.cafe
+DROP TABLE IF EXISTS `cafe`;
+CREATE TABLE IF NOT EXISTS `cafe` (
+  `idcafe` int(12) NOT NULL,
+  `name_cafe` varchar(22) COLLATE utf8_bin NOT NULL,
+  `cafesize` int(50) DEFAULT NULL,
+  `coffeeid` int(12) DEFAULT NULL,
+  PRIMARY KEY (`idcafe`),
+  KEY `coffeeid` (`coffeeid`),
+  CONSTRAINT `coffeeid` FOREIGN KEY (`coffeeid`) REFERENCES `coffee` (`idCoffee`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- Dumping data for table diplwmatiki.cafe: ~11 rows (approximately)
+/*!40000 ALTER TABLE `cafe` DISABLE KEYS */;
+REPLACE INTO `cafe` (`idcafe`, `name_cafe`, `cafesize`, `coffeeid`) VALUES
+	(1, 'City Stacks Coffee', 150, 5),
+	(2, 'The Beanery', 60, 5),
+	(3, 'Aroma Mocha', 585, 6),
+	(4, 'Cheers Cafe', 120, 8),
+	(5, 'The Teabar', 50, 3),
+	(6, 'Bistro at the Point', 502, 6),
+	(7, 'Flavored Cafeteria', 660, 5),
+	(8, 'Heavenly Coffee', 550, NULL),
+	(9, 'Love You a Latte', 604, NULL),
+	(10, 'Brew Together', NULL, NULL),
+	(11, 'Espresso Love', NULL, 6),
+	(12, 'Caffeine Machine', NULL, 7);
+/*!40000 ALTER TABLE `cafe` ENABLE KEYS */;
+
+-- Dumping structure for table diplwmatiki.coffee
+DROP TABLE IF EXISTS `coffee`;
+CREATE TABLE IF NOT EXISTS `coffee` (
+  `idCoffee` int(12) NOT NULL,
+  `brand` varchar(22) COLLATE utf8_bin NOT NULL,
+  `productiondate` datetime NOT NULL,
+  `kg` int(50) DEFAULT NULL,
+  PRIMARY KEY (`idCoffee`),
+  KEY `idCoffee` (`idCoffee`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- Dumping data for table diplwmatiki.coffee: ~11 rows (approximately)
+/*!40000 ALTER TABLE `coffee` DISABLE KEYS */;
+REPLACE INTO `coffee` (`idCoffee`, `brand`, `productiondate`, `kg`) VALUES
+	(1, 'arabica', '1995-05-05 00:00:00', 50),
+	(2, 'Arusha', '1995-06-03 00:00:00', 60),
+	(3, 'Bergendal', '1999-03-03 00:00:00', 22),
+	(4, 'Bernardina', '2005-03-11 00:00:00', 10),
+	(5, 'Catuai', '2000-01-02 00:00:00', 60),
+	(6, 'K7', '2003-01-05 00:00:00', 30),
+	(7, 'Pacas', '2003-03-03 00:00:00', 60),
+	(8, 'Pache Colis', '2005-08-08 00:00:00', 50),
+	(9, 'Ruiru 11	', '2005-01-02 00:00:00', 50),
+	(10, 'Sarchimor', '2000-03-03 00:00:00', 50),
+	(11, 'SL34	', '1999-02-02 00:00:00', 50);
+/*!40000 ALTER TABLE `coffee` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.excersice_tables
 DROP TABLE IF EXISTS `excersice_tables`;
@@ -47,16 +133,20 @@ CREATE TABLE IF NOT EXISTS `excersice_tables` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `table_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=212 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=224 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.excersice_tables: ~5 rows (approximately)
+-- Dumping data for table diplwmatiki.excersice_tables: ~7 rows (approximately)
 /*!40000 ALTER TABLE `excersice_tables` DISABLE KEYS */;
 REPLACE INTO `excersice_tables` (`id`, `table_name`) VALUES
 	(116, 'asdsad'),
 	(201, 'actors'),
 	(203, 'movies'),
 	(206, 'games'),
-	(207, 'gamers');
+	(207, 'gamers'),
+	(220, 'coffee'),
+	(221, 'cafe'),
+	(222, 'writters'),
+	(223, 'books');
 /*!40000 ALTER TABLE `excersice_tables` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.fill_fields_questions
@@ -67,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `fill_fields_questions` (
   `fill_field_question` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `hideWord` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.fill_fields_questions: ~31 rows (approximately)
 /*!40000 ALTER TABLE `fill_fields_questions` DISABLE KEYS */;
@@ -78,7 +168,7 @@ REPLACE INTO `fill_fields_questions` (`id`, `question`, `fill_field_question`, `
 	(16, 'Επιλέξτε όλες τις εγγραφές όπου η στήλη City έχει την τιμή \'Berlin\'.', 'SELECT * FROM Customers WHERE City = \'Berlin\'', 'WHERE,City,\'Berlin\''),
 	(17, 'Χρησιμοποιήστε τη λέξη-κλειδί NOT για να επιλέξετε όλες τις εγγραφές όπου η στήλη City ΔΕΝ είναι \'Berlin\'.', 'SELECT * FROM Customers WHERE NOT City =  \'Berlin\'', 'WHERE,NOT,City,\'Berlin\''),
 	(18, 'Επιλέξτε όλες τις εγγραφές όπου η στήλη CustomerID έχει την τιμή 32.', 'SELECT * FROM Customers WHERE CustomerID = 32', 'WHERE,=,32'),
-	(19, 'Επιλέξτε όλες τις εγγραφές από τον πίνακαCustomers, ταξινομήστε το αποτέλεσμα που αντιστρέφεται αλφαβητικά από τη στήλη City.', 'SELECT * FROM Customers ORDER BY City DESC', 'ORDER BY,City,DESC'),
+	(19, 'Επιλέξτε όλες τις εγγραφές από τον πίνακα Customers, ταξινομήστε το αποτέλεσμα που αντιστρέφεται αλφαβητικά από τη στήλη City.', 'SELECT * FROM Customers ORDER BY City DESC', 'ORDER BY,City,DESC'),
 	(20, 'Εισαγάγετε μια νέα εγγραφή στον πίνακα Customers.', 'INSERT INTO Customers (CustomerName ) VALUES (\'Hekkan Burger\')', 'INSERT INTO,(,),VALUES,(,)'),
 	(21, 'Επιλέξτε όλες τις εγγραφές από τους Customers όπου η στήλη PostalCode ΔΕΝ είναι κενή', 'SELECT * FROM Customers WHERE PostalCode IS NOT NULL', 'PostalCode,IS,NOT,NULL'),
 	(22, 'Ορίστε την τιμή των στηλών City σε \'Oslo\', αλλά μόνο εκείνες όπου η στήλη Countryέχει την τιμή "Norway".', 'UPDATE Customers SET City = \'Oslo\' WHERE Country=\'Norway\';', 'UPDATE,SET,WHERE'),
@@ -99,7 +189,7 @@ REPLACE INTO `fill_fields_questions` (`id`, `question`, `fill_field_question`, `
 	(37, 'Επιλέξτε τη σωστή ρήτρα JOIN για να επιλέξετε όλες τις εγγραφές από τους δύο πίνακες όπου υπάρχει αντιστοιχία και στους δύο πίνακες.', 'SELECT * FROM Orders INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;', 'INNER JOIN,Customers'),
 	(38, 'Επιλέξτε τη σωστή ρήτρα JOIN για να επιλέξετε όλες τις εγγραφές από τον πίνακα Customers συν όλους τους αγώνες στον πίνακα Orders.', 'SELECT * FROM Orders RIGHT JOIN Customers ON Orders.CustomerID=Customers.CustomerID;', 'RIGHT JOIN,Customers'),
 	(39, 'Αναφέρετε τον αριθμό των Customers σε κάθε Country.', 'SELECT COUNT (CustomerID),Country FROM Customers GROUP BY Country', 'COUNT,GROUP BY,Country'),
-	(40, 'Αναφέρετε πρώτα τον αριθμό των Customers σε κάθε Country, κατά σειρά με τους περισσότερους Customers.', 'SELECT COUNT (CustomerID),Country FROM Customers GROUP BY Country ORDER BY COUNT(CustomerID) DESC', 'COUNT,GROUP BY,Country,COUNT(CustomerID),DESC'),
+	(40, 'Αναφέρετε πρώτα τον αριθμό των Customers σε κάθε Country, εμφανίζοντας πάνω-πάνω τους περισσότερους Customers.', 'SELECT COUNT (CustomerID),Country FROM Customers GROUP BY Country ORDER BY COUNT(CustomerID) DESC', 'COUNT,GROUP BY,Country,COUNT(CustomerID),DESC'),
 	(41, 'Κατά την εμφάνιση του πίνακα Customers, δημιουργήστε ένα ALIAS της στήλης PostalCode, η στήλη θα πρέπει να ονομάζεται Pno.', 'SELECT CustomerName,Address,PostalCode AS Pno FROM Customers;', 'AS Pno'),
 	(43, 'Εμφάνισε όλα τα δεδομένα του πίνακα Scores', 'SELECT * FROM Scores', 'SELECT,FROM'),
 	(44, 'Διαγράψτε από τον πίνακα users όσες εγγραφές έχουν id μεγαλύτερο του 5', 'DELETE FROM users WHERE id>5', 'DELETE,FROM,>');
@@ -117,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `gamers` (
   CONSTRAINT `gameid` FOREIGN KEY (`gameid`) REFERENCES `games` (`idgame`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.gamers: ~0 rows (approximately)
+-- Dumping data for table diplwmatiki.gamers: ~8 rows (approximately)
 /*!40000 ALTER TABLE `gamers` DISABLE KEYS */;
 REPLACE INTO `gamers` (`idgamer`, `name`, `surname`, `gameid`) VALUES
 	(1, 'Dimitris', 'Motsios', 2),
@@ -142,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `games` (
   KEY `idgame` (`idgame`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.games: ~0 rows (approximately)
+-- Dumping data for table diplwmatiki.games: ~17 rows (approximately)
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
 REPLACE INTO `games` (`idgame`, `title`, `multiplayer`, `released`) VALUES
 	(1, 'Lol', 1, '2000-02-02 00:00:00'),
@@ -201,9 +291,9 @@ CREATE TABLE IF NOT EXISTS `score_table` (
   PRIMARY KEY (`id`),
   KEY `student_id_idx` (`student_id`),
   CONSTRAINT `student_id` FOREIGN KEY (`student_id`) REFERENCES `user_table` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=213 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=218 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.score_table: ~29 rows (approximately)
+-- Dumping data for table diplwmatiki.score_table: ~40 rows (approximately)
 /*!40000 ALTER TABLE `score_table` DISABLE KEYS */;
 REPLACE INTO `score_table` (`id`, `student_id`, `score`, `time`, `category`, `difficulty`, `created_at`, `updated_at`) VALUES
 	(20, 5, 65, '00:01:22', '15 Questions', 'hard', '2020-12-08 17:24:31', '2020-12-08 17:24:31'),
@@ -245,7 +335,12 @@ REPLACE INTO `score_table` (`id`, `student_id`, `score`, `time`, `category`, `di
 	(209, 5, 36, '00:00:17', '15 Questions', 'hard', '2021-04-27 21:46:11', '2021-04-27 21:46:11'),
 	(210, 5, 213, '00:06:49', '25 Questions', 'hard', '2021-04-27 21:54:34', '2021-04-27 21:54:34'),
 	(211, 5, 17, '00:00:34', '15 Questions', 'hard', '2021-04-28 16:12:43', '2021-04-28 16:12:43'),
-	(212, 5, 0, '00:00:00', '25 Questions', 'easy', '2021-04-28 22:02:15', '2021-04-28 22:02:15');
+	(212, 5, 0, '00:00:00', '25 Questions', 'easy', '2021-04-28 22:02:15', '2021-04-28 22:02:15'),
+	(213, 5, 79, '00:00:58', '15 Questions', 'hard', '2021-05-01 16:28:18', '2021-05-01 16:28:18'),
+	(214, 22, 30, '00:00:37', '15 Questions', 'easy', '2021-05-10 14:34:52', '2021-05-10 14:34:52'),
+	(215, 22, 45, '00:00:59', '25 Questions', 'easy', '2021-05-10 14:48:45', '2021-05-10 14:48:45'),
+	(216, 5, 51, '00:00:33', '15 Questions', 'hard', '2021-05-15 18:01:22', '2021-05-15 18:01:22'),
+	(217, 28, 15, '00:00:19', '15 Questions', 'easy', '2021-05-19 18:12:12', '2021-05-19 18:12:12');
 /*!40000 ALTER TABLE `score_table` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.sql_questions
@@ -261,13 +356,11 @@ CREATE TABLE IF NOT EXISTS `sql_questions` (
   `score` int(11) NOT NULL,
   `difficulty` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.sql_questions: ~60 rows (approximately)
 /*!40000 ALTER TABLE `sql_questions` DISABLE KEYS */;
 REPLACE INTO `sql_questions` (`id`, `question`, `a`, `b`, `c`, `d`, `correct_answer`, `score`, `difficulty`) VALUES
-	(2, 'Ποια δήλωση SQL χρησιμοποιείται για την εξαγωγή δεδομένων από μια βάση δεδομένων;', 'GET', 'EXTRACT', 'SELECT', 'UPDATE', 'c', 7, 'hard'),
-	(3, 'Ποια δήλωση SQL χρησιμοποιείται για την ενημέρωση δεδομένων σε μια βάση δεδομένων; ', 'SAVE    ', 'UPDATE    ', 'SAVE AS', 'SELECT', 'b', 10, 'hard'),
 	(4, 'Ποια δήλωση SQL χρησιμοποιείται για τη διαγραφή δεδομένων από μια βάση δεδομένων;', 'DELETE', 'COLAPSE', 'REMOVE', 'REMOVE', 'a', 5, 'easy'),
 	(8, 'Ποια δήλωση SQL χρησιμοποιείται για την ενημέρωση δεδομένων σε μια βάση δεδομένων;', 'SAVE AS  ', 'SAVE', 'UPDATE', 'MODIFY', 'c', 5, 'easy'),
 	(12, 'Ποια δήλωση SQL χρησιμοποιείται για την εξαγωγή δεδομένων από μια βάση δεδομένων;', 'GET', 'OPEN', 'SELECT    ', 'EXTRACT  ', 'c', 5, 'easy'),
@@ -288,13 +381,12 @@ REPLACE INTO `sql_questions` (`id`, `question`, `a`, `b`, `c`, `d`, `correct_ans
 	(35, 'Με την SQL, πώς μπορείτε να επιστρέψετε τον αριθμό των εγγραφών στον πίνακα Persons;', 'SELECT NO(*) FROM Persons', 'SELECT COUNT(*) FROM Persons  ', 'SELECT LEN(*) FROM Persons', 'SELECT COLUMNS(*) FROM Persons', 'b', 20, 'hard'),
 	(36, 'Ποιος είναι ο πιο κοινός τύπος συμμετοχής;', 'JOINED', 'INSIDE JOIN', 'INNER JOIN  ', 'JOINED TABLE', 'c', 11, 'hard'),
 	(37, 'Ποιος χειριστής χρησιμοποιείται για την επιλογή τιμών εντός ενός εύρους;', 'WITHIN', 'BETWEEN    ', 'RANGE', 'JOINED', 'b', 11, 'hard'),
-	(39, 'Ο περιορισμός NOT NULL επιβάλλει μια στήλη για να μην δέχεται τιμές NULL.', 'True', 'False', '.', '.', 'a', 11, 'hard'),
+	(39, 'Ο περιορισμός NOT NULL επιβάλλει μια στήλη για να μην δέχεται τιμές NULL.', 'Αληθής', 'Ψευδής', '.', '.', 'a', 11, 'hard'),
 	(40, 'Ποιος χειριστής χρησιμοποιείται για την αναζήτηση ενός συγκεκριμένου μοτίβου σε μια στήλη;', 'FROM    ', 'GET', 'LIKE    ', 'RANGE', 'c', 11, 'hard'),
-	(42, 'Πώς μπορείτε να προσθέσετε μια σειρά χρησιμοποιώντας SQL σε μια βάση δεδομένων με ποιο από τα παρακάτω;', 'ADD', 'CREATE', 'INSERT', 'MAKE', 'c', 5, 'easy'),
+	(42, 'Πώς μπορείτε να προσθέσετε μια σειρά χρησιμοποιώντας SQL σε μια βάση δεδομένων;', 'ADD', 'CREATE', 'INSERT', 'MAKE', 'c', 5, 'easy'),
 	(43, 'Η εντολή για την κατάργηση σειρών από τον πίνακα "CUSTOMER" είναι:', 'REMOVE FROM CUSTOMER ...', 'DROP FROM CUSTOMER ...', 'DELETE FROM CUSTOMER WHERE ...', 'UPDATE FROM CUSTOMER ...', 'c', 5, 'easy'),
 	(44, 'Η ρήτρα SQL WHERE:', 'περιορίζει τα δεδομένα της στήλης που επιστρέφονται.', 'περιορίζει τα δεδομένα γραμμής που επιστρέφονται..', 'Α και Β σωστά', 'Ούτε το Α ούτε το Β σωστά', 'b', 10, 'hard'),
 	(45, 'Ποιο από τα παρακάτω είναι ο αρχικός σκοπός του SQL;', 'Για να καθορίσετε τη σύνταξη και τη σημασιολογία της γλώσσας ορισμού δεδομένων SQL', 'Για να καθορίσετε τη σύνταξη και τη σημασιολογία της γλώσσας χειρισμού SQL', 'Για να ορίσετε τις δομές δεδομένων', 'Ολα τα παραπανω.', 'd', 10, 'hard'),
-	(46, 'Η wildcard σε μια ρήτρα WHERE είναι χρήσιμη πότε;', 'Απαιτείται ακριβής αντιστοίχιση σε μια δήλωση SELECT.', 'Δεν είναι δυνατή η ακριβής αντιστοίχιση σε μια δήλωση SELECT.', 'Απαιτείται ακριβής αντιστοίχιση σε μια δήλωση CREATE.', 'Δεν είναι δυνατή η ακριβής αντιστοίχιση σε μια δήλωση CREATE.', 'b', 7, 'easy'),
 	(47, 'Μια πρόταση από τις παρακάτω είναι σωστή.', 'Ένας εικονικός πίνακας στον οποίο μπορείτε να έχετε πρόσβαση μέσω εντολών SQL', 'Ένας εικονικός πίνακας στον οποίο δεν είναι δυνατή η πρόσβαση μέσω εντολών SQL', 'Ένας βασικός πίνακας στον οποίο μπορείτε να έχετε πρόσβαση μέσω εντολών SQL', 'Ένας βασικός πίνακας στον οποίο δεν είναι δυνατή η πρόσβαση μέσω εντολών SQL', 'a', 5, 'easy'),
 	(48, 'Η εντολή για την εξάλειψη ενός πίνακα από μια βάση δεδομένων είναι:', 'REMOVE TABLE CUSTOMER;', 'DROP TABLE CUSTOMER;', 'DELETE TABLE CUSTOMER;', 'UPDATE TABLE CUSTOMER;', 'b', 5, 'easy'),
 	(51, 'Ποιο από τα παρακάτω είναι έγκυρο SQL για ευρετήριο;', 'CREATE INDEX ID;', 'CHANGE INDEX ID;', 'ADD INDEX ID;', 'REMOVE INDEX ID;', 'a', 5, 'hard'),
@@ -303,23 +395,30 @@ REPLACE INTO `sql_questions` (`id`, `question`, `a`, `b`, `c`, `d`, `correct_ans
 	(54, 'Το αποτέλεσμα μιας δήλωσης SQL SELECT είναι ένας-μία ________.', 'αναφορά', 'φόρμα', 'αρχείο', 'πίνακας', 'd', 5, 'easy'),
 	(55, 'Η λέξη-κλειδί SQL  BETWEEN  χρησιμοποιείται:', 'για διαστήματα', 'για να περιορίσετε τις εμφανιζόμενες στήλες.', 'ως wildcard.', 'Κανένα από τα παραπάνω δεν είναι σωστό.', 'a', 7, 'hard'),
 	(56, 'Το ________ υιοθετήθηκε ως εθνικό πρότυπο από την ANSI το 1992.', 'Oracle', 'SQL', 'Microsoft Access', 'DBase', 'b', 5, 'easy'),
-	(57, 'Ποιο από τα παρακάτω πρέπει να λάβετε υπόψη όταν δημιουργείτε έναν πίνακα σε SQL;', 'Data types', 'Primary keys', 'Default values', 'All of the above.', 'd', 7, 'hard'),
-	(58, 'Ποια από τις παρακάτω σειρές ταξινομεί στο SQL;', 'SORT BY', 'ALIGN BY', 'ORDER BY', 'GROUP BY', 'c', 7, 'hard'),
-	(59, 'Για να ορίσετε ποιες στήλες πρέπει να εμφανίζονται σε μια δήλωση SQL SELECT:', 'Χρησιμοποιήστε το FROM για να ονομάσετε τους πίνακες (ες) προέλευσης και να απαριθμήσετε τις στήλες που θα εμφανίζονται μετά την επιλογή.', 'χρησιμοποιήστε το USING για να ονομάσετε τους πίνακες (ες) προέλευσης και να αναφέρετε τις στήλες που θα εμφανίζονται μετά την επιλογή.', 'Χρησιμοποιήστε το SELECT για να ονομάσετε τους πίνακες προέλευσης και να αναφέρετε τις στήλες που θα εμφανίζονται μετά τη χρήση.', 'Χρησιμοποιήστε το USING για να ονομάσετε τους πίνακες (ες) προέλευσης και να αναφέρετε τις στήλες που θα εμφανίζονται μετά το WHERE.', 'a', 7, 'hard'),
+	(57, 'Ποιο από τα παρακάτω πρέπει να λάβετε υπόψη όταν δημιουργείτε έναν πίνακα σε SQL;', 'Τύποι δεδομένων', 'πρωτεύοντα κλειδιά', 'Default τιμές', 'Όλα τα παραπάνω', 'd', 7, 'hard'),
+	(58, 'Ποια από τις παρακάτω ταξινομεί στην SQL;', 'SORT BY', 'ALIGN BY', 'ORDER BY', 'GROUP BY', 'c', 7, 'hard'),
+	(59, 'Για να ορίσετε ποιες στήλες πρέπει να εμφανίζονται σε μια δήλωση SQL SELECT:', 'Χρησιμοποιήστε το FROM για να ονομάσετε τους πίνακες  προέλευσης και να απαριθμήσετε τις στήλες που θα εμφανίζονται μετά την επιλογή.', 'χρησιμοποιήστε το USING για να ονομάσετε τους πίνακες προέλευσης και να αναφέρετε τις στήλες που θα εμφανίζονται μετά την επιλογή.', 'Χρησιμοποιήστε το SELECT για να ονομάσετε τους πίνακες προέλευσης και να αναφέρετε τις στήλες που θα εμφανίζονται μετά τη χρήση.', 'Χρησιμοποιήστε το USING για να ονομάσετε τους πίνακες (ες) προέλευσης και να αναφέρετε τις στήλες που θα εμφανίζονται μετά το WHERE.', 'a', 7, 'hard'),
 	(60, 'Το SQL μπορεί να χρησιμοποιηθεί για:', 'δημιουργία μόνο δομές βάσεων δεδομένων.', 'μόνο δεδομένα βάσης δεδομένων ερωτήματος.', 'τροποποίηση δεδομένων βάσης δεδομένων μόνο.', 'Όλα τα παραπάνω μπορούν να γίνουν με SQL.', 'd', 9, 'hard'),
 	(61, 'Ποιο από τα παρακάτω είναι μια νομική έκφραση στο SQL;', 'SELECT NULL FROM SALES;', 'SELECT NAME FROM SALES;', 'SELECT * FROM SALES WHEN PRICE = NULL;', 'SELECT # FROM SALES;', 'b', 10, 'hard'),
-	(62, 'Το DCL παρέχει εντολές σε λειτουργίες όπως', 'Change thestructureof Tables', 'Insert, Update or Delete Records and Values', 'Authorizing Access and othercontrolover Database', 'None of Above', 'c', 5, 'easy'),
-	(63, 'Η συνάρτηση COUNT στο SQL επιστρέφει τον αριθμό ______________', 'Values', 'Distinct values', 'Group By', 'Columns', 'a', 10, 'hard'),
+	(63, 'Η συνάρτηση COUNT στο SQL επιστρέφει τον αριθμό ______________', 'των τιμών', 'των μεμονωμένων τιμών', 'των ομαδοποιημένων τιμών', 'των στηλών', 'a', 10, 'hard'),
 	(64, 'Ποιος τύπος δεδομένων μπορεί να αποθηκεύσει μη δομημένα δεδομένα σε μια στήλη;', 'RAW', 'CHAR', 'NUMERIC', 'VARCHAR', 'a', 15, 'hard'),
-	(65, 'Ποια συνάρτηση χρησιμοποιείται για να διαιρέσει μια αριθμητική έκφραση από την άλλη και να πάρει το υπόλοιπο;', 'POWER', 'MOD', 'ROUND', 'REMAINDER', 'b', 9, 'hard'),
+	(65, 'Ποια συνάρτηση χρησιμοποιείται για να διαιρέσει μια αριθμητική έκφραση  και να πάρει το υπόλοιπο;', 'POWER', 'MOD', 'ROUND', 'REMAINDER', 'b', 9, 'hard'),
 	(66, 'Ποια είναι η πλήρης μορφή του DDL;', 'Dynamic Data Language', 'Detailed Data Language', 'Data Definition Language', 'Data Derivation Language', 'c', 8, 'hard'),
 	(67, 'Μια γλώσσα βάσης δεδομένων που χρησιμοποιείται για τον ορισμό ολόκληρης της βάσης δεδομένων και του σχήματος ονομάζεται:', 'DCL', 'DML', 'DDL', 'All Of Above', 'c', 6, 'easy'),
 	(68, 'Ποια δήλωση στο SQL μας επιτρέπει να αλλάξουμε τον ορισμό ενός πίνακα;', 'ALTER', 'UPDATE', 'CREATE', 'SELECT', 'a', 8, 'hard'),
 	(69, 'Το SQL που χρησιμοποιείται από προγράμματα εφαρμογών front-end για να ζητήσει δεδομένα από το DBMS ονομάζεται _______', 'DML', 'DDL', 'VDL', 'SDL', 'a', 10, 'easy'),
 	(70, 'Η εντολή που χρησιμοποιείται για τη διαγραφή μιας συγκεκριμένης στήλης σε μια σχέση είναι ____________', 'UPDATE TABLE', 'TRUNCATE COLUMN', 'ALTER , DROP', 'DELETE COLUMN', 'c', 7, 'hard'),
-	(71, 'Ποια από τις παρακάτω ενέργειες απαιτεί οι σχέσεις να είναι συμβατές με την ένωση;', 'UNION', 'INTERSECTION', 'DIFFERENCE', 'ALL OF THESE', 'd', 7, 'easy'),
+	(71, 'Ποια από τις παρακάτω ενέργειες απαιτεί οι σχέσεις να είναι συμβατές με την ένωση;', 'UNION', 'INTERSECTION', 'DIFFERENCE', 'Όλες οι παραπάνω', 'd', 7, 'easy'),
 	(72, 'Ποιο από τα παρακάτω είναι χειριστής σύγκρισης στο SQL;', 'Double equal sign ( == )', 'LIKE', 'BETWEEN', 'Single equal sign ( = )', 'a', 12, 'easy'),
-	(73, 'Ποιος χειριστής χρησιμοποιείται για να συγκρίνει μια τιμή με μια καθορισμένη λίστα τιμών;', 'BETWEEN', 'ANY', 'IN', 'ALL', 'c', 9, 'easy');
+	(73, 'Ποιος χειριστής χρησιμοποιείται για να συγκρίνει μια τιμή με μια καθορισμένη λίστα τιμών;', 'BETWEEN', 'ANY', 'IN', 'ALL', 'c', 9, 'easy'),
+	(84, 'STUDENTS (student_code, first_name, last_name, email, phone_no, date_of_birth, honours_subject, percentage_of_marks); Ποιο από τα ακόλουθα ερωτήματα θα εμφανίσει όλους τους μαθητές των οποίων το όνομα ξεκινά με τον χαρακτήρα «Α»;', 'select first_name from students where first_name like ‘A%’;', 'select first_name from students where first_name like ‘%A’;', 'select first_name from students where first_name like ‘%A%’;', 'select first_name from students where first_name like ‘A’;', 'a', 10, 'hard'),
+	(86, 'Ποιο από τα παρακάτω δεν αποτελεί εντολή στην SQL;', 'SUM', 'AVG', 'COUNT', 'FIND', 'd', 5, 'easy'),
+	(87, 'Ποια λέξη-κλειδί μας επιτρέπει να βρούμε τις μοναδικές τιμές στη βάση δεδομένων;', 'DISTINCT', 'UNIQUE', 'FIND', 'DIFF', 'a', 6, 'easy'),
+	(88, 'Ποιο από τα ακόλουθα ερωτήματα θα περιορίσει την έξοδο σε 5 σειρές;', ' SELECT * FROM DataFlair 5;', ' SELECT * FROM DataFlair LIMIT 5;', ' SELECT * FROM DataFlair 5 LIMIT;', ' SELECT LIMIT(5) * FROM DataFlair ;', 'b', 9, 'hard'),
+	(89, 'Πόσα πρωτεύοντα κλειδιά μπορούν να δημιουργηθούν σε έναν πίνακα;', 'Άπειρα', '2', '1', '24', 'c', 3, 'easy'),
+	(90, 'Ποιος τύπος δεδομένων SQL χρησιμοποιείται για την αποθήκευση ενός αντικειμένου JSON;', 'NVarchar', 'BLOB', 'Char', 'Int', 'a', 8, 'hard'),
+	(91, 'Ποιο από τα παρακάτω δείχνει σχόλιο στο SQL;', ' /* This is a comment. */', ' # This is a comment.', ' % This is a comment. %', '//This is a comment.', 'a', 6, 'easy'),
+	(92, 'Ποια από τις ακόλουθες συνδέσεις εξάγει δεδομένα αντίστοιχων σειρών και από τους δύο πίνακες;', ' Full Outer Join', ' Left Join', ' Right Join', 'Κανένα από τα παραπάνω', 'a', 12, 'hard');
 /*!40000 ALTER TABLE `sql_questions` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.sql_random_queries
@@ -332,9 +431,9 @@ CREATE TABLE IF NOT EXISTS `sql_random_queries` (
   PRIMARY KEY (`id`),
   KEY `table_id_idx` (`table_id`),
   CONSTRAINT `table_id` FOREIGN KEY (`table_id`) REFERENCES `excersice_tables` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1329 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=1500 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.sql_random_queries: ~60 rows (approximately)
+-- Dumping data for table diplwmatiki.sql_random_queries: ~90 rows (approximately)
 /*!40000 ALTER TABLE `sql_random_queries` DISABLE KEYS */;
 REPLACE INTO `sql_random_queries` (`id`, `sql_query`, `hideWord`, `table_id`) VALUES
 	(1179, 'SELECT * FROM actors', '*,actors', 201),
@@ -396,7 +495,67 @@ REPLACE INTO `sql_random_queries` (`id`, `sql_query`, `hideWord`, `table_id`) VA
 	(1275, 'SELECT idgame FROM games UNION SELECT gameid FROM gamers', 'UNION', 207),
 	(1276, 'SELECT released FROM games WHERE idgame = ANY ( SELECT gameid FROM gamers WHERE gameid>3 )', 'ANY', 207),
 	(1277, 'SELECT idgame FROM games WHERE idgame = ALL ( SELECT gameid FROM gamers WHERE gameid=3 )', 'ALL', 207),
-	(1278, 'SELECT multiplayer FROM games WHERE idgame IN ( SELECT gameid FROM gamers WHERE gameid>2 )', 'IN', 207);
+	(1278, 'SELECT multiplayer FROM games WHERE idgame IN ( SELECT gameid FROM gamers WHERE gameid>2 )', 'IN', 207),
+	(1439, 'SELECT * FROM coffee', '*,coffee', 220),
+	(1440, 'SELECT idCoffee, brand FROM coffee', 'idCoffee,brand', 220),
+	(1441, 'SELECT DISTINCT productiondate FROM coffee', 'DISTINCT', 220),
+	(1442, 'SELECT COUNT(kg) FROM coffee', 'COUNT,FROM', 220),
+	(1443, 'SELECT COUNT(DISTINCT productiondate) FROM coffee', 'DISTINCT', 220),
+	(1444, 'SELECT * FROM coffee WHERE idCoffee=7', 'WHERE,idCoffee', 220),
+	(1445, 'SELECT * FROM coffee WHERE idCoffee IN ("1","4")', 'IN', 220),
+	(1446, 'SELECT * FROM coffee WHERE idCoffee BETWEEN 2 AND 7', 'BETWEEN,AND', 220),
+	(1447, 'SELECT * FROM coffee ORDER BY kg', 'ORDER BY', 220),
+	(1448, 'SELECT * FROM coffee ORDER BY productiondate DESC', 'ORDER BY,DESC', 220),
+	(1449, 'SELECT * FROM coffee ORDER BY productiondate ASC, kg DESC', 'ORDER BY,ASC,DESC', 220),
+	(1450, 'SELECT * FROM coffee LIMIT 3', 'LIMIT', 220),
+	(1451, 'SELECT MIN(idCoffee) FROM coffee', 'MIN', 220),
+	(1452, 'SELECT MAX(idCoffee) FROM coffee', 'MAX', 220),
+	(1453, 'SELECT COUNT(productiondate), kg FROM coffee GROUP BY kg', 'COUNT,GROUP BY', 220),
+	(1454, 'SELECT COUNT(idCoffee), brand FROM coffee GROUP BY brand ORDER BY COUNT(idCoffee) DESC', 'ORDER BY,DESC', 220),
+	(1455, 'SELECT COUNT(productiondate) FROM coffee GROUP BY kg HAVING COUNT(productiondate) >3', 'GROUP BY,HAVING COUNT', 220),
+	(1456, 'SELECT SUM(idCoffee) FROM coffee', 'SUM', 220),
+	(1457, 'SELECT AVG(idCoffee) FROM coffee', 'AVG', 220),
+	(1458, 'SELECT * FROM coffee WHERE kg IS NULL', 'IS NULL', 220),
+	(1459, 'SELECT coffee.idCoffee, coffee.brand, cafe.name_cafe, cafe.cafesize FROM coffee, cafe WHERE coffee.idCoffee=cafe.coffeeid', 'coffee,idCoffee,=', 221),
+	(1460, 'SELECT coffee.idCoffee, coffee.brand, cafe.name_cafe FROM coffee INNER JOIN cafe ON coffee.idCoffee=cafe.coffeeid', 'INNER,JOIN', 221),
+	(1461, 'SELECT coffee.brand, cafe.coffeeid FROM coffee LEFT JOIN cafe ON coffee.idCoffee=cafe.coffeeid ORDER BY coffee.brand', 'LEFT,ORDER BY', 221),
+	(1462, 'SELECT coffee.idCoffee, cafe.name_cafe, cafe.cafesize FROM coffee RIGHT JOIN cafe ON coffee.idCoffee=cafe.coffeeid ORDER BY coffee.idCoffee DESC', 'RIGHT,DESC', 221),
+	(1463, 'SELECT coffee.idCoffee, coffee.brand, cafe.name_cafe FROM coffee INNER JOIN cafe ON coffee.idCoffee=cafe.coffeeid WHERE coffee.idCoffee>3', 'WHERE,>', 221),
+	(1464, 'SELECT * FROM cafe CROSS JOIN coffee', 'CROSS', 221),
+	(1465, 'SELECT idCoffee FROM coffee UNION SELECT coffeeid FROM cafe', 'UNION', 221),
+	(1466, 'SELECT kg FROM coffee WHERE idCoffee = ANY ( SELECT coffeeid FROM cafe WHERE coffeeid>3 )', 'ANY', 221),
+	(1467, 'SELECT idCoffee FROM coffee WHERE idCoffee = ALL ( SELECT coffeeid FROM cafe WHERE coffeeid=3 )', 'ALL', 221),
+	(1468, 'SELECT productiondate FROM coffee WHERE idCoffee IN ( SELECT coffeeid FROM cafe WHERE coffeeid>2 )', 'IN', 221),
+	(1470, 'SELECT * FROM writters', '*,writters', 222),
+	(1471, 'SELECT idwritter, name FROM writters', 'idwritter,name', 222),
+	(1472, 'SELECT DISTINCT surname FROM writters', 'DISTINCT', 222),
+	(1473, 'SELECT COUNT(gender) FROM writters', 'COUNT,FROM', 222),
+	(1474, 'SELECT COUNT(DISTINCT surname) FROM writters', 'DISTINCT', 222),
+	(1475, 'SELECT * FROM writters WHERE idwritter=7', 'WHERE,idwritter', 222),
+	(1476, 'SELECT * FROM writters WHERE idwritter IN ("1","4")', 'IN', 222),
+	(1477, 'SELECT * FROM writters WHERE idwritter BETWEEN 2 AND 7', 'BETWEEN,AND', 222),
+	(1478, 'SELECT * FROM writters ORDER BY gender', 'ORDER BY', 222),
+	(1479, 'SELECT * FROM writters ORDER BY surname DESC', 'ORDER BY,DESC', 222),
+	(1480, 'SELECT * FROM writters ORDER BY surname ASC, gender DESC', 'ORDER BY,ASC,DESC', 222),
+	(1481, 'SELECT * FROM writters LIMIT 3', 'LIMIT', 222),
+	(1482, 'SELECT MIN(idwritter) FROM writters', 'MIN', 222),
+	(1483, 'SELECT MAX(idwritter) FROM writters', 'MAX', 222),
+	(1484, 'SELECT COUNT(idwritter), name FROM writters GROUP BY name', 'COUNT,GROUP BY', 222),
+	(1485, 'SELECT COUNT(birthdate), isAlive FROM writters GROUP BY isAlive ORDER BY COUNT(birthdate) DESC', 'ORDER BY,DESC', 222),
+	(1486, 'SELECT COUNT(surname) FROM writters GROUP BY gender HAVING COUNT(surname) >3', 'GROUP BY,HAVING COUNT', 222),
+	(1487, 'SELECT SUM(idwritter) FROM writters', 'SUM', 222),
+	(1488, 'SELECT AVG(idwritter) FROM writters', 'AVG', 222),
+	(1489, 'SELECT * FROM writters WHERE gender IS NULL', 'IS NULL', 222),
+	(1490, 'SELECT writters.idwritter, writters.name, books.title, books.views FROM writters, books WHERE writters.idwritter=books.writterid', 'writters,idwritter,=', 223),
+	(1491, 'SELECT writters.idwritter, writters.name, books.title FROM writters INNER JOIN books ON writters.idwritter=books.writterid', 'INNER,JOIN', 223),
+	(1492, 'SELECT writters.name, books.writterid FROM writters LEFT JOIN books ON writters.idwritter=books.writterid ORDER BY writters.name', 'LEFT,ORDER BY', 223),
+	(1493, 'SELECT writters.idwritter, books.title, books.views FROM writters RIGHT JOIN books ON writters.idwritter=books.writterid ORDER BY writters.idwritter DESC', 'RIGHT,DESC', 223),
+	(1494, 'SELECT writters.idwritter, writters.name, books.title FROM writters INNER JOIN books ON writters.idwritter=books.writterid WHERE writters.idwritter>3', 'WHERE,>', 223),
+	(1495, 'SELECT * FROM books CROSS JOIN writters', 'CROSS', 223),
+	(1496, 'SELECT birthdate FROM writters UNION SELECT releaseDate FROM books', 'UNION', 223),
+	(1497, 'SELECT gender FROM writters WHERE idwritter = ANY ( SELECT writterid FROM books WHERE writterid>3 )', 'ANY', 223),
+	(1498, 'SELECT birthdate FROM writters WHERE idwritter = ALL ( SELECT writterid FROM books WHERE writterid=3 )', 'ALL', 223),
+	(1499, 'SELECT surname FROM writters WHERE idwritter IN ( SELECT writterid FROM books WHERE writterid>2 )', 'IN', 223);
 /*!40000 ALTER TABLE `sql_random_queries` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.sql_random_queries_true_or_false
@@ -408,9 +567,9 @@ CREATE TABLE IF NOT EXISTS `sql_random_queries_true_or_false` (
   PRIMARY KEY (`id`),
   KEY `exersice_table_id_idx` (`exersice_table_id`),
   CONSTRAINT `exersice_table_id` FOREIGN KEY (`exersice_table_id`) REFERENCES `excersice_tables` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=213 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=384 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.sql_random_queries_true_or_false: ~57 rows (approximately)
+-- Dumping data for table diplwmatiki.sql_random_queries_true_or_false: ~90 rows (approximately)
 /*!40000 ALTER TABLE `sql_random_queries_true_or_false` DISABLE KEYS */;
 REPLACE INTO `sql_random_queries_true_or_false` (`id`, `sql_query_true_or_false`, `exersice_table_id`) VALUES
 	(60, 'SELECT * FROM actors', 201),
@@ -472,7 +631,67 @@ REPLACE INTO `sql_random_queries_true_or_false` (`id`, `sql_query_true_or_false`
 	(158, 'SELECT games.title, gamers.name, gamers.surname FROM games LEFT JOIN gamers ON games.idgame=gamers.gameid', 207),
 	(159, 'SELECT title FROM games WHERE idgame IN ( SELECT gameid FROM gamers WHERE gameid<4 )', 207),
 	(160, 'SELECT multiplayer, released FROM games UNION SELECT surname, gameid FROM gamers', 207),
-	(161, 'SELECT games.multiplayer, games.released FROM games RIGHT JOIN gamers ON games.idgame=gamers.gameid WHERE NOT gamers.gameid=5', 207);
+	(161, 'SELECT games.multiplayer, games.released FROM games RIGHT JOIN gamers ON games.idgame=gamers.gameid WHERE NOT gamers.gameid=5', 207),
+	(323, 'SELECT * FROM coffee', 220),
+	(324, 'SELECT * FROM coffee WHERE idCoffee>1', 220),
+	(325, 'SELECT DISTINCT kg FROM coffee', 220),
+	(326, 'SELECT kg FROM coffee WHERE idCoffee=2', 220),
+	(327, 'SELECT MIN(idCoffee) FROM coffee', 220),
+	(328, 'SELECT COUNT(brand) FROM coffee', 220),
+	(329, 'SELECT COUNT(brand) FROM coffee WHERE idCoffee BETWEEN 1 AND 5', 220),
+	(330, 'SELECT brand, productiondate FROM coffee WHERE idCoffee=6 OR idCoffee=3', 220),
+	(331, 'SELECT * FROM coffee ORDER BY idCoffee ASC', 220),
+	(332, 'SELECT * FROM coffee ORDER BY idCoffee DESC', 220),
+	(333, 'SELECT * FROM coffee ORDER BY kg ASC, brand DESC', 220),
+	(334, 'SELECT * FROM coffee GROUP BY productiondate', 220),
+	(335, 'SELECT AVG(idCoffee) FROM coffee WHERE idCoffee>2', 220),
+	(336, 'SELECT SUM(idCoffee) FROM coffee WHERE idCoffee>2', 220),
+	(337, 'SELECT kg, idCoffee FROM coffee WHERE NOT idCoffee>2', 220),
+	(338, 'SELECT COUNT(DISTINCT kg)  FROM coffee', 220),
+	(339, 'SELECT kg FROM coffee WHERE productiondate LIKE \'2%\'', 220),
+	(340, 'SELECT MAX(idCoffee)  FROM coffee WHERE idCoffee<3', 220),
+	(341, 'SELECT productiondate AS test FROM coffee', 220),
+	(342, 'SELECT * FROM coffee WHERE productiondate LIKE \'%20%\'', 220),
+	(343, 'SELECT coffee.brand, cafe.name_cafe, cafe.cafesize FROM coffee INNER JOIN cafe ON coffee.idCoffee=cafe.coffeeid ORDER BY coffee.idCoffee DESC', 221),
+	(344, 'SELECT coffee.brand, cafe.name_cafe, cafe.cafesize FROM coffee INNER JOIN cafe ON coffee.idCoffee=cafe.coffeeid ORDER BY coffee.idCoffee ASC, coffee.kg DESC', 221),
+	(345, 'SELECT coffee.brand, cafe.name_cafe, cafe.cafesize FROM coffee RIGHT JOIN cafe ON coffee.idCoffee=cafe.coffeeid WHERE coffee.idCoffee>3', 221),
+	(346, 'SELECT coffee.brand, cafe.name_cafe, cafe.cafesize FROM coffee RIGHT JOIN cafe ON coffee.idCoffee=cafe.coffeeid WHERE coffee.idCoffee<5', 221),
+	(347, 'SELECT coffee.brand, cafe.name_cafe, cafe.cafesize FROM coffee LEFT JOIN cafe ON coffee.idCoffee=cafe.coffeeid WHERE cafe.cafesize LIKE \'%2%\'', 221),
+	(348, 'SELECT * FROM cafe CROSS JOIN coffee WHERE cafe.coffeeid>1 AND cafe.coffeeid<7', 221),
+	(349, 'SELECT coffee.brand, cafe.name_cafe, cafe.cafesize FROM coffee LEFT JOIN cafe ON coffee.idCoffee=cafe.coffeeid', 221),
+	(350, 'SELECT brand FROM coffee WHERE idCoffee IN ( SELECT coffeeid FROM cafe WHERE coffeeid<4 )', 221),
+	(351, 'SELECT productiondate, kg FROM coffee UNION SELECT cafesize, coffeeid FROM cafe', 221),
+	(352, 'SELECT coffee.productiondate, coffee.kg FROM coffee RIGHT JOIN cafe ON coffee.idCoffee=cafe.coffeeid WHERE NOT cafe.coffeeid=5', 221),
+	(354, 'SELECT * FROM writters', 222),
+	(355, 'SELECT * FROM writters WHERE idwritter>1', 222),
+	(356, 'SELECT DISTINCT gender FROM writters', 222),
+	(357, 'SELECT gender FROM writters WHERE idwritter=2', 222),
+	(358, 'SELECT MIN(idwritter) FROM writters', 222),
+	(359, 'SELECT COUNT(name) FROM writters', 222),
+	(360, 'SELECT COUNT(name) FROM writters WHERE idwritter BETWEEN 1 AND 5', 222),
+	(361, 'SELECT name, surname FROM writters WHERE idwritter=6 OR idwritter=3', 222),
+	(362, 'SELECT * FROM writters ORDER BY birthdate ASC', 222),
+	(363, 'SELECT * FROM writters ORDER BY birthdate DESC', 222),
+	(364, 'SELECT * FROM writters ORDER BY gender ASC, name DESC', 222),
+	(365, 'SELECT * FROM writters GROUP BY surname', 222),
+	(366, 'SELECT AVG(idwritter) FROM writters WHERE idwritter>2', 222),
+	(367, 'SELECT SUM(idwritter) FROM writters WHERE idwritter>2', 222),
+	(368, 'SELECT gender, birthdate FROM writters WHERE NOT idwritter>2', 222),
+	(369, 'SELECT COUNT(DISTINCT gender)  FROM writters', 222),
+	(370, 'SELECT gender FROM writters WHERE surname LIKE \'a%\'', 222),
+	(371, 'SELECT MAX(idwritter)  FROM writters WHERE idwritter<3', 222),
+	(372, 'SELECT surname AS test FROM writters', 222),
+	(373, 'SELECT * FROM writters WHERE surname LIKE \'%a%\'', 222),
+	(374, 'SELECT writters.name, books.title, books.views FROM writters INNER JOIN books ON writters.idwritter=books.writterid ORDER BY writters.idwritter DESC', 223),
+	(375, 'SELECT writters.name, books.title, books.views FROM writters INNER JOIN books ON writters.idwritter=books.writterid ORDER BY writters.idwritter ASC, writters.gender DESC', 223),
+	(376, 'SELECT writters.name, books.title, books.views FROM writters RIGHT JOIN books ON writters.idwritter=books.writterid WHERE writters.idwritter>3', 223),
+	(377, 'SELECT writters.name, books.title, books.views FROM writters RIGHT JOIN books ON writters.idwritter=books.writterid WHERE writters.idwritter<5', 223),
+	(378, 'SELECT writters.name, books.title, books.views FROM writters LEFT JOIN books ON writters.idwritter=books.writterid WHERE books.title LIKE \'%e%\'', 223),
+	(379, 'SELECT * FROM books CROSS JOIN writters WHERE books.writterid>1 AND books.writterid<7', 223),
+	(380, 'SELECT writters.name, books.title, books.views FROM writters LEFT JOIN books ON writters.idwritter=books.writterid', 223),
+	(381, 'SELECT name FROM writters WHERE idwritter IN ( SELECT writterid FROM books WHERE writterid<4 )', 223),
+	(382, 'SELECT surname, gender FROM writters UNION SELECT views, releaseDate FROM books', 223),
+	(383, 'SELECT writters.surname, writters.gender FROM writters RIGHT JOIN books ON writters.idwritter=books.writterid WHERE NOT books.writterid=5', 223);
 /*!40000 ALTER TABLE `sql_random_queries_true_or_false` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.success_rate
@@ -489,9 +708,9 @@ CREATE TABLE IF NOT EXISTS `success_rate` (
   PRIMARY KEY (`id`),
   KEY `id_student_idx` (`id_student`),
   CONSTRAINT `id_student` FOREIGN KEY (`id_student`) REFERENCES `user_table` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.success_rate: ~23 rows (approximately)
+-- Dumping data for table diplwmatiki.success_rate: ~47 rows (approximately)
 /*!40000 ALTER TABLE `success_rate` DISABLE KEYS */;
 REPLACE INTO `success_rate` (`id`, `id_student`, `rate`, `time`, `table_name`, `created_at`, `updated_at`, `type_excersice`) VALUES
 	(52, 5, 'Σωστές 0 στις 10', '00:00:16', 'books', '2021-04-26 15:39:58', '2021-04-26 15:39:58', 'Συμπλήρωσης-Κενού'),
@@ -516,7 +735,39 @@ REPLACE INTO `success_rate` (`id`, `id_student`, `rate`, `time`, `table_name`, `
 	(71, 5, 'Σωστές 19 στις 20', '00:02:39', 'games', '2021-04-28 16:07:35', '2021-04-28 16:07:35', 'Συμπλήρωση-κενού'),
 	(72, 5, 'Σωστές 9 στις 10', '00:01:26', 'gamers', '2021-04-28 16:09:09', '2021-04-28 16:09:09', 'Συμπλήρωση-κενού'),
 	(73, 5, 'Σωστές 17 στις 20', '00:01:20', 'games', '2021-04-28 16:10:46', '2021-04-28 16:10:46', 'Σωστό-λάθος'),
-	(74, 5, 'Σωστές 9 στις 10', '00:00:31', 'gamers', '2021-04-28 16:11:24', '2021-04-28 16:11:24', 'Σωστό-λάθος');
+	(74, 5, 'Σωστές 9 στις 10', '00:00:31', 'gamers', '2021-04-28 16:11:24', '2021-04-28 16:11:24', 'Σωστό-λάθος'),
+	(75, 5, 'Σωστές 19 στις 20', '00:03:17', 'trips', '2021-05-01 16:54:33', '2021-05-01 16:54:33', 'Συμπλήρωση-κενού'),
+	(76, 5, 'Σωστές 10 στις 10', '00:00:54', 'aeroplane', '2021-05-01 17:10:29', '2021-05-01 17:10:29', 'Συμπλήρωση-κενού'),
+	(77, 5, 'Σωστές 19 στις 20', '00:02:03', 'trips', '2021-05-01 17:12:40', '2021-05-01 17:12:40', 'Σωστό-λάθος'),
+	(78, 5, 'Σωστές 8 στις 10', '00:01:12', 'aeroplane', '2021-05-01 17:14:03', '2021-05-01 17:14:03', 'Σωστό-λάθος'),
+	(79, 16, 'Σωστές 19 στις 20', '00:02:28', 'actors', '2021-05-03 13:06:51', '2021-05-03 13:06:51', 'Συμπλήρωση-κενού'),
+	(80, 16, 'Σωστές 10 στις 10', '00:00:56', 'movies', '2021-05-03 13:08:51', '2021-05-03 13:08:51', 'Συμπλήρωση-κενού'),
+	(81, 16, 'Σωστές 20 στις 20', '00:01:15', 'actors', '2021-05-03 13:13:37', '2021-05-03 13:13:37', 'Συμπλήρωση-κενού σε 1 πίνακα'),
+	(82, 16, 'Σωστές 10 στις 10', '00:00:38', 'movies', '2021-05-03 13:14:36', '2021-05-03 13:14:36', 'Συμπλήρωση-κενού σε 2 πίνακες'),
+	(83, 16, 'Σωστές 18 στις 20', '00:00:43', 'actors', '2021-05-03 13:16:59', '2021-05-03 13:16:59', 'Σωστό-λάθος σε 1 πίνακα'),
+	(84, 16, 'Σωστές 10 στις 10', '00:00:23', 'gamers', '2021-05-03 13:17:37', '2021-05-03 13:17:37', 'Σωστό-λάθος σε 2 πίνακες'),
+	(85, 16, 'Σωστές 19 στις 20', '00:01:08', 'owners', '2021-05-03 14:07:22', '2021-05-03 14:07:22', 'Συμπλήρωση-κενού σε 1 πίνακα'),
+	(86, 16, 'Σωστές 10 στις 10', '00:00:40', 'shops', '2021-05-03 14:08:12', '2021-05-03 14:08:12', 'Συμπλήρωση-κενού σε 2 πίνακες'),
+	(87, 16, 'Σωστές 9 στις 10', '00:00:58', 'shops', '2021-05-03 14:09:17', '2021-05-03 14:09:17', 'Σωστό-λάθος σε 2 πίνακες'),
+	(88, 16, 'Σωστές 19 στις 20', '00:01:55', 'owners', '2021-05-03 14:11:18', '2021-05-03 14:11:18', 'Σωστό-λάθος σε 1 πίνακα'),
+	(89, 5, 'Σωστές 20 στις 20', '00:01:18', 'owners', '2021-05-04 14:01:22', '2021-05-04 14:01:22', 'Συμπλήρωση-κενού σε 1 πίνακα'),
+	(90, 5, 'Σωστές 9 στις 10', '00:00:36', 'shops', '2021-05-04 14:02:05', '2021-05-04 14:02:05', 'Συμπλήρωση-κενού σε 2 πίνακες'),
+	(91, 5, 'Σωστές 10 στις 10', '00:00:26', 'shops', '2021-05-04 14:02:45', '2021-05-04 14:02:45', 'Σωστό-λάθος σε 2 πίνακες'),
+	(92, 5, 'Σωστές 20 στις 20', '00:00:45', 'owners', '2021-05-04 14:03:40', '2021-05-04 14:03:40', 'Σωστό-λάθος σε 1 πίνακα'),
+	(93, 22, 'Σωστές 14 στις 20', '00:01:40', 'coffee', '2021-05-10 14:28:00', '2021-05-10 14:28:00', 'Συμπλήρωση-κενού σε 1 πίνακα'),
+	(94, 22, 'Σωστές 16 στις 20', '00:01:03', 'coffee', '2021-05-10 14:29:23', '2021-05-10 14:29:23', 'Σωστό-λάθος σε 1 πίνακα'),
+	(95, 22, 'Σωστές 8 στις 10', '00:01:11', 'cafe', '2021-05-10 14:31:04', '2021-05-10 14:31:04', 'Συμπλήρωση-κενού σε 2 πίνακες'),
+	(96, 22, 'Σωστές 7 στις 10', '00:00:29', 'cafe', '2021-05-10 14:31:51', '2021-05-10 14:31:51', 'Σωστό-λάθος σε 2 πίνακες'),
+	(97, 22, 'Σωστές 10 στις 10', '00:00:35', 'cafe', '2021-05-10 14:32:52', '2021-05-10 14:32:52', 'Σωστό-λάθος σε 2 πίνακες'),
+	(98, 22, 'Σωστές 20 στις 20', '00:00:53', 'coffee', '2021-05-10 14:33:56', '2021-05-10 14:33:56', 'Σωστό-λάθος σε 1 πίνακα'),
+	(99, 5, 'Σωστές 20 στις 20', '00:01:36', 'coffee', '2021-05-12 20:50:27', '2021-05-12 20:50:27', 'Συμπλήρωση-κενού σε 1 πίνακα'),
+	(100, 5, 'Σωστές 18 στις 20', '00:00:46', 'coffee', '2021-05-12 20:51:24', '2021-05-12 20:51:24', 'Σωστό-λάθος σε 1 πίνακα'),
+	(101, 5, 'Σωστές 10 στις 10', '00:00:49', 'cafe', '2021-05-12 20:52:20', '2021-05-12 20:52:20', 'Συμπλήρωση-κενού σε 2 πίνακες'),
+	(102, 5, 'Σωστές 9 στις 10', '00:00:23', 'cafe', '2021-05-12 20:52:53', '2021-05-12 20:52:53', 'Σωστό-λάθος σε 2 πίνακες'),
+	(103, 28, 'Σωστές 18 στις 20', '00:01:40', 'writters', '2021-05-19 18:14:08', '2021-05-19 18:14:08', 'Συμπλήρωση-κενού σε 1 πίνακα'),
+	(104, 28, 'Σωστές 9 στις 10', '00:00:40', 'books', '2021-05-19 18:15:22', '2021-05-19 18:15:22', 'Συμπλήρωση-κενού σε 2 πίνακες'),
+	(105, 28, 'Σωστές 10 στις 10', '00:00:26', 'books', '2021-05-19 18:15:59', '2021-05-19 18:15:59', 'Σωστό-λάθος σε 2 πίνακες'),
+	(106, 28, 'Σωστές 17 στις 20', '00:00:43', 'writters', '2021-05-19 18:16:49', '2021-05-19 18:16:49', 'Σωστό-λάθος σε 1 πίνακα');
 /*!40000 ALTER TABLE `success_rate` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.user_table
@@ -539,7 +790,7 @@ CREATE TABLE IF NOT EXISTS `user_table` (
 -- Dumping data for table diplwmatiki.user_table: ~7 rows (approximately)
 /*!40000 ALTER TABLE `user_table` DISABLE KEYS */;
 REPLACE INTO `user_table` (`id`, `first_name`, `last_name`, `sex`, `phone`, `email`, `username`, `password`, `role`, `verification_code`) VALUES
-	(3, 'Dimitris', 'Motsios', 'male', '6395612353', 'www.motsios@hotmail.com', 'motsios', '$2a$10$hDreuBZ.eGPy64dTEBMxJeGumGf1FH7zXWehBZCeWOg5/cjJHcxr6', 'teacher', 'dd1c78bf-cd51-4a68-b5db-9877f36eae4c'),
+	(3, 'Dimitris', 'Motsios', 'male', '6395612353', 'www.motsios@hotmail.com', 'motsios', '$2a$10$ONRj/ZAx3inK8XdHbvaz6eR3WawOpKqG4zdLdhLzUa1.Y7lOZD3Yq', 'teacher', ''),
 	(4, 'giorgos', 'pappas', 'male', '6935146987', 'giorgos@gmail.com', 'giorgos', '$2a$10$1X8vht1REou23F.xMl51reymvMVky653wd7ElT5q/JEHGRpuZOFxy', 'teacher', NULL),
 	(5, 'Kostas', 'kakkos', 'male', '6935123697', 'kostas@gmail.com', 'kostas', '$2a$10$mezTsIwg.Md7Guklprtk6uLrxmIQy4iUfsu5LxD15DutxhIM9yldq', 'student', '4c2b079d-42bf-4d14-b541-cfd688f22f5c'),
 	(16, 'dionisis', 'papakwstas', 'male', '6936547892', 'dionisis@gmail.com', 'dioni', '$2a$10$AJQJhxAZVVTDbJwU75qGm.BW9LDld1qvaGy/n7dkU9Jw2j9jDSMbq', 'student', NULL),
@@ -550,6 +801,34 @@ REPLACE INTO `user_table` (`id`, `first_name`, `last_name`, `sex`, `phone`, `ema
 	(27, 'Γιώργος', 'Κοτσάμπασης', 'male', '6956212345', 'giorgos@hotmail.com', 'giorgakis', '$2a$10$6UjAGNlAT0l7yyFvMUe5m.cNFjkuiyOySqOX3BYHlR2f8oeGWGiju', 'teacher', NULL),
 	(28, 'Ηλιάνα', 'Παππά', 'female', '6354123456', 'iliana94@gmail.com', 'iliana94', '$2a$10$/Bwak6vP6USgEEpWeOMO6OIkcYnL5Za1omurjzU7c.Gmj6/87QPAO', 'student', NULL);
 /*!40000 ALTER TABLE `user_table` ENABLE KEYS */;
+
+-- Dumping structure for table diplwmatiki.writters
+DROP TABLE IF EXISTS `writters`;
+CREATE TABLE IF NOT EXISTS `writters` (
+  `idwritter` int(12) NOT NULL,
+  `name` varchar(22) COLLATE utf8_bin NOT NULL,
+  `surname` varchar(22) COLLATE utf8_bin NOT NULL,
+  `gender` varchar(22) COLLATE utf8_bin DEFAULT NULL,
+  `birthdate` datetime DEFAULT NULL,
+  `isAlive` tinyint(4) NOT NULL,
+  PRIMARY KEY (`idwritter`),
+  KEY `idwritter` (`idwritter`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- Dumping data for table diplwmatiki.writters: ~0 rows (approximately)
+/*!40000 ALTER TABLE `writters` DISABLE KEYS */;
+REPLACE INTO `writters` (`idwritter`, `name`, `surname`, `gender`, `birthdate`, `isAlive`) VALUES
+	(1, 'dimitris', 'motsios', 'male', '1994-01-01 00:00:00', 1),
+	(2, 'kostas', 'mixas', 'male', NULL, 1),
+	(3, 'ilianna', 'pappa', 'female', '1993-01-03 00:00:00', 1),
+	(4, 'panagiota', 'pappa', 'female', '2001-03-06 00:00:00', 1),
+	(5, 'konstantina', 'pournara', 'female', NULL, 0),
+	(6, 'georgia', 'iliados', 'female', '1965-03-03 00:00:00', 0),
+	(7, 'kostas', 'kakkos', 'male', '1999-03-03 00:00:00', 0),
+	(8, 'dimitris', 'poli', 'male', '1999-03-03 00:00:00', 1),
+	(9, 'panorea', 'pappa', 'female', '2001-02-03 00:00:00', 1),
+	(10, 'dimitra', 'apostolidi', 'female', NULL, 0);
+/*!40000 ALTER TABLE `writters` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
