@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `books` (
   CONSTRAINT `writterid` FOREIGN KEY (`writterid`) REFERENCES `writters` (`idwritter`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.books: ~0 rows (approximately)
+-- Dumping data for table diplwmatiki.books: ~6 rows (approximately)
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
 REPLACE INTO `books` (`idbook`, `title`, `views`, `releaseDate`, `writterid`) VALUES
 	(1, 'title1', 34, NULL, NULL),
@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `excersice_tables` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=224 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.excersice_tables: ~7 rows (approximately)
+-- Dumping data for table diplwmatiki.excersice_tables: ~9 rows (approximately)
 /*!40000 ALTER TABLE `excersice_tables` DISABLE KEYS */;
 REPLACE INTO `excersice_tables` (`id`, `table_name`) VALUES
 	(116, 'asdsad'),
@@ -358,7 +358,7 @@ CREATE TABLE IF NOT EXISTS `sql_questions` (
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.sql_questions: ~60 rows (approximately)
+-- Dumping data for table diplwmatiki.sql_questions: ~58 rows (approximately)
 /*!40000 ALTER TABLE `sql_questions` DISABLE KEYS */;
 REPLACE INTO `sql_questions` (`id`, `question`, `a`, `b`, `c`, `d`, `correct_answer`, `score`, `difficulty`) VALUES
 	(4, 'Ποια δήλωση SQL χρησιμοποιείται για τη διαγραφή δεδομένων από μια βάση δεδομένων;', 'DELETE', 'COLAPSE', 'REMOVE', 'REMOVE', 'a', 5, 'easy'),
@@ -389,7 +389,6 @@ REPLACE INTO `sql_questions` (`id`, `question`, `a`, `b`, `c`, `d`, `correct_ans
 	(45, 'Ποιο από τα παρακάτω είναι ο αρχικός σκοπός του SQL;', 'Για να καθορίσετε τη σύνταξη και τη σημασιολογία της γλώσσας ορισμού δεδομένων SQL', 'Για να καθορίσετε τη σύνταξη και τη σημασιολογία της γλώσσας χειρισμού SQL', 'Για να ορίσετε τις δομές δεδομένων', 'Ολα τα παραπανω.', 'd', 10, 'hard'),
 	(47, 'Μια πρόταση από τις παρακάτω είναι σωστή.', 'Ένας εικονικός πίνακας στον οποίο μπορείτε να έχετε πρόσβαση μέσω εντολών SQL', 'Ένας εικονικός πίνακας στον οποίο δεν είναι δυνατή η πρόσβαση μέσω εντολών SQL', 'Ένας βασικός πίνακας στον οποίο μπορείτε να έχετε πρόσβαση μέσω εντολών SQL', 'Ένας βασικός πίνακας στον οποίο δεν είναι δυνατή η πρόσβαση μέσω εντολών SQL', 'a', 5, 'easy'),
 	(48, 'Η εντολή για την εξάλειψη ενός πίνακα από μια βάση δεδομένων είναι:', 'REMOVE TABLE CUSTOMER;', 'DROP TABLE CUSTOMER;', 'DELETE TABLE CUSTOMER;', 'UPDATE TABLE CUSTOMER;', 'b', 5, 'easy'),
-	(51, 'Ποιο από τα παρακάτω είναι έγκυρο SQL για ευρετήριο;', 'CREATE INDEX ID;', 'CHANGE INDEX ID;', 'ADD INDEX ID;', 'REMOVE INDEX ID;', 'a', 5, 'hard'),
 	(52, 'Η λέξη-κλειδί SQL ________ χρησιμοποιείται με wildcards.', 'LIKE only', 'IN only', 'NOT IN only', 'IN and NOT IN', 'a', 5, 'hard'),
 	(53, 'Ποιο από τα παρακάτω είναι η σωστή σειρά λέξεων-κλειδιών για δηλώσεις SQL SELECT;', 'SELECT, FROM, WHERE', 'FROM, WHERE, SELECT', 'WHERE, FROM,SELECT', 'SELECT,WHERE,FROM', 'a', 5, 'hard'),
 	(54, 'Το αποτέλεσμα μιας δήλωσης SQL SELECT είναι ένας-μία ________.', 'αναφορά', 'φόρμα', 'αρχείο', 'πίνακας', 'd', 5, 'easy'),
@@ -433,7 +432,7 @@ CREATE TABLE IF NOT EXISTS `sql_random_queries` (
   CONSTRAINT `table_id` FOREIGN KEY (`table_id`) REFERENCES `excersice_tables` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1500 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.sql_random_queries: ~90 rows (approximately)
+-- Dumping data for table diplwmatiki.sql_random_queries: ~115 rows (approximately)
 /*!40000 ALTER TABLE `sql_random_queries` DISABLE KEYS */;
 REPLACE INTO `sql_random_queries` (`id`, `sql_query`, `hideWord`, `table_id`) VALUES
 	(1179, 'SELECT * FROM actors', '*,actors', 201),
@@ -569,7 +568,7 @@ CREATE TABLE IF NOT EXISTS `sql_random_queries_true_or_false` (
   CONSTRAINT `exersice_table_id` FOREIGN KEY (`exersice_table_id`) REFERENCES `excersice_tables` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=384 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.sql_random_queries_true_or_false: ~90 rows (approximately)
+-- Dumping data for table diplwmatiki.sql_random_queries_true_or_false: ~115 rows (approximately)
 /*!40000 ALTER TABLE `sql_random_queries_true_or_false` DISABLE KEYS */;
 REPLACE INTO `sql_random_queries_true_or_false` (`id`, `sql_query_true_or_false`, `exersice_table_id`) VALUES
 	(60, 'SELECT * FROM actors', 201),
@@ -785,12 +784,12 @@ CREATE TABLE IF NOT EXISTS `user_table` (
   `verification_code` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.user_table: ~7 rows (approximately)
+-- Dumping data for table diplwmatiki.user_table: ~11 rows (approximately)
 /*!40000 ALTER TABLE `user_table` DISABLE KEYS */;
 REPLACE INTO `user_table` (`id`, `first_name`, `last_name`, `sex`, `phone`, `email`, `username`, `password`, `role`, `verification_code`) VALUES
-	(3, 'Dimitris', 'Motsios', 'male', '6395612353', 'www.motsios@hotmail.com', 'motsios', '$2a$10$ONRj/ZAx3inK8XdHbvaz6eR3WawOpKqG4zdLdhLzUa1.Y7lOZD3Yq', 'teacher', ''),
+	(3, 'Dimitris', 'Motsios', 'male', '6395612353', 'www.motsios@hotmail.com', 'motsios', '$2a$10$ONRj/ZAx3inK8XdHbvaz6eR3WawOpKqG4zdLdhLzUa1.Y7lOZD3Yq', 'teacher', '3e248e1e-7a92-4873-908a-93f1a36a4785'),
 	(4, 'giorgos', 'pappas', 'male', '6935146987', 'giorgos@gmail.com', 'giorgos', '$2a$10$1X8vht1REou23F.xMl51reymvMVky653wd7ElT5q/JEHGRpuZOFxy', 'teacher', NULL),
 	(5, 'Kostas', 'kakkos', 'male', '6935123697', 'kostas@gmail.com', 'kostas', '$2a$10$mezTsIwg.Md7Guklprtk6uLrxmIQy4iUfsu5LxD15DutxhIM9yldq', 'student', '4c2b079d-42bf-4d14-b541-cfd688f22f5c'),
 	(16, 'dionisis', 'papakwstas', 'male', '6936547892', 'dionisis@gmail.com', 'dioni', '$2a$10$AJQJhxAZVVTDbJwU75qGm.BW9LDld1qvaGy/n7dkU9Jw2j9jDSMbq', 'student', NULL),
@@ -799,7 +798,8 @@ REPLACE INTO `user_table` (`id`, `first_name`, `last_name`, `sex`, `phone`, `ema
 	(24, 'Iliana', 'papanikou', 'female', '6945611212', 'iliana@gmail.com', 'iliana', '$2a$10$kaBhe10ytWP.RhUxuYwgbe3x1cSG6/R0TUe.MsoMZf77BPAHwJyyi', 'student', NULL),
 	(26, 'George', 'Andreou', 'male', '6354567891', 'giorgos@yahoo.gr', 'giorgos93', '$2a$10$m9YdINIylv4V6Rs0NSim3uJJhgGlPb89rRfbMd9SsRXFZU9T14xKa', 'student', NULL),
 	(27, 'Γιώργος', 'Κοτσάμπασης', 'male', '6956212345', 'giorgos@hotmail.com', 'giorgakis', '$2a$10$6UjAGNlAT0l7yyFvMUe5m.cNFjkuiyOySqOX3BYHlR2f8oeGWGiju', 'teacher', NULL),
-	(28, 'Ηλιάνα', 'Παππά', 'female', '6354123456', 'iliana94@gmail.com', 'iliana94', '$2a$10$/Bwak6vP6USgEEpWeOMO6OIkcYnL5Za1omurjzU7c.Gmj6/87QPAO', 'student', NULL);
+	(28, 'Ηλιάνα', 'Παππά', 'female', '6354123456', 'iliana94@gmail.com', 'iliana94', '$2a$10$/Bwak6vP6USgEEpWeOMO6OIkcYnL5Za1omurjzU7c.Gmj6/87QPAO', 'student', NULL),
+	(36, 'adsd', 'asdasd', 'male', '12321313', 'asddad', 'kost', '$2a$10$f5vxpmGcGfyPpTk/RHg28e6wzUXAdbjOM7KQ2a4ObKcjZiFJgiv1a', 'teacher', NULL);
 /*!40000 ALTER TABLE `user_table` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.writters
@@ -815,7 +815,7 @@ CREATE TABLE IF NOT EXISTS `writters` (
   KEY `idwritter` (`idwritter`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.writters: ~0 rows (approximately)
+-- Dumping data for table diplwmatiki.writters: ~8 rows (approximately)
 /*!40000 ALTER TABLE `writters` DISABLE KEYS */;
 REPLACE INTO `writters` (`idwritter`, `name`, `surname`, `gender`, `birthdate`, `isAlive`) VALUES
 	(1, 'dimitris', 'motsios', 'male', '1994-01-01 00:00:00', 1),
