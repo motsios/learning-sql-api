@@ -23,109 +23,23 @@ CREATE TABLE IF NOT EXISTS `actors` (
   `idactor` int(12) NOT NULL,
   `name` varchar(22) COLLATE utf8_bin NOT NULL,
   `surname` varchar(22) COLLATE utf8_bin NOT NULL,
-  `address` varchar(22) COLLATE utf8_bin DEFAULT NULL,
+  `birthdate` datetime DEFAULT NULL,
+  `isPlayed` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`idactor`),
   KEY `idactor` (`idactor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.actors: ~13 rows (approximately)
+-- Dumping data for table diplwmatiki.actors: ~7 rows (approximately)
 /*!40000 ALTER TABLE `actors` DISABLE KEYS */;
-REPLACE INTO `actors` (`idactor`, `name`, `surname`, `address`) VALUES
-	(1, 'dimitris', 'motsios', 'ad1'),
-	(2, 'kostas', 'mixas', 'ad2'),
-	(3, 'giannis', 'mixas ', 'ad3'),
-	(4, 'ilias', 'pappas', 'ad4'),
-	(5, 'panorea', 'pappas', 'ad5'),
-	(6, 'ilianna', 'pappas', NULL),
-	(7, 'kostas', 'pappas', 'ad6'),
-	(8, 'giogos', 'apostolakis', 'as'),
-	(11, 'name11', 'surname11', 'ad5'),
-	(12, 'name12', 'surname12', NULL),
-	(13, 'name12', 'surname12', 'ad5'),
-	(14, 'name14', 'surnae14', 'ad5'),
-	(15, 'name15', 'surnam15', NULL);
+REPLACE INTO `actors` (`idactor`, `name`, `surname`, `birthdate`, `isPlayed`) VALUES
+	(1, 'name1', 'surname1', '1999-02-02 00:00:00', 1),
+	(2, 'name2', 'surname2', '1596-02-02 00:00:00', 0),
+	(3, 'name3', 'surname3', NULL, 1),
+	(4, 'name4', 'surname4', '1995-02-02 00:00:00', 2),
+	(5, 'name5', 'surname5', '2999-03-03 00:00:00', 0),
+	(6, 'name6', 'surname6', '1999-02-02 00:00:00', 0),
+	(7, 'name7', 'surn,ae7', NULL, 1);
 /*!40000 ALTER TABLE `actors` ENABLE KEYS */;
-
--- Dumping structure for table diplwmatiki.books
-DROP TABLE IF EXISTS `books`;
-CREATE TABLE IF NOT EXISTS `books` (
-  `idbook` int(12) NOT NULL,
-  `title` varchar(22) COLLATE utf8_bin NOT NULL,
-  `views` int(22) NOT NULL,
-  `releaseDate` datetime DEFAULT NULL,
-  `writterid` int(12) DEFAULT NULL,
-  PRIMARY KEY (`idbook`),
-  KEY `writterid` (`writterid`),
-  CONSTRAINT `writterid` FOREIGN KEY (`writterid`) REFERENCES `writters` (`idwritter`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- Dumping data for table diplwmatiki.books: ~6 rows (approximately)
-/*!40000 ALTER TABLE `books` DISABLE KEYS */;
-REPLACE INTO `books` (`idbook`, `title`, `views`, `releaseDate`, `writterid`) VALUES
-	(1, 'title1', 34, NULL, NULL),
-	(2, 'title2', 55, '2001-02-02 00:00:00', 10),
-	(3, 'title3', 32, '1999-03-03 00:00:00', 3),
-	(4, 'title4', 20, '1999-03-03 00:00:00', 2),
-	(5, 'title5', 1, '1665-03-03 00:00:00', 5),
-	(6, 'title6', 25, '1995-03-03 00:00:00', NULL),
-	(7, 'title7', 12, '1997-02-02 00:00:00', 6);
-/*!40000 ALTER TABLE `books` ENABLE KEYS */;
-
--- Dumping structure for table diplwmatiki.cafe
-DROP TABLE IF EXISTS `cafe`;
-CREATE TABLE IF NOT EXISTS `cafe` (
-  `idcafe` int(12) NOT NULL,
-  `name_cafe` varchar(22) COLLATE utf8_bin NOT NULL,
-  `cafesize` int(50) DEFAULT NULL,
-  `coffeeid` int(12) DEFAULT NULL,
-  PRIMARY KEY (`idcafe`),
-  KEY `coffeeid` (`coffeeid`),
-  CONSTRAINT `coffeeid` FOREIGN KEY (`coffeeid`) REFERENCES `coffee` (`idCoffee`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- Dumping data for table diplwmatiki.cafe: ~11 rows (approximately)
-/*!40000 ALTER TABLE `cafe` DISABLE KEYS */;
-REPLACE INTO `cafe` (`idcafe`, `name_cafe`, `cafesize`, `coffeeid`) VALUES
-	(1, 'City Stacks Coffee', 150, 5),
-	(2, 'The Beanery', 60, 5),
-	(3, 'Aroma Mocha', 585, 6),
-	(4, 'Cheers Cafe', 120, 8),
-	(5, 'The Teabar', 50, 3),
-	(6, 'Bistro at the Point', 502, 6),
-	(7, 'Flavored Cafeteria', 660, 5),
-	(8, 'Heavenly Coffee', 550, NULL),
-	(9, 'Love You a Latte', 604, NULL),
-	(10, 'Brew Together', NULL, NULL),
-	(11, 'Espresso Love', NULL, 6),
-	(12, 'Caffeine Machine', NULL, 7);
-/*!40000 ALTER TABLE `cafe` ENABLE KEYS */;
-
--- Dumping structure for table diplwmatiki.coffee
-DROP TABLE IF EXISTS `coffee`;
-CREATE TABLE IF NOT EXISTS `coffee` (
-  `idCoffee` int(12) NOT NULL,
-  `brand` varchar(22) COLLATE utf8_bin NOT NULL,
-  `productiondate` datetime NOT NULL,
-  `kg` int(50) DEFAULT NULL,
-  PRIMARY KEY (`idCoffee`),
-  KEY `idCoffee` (`idCoffee`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- Dumping data for table diplwmatiki.coffee: ~11 rows (approximately)
-/*!40000 ALTER TABLE `coffee` DISABLE KEYS */;
-REPLACE INTO `coffee` (`idCoffee`, `brand`, `productiondate`, `kg`) VALUES
-	(1, 'arabica', '1995-05-05 00:00:00', 50),
-	(2, 'Arusha', '1995-06-03 00:00:00', 60),
-	(3, 'Bergendal', '1999-03-03 00:00:00', 22),
-	(4, 'Bernardina', '2005-03-11 00:00:00', 10),
-	(5, 'Catuai', '2000-01-02 00:00:00', 60),
-	(6, 'K7', '2003-01-05 00:00:00', 30),
-	(7, 'Pacas', '2003-03-03 00:00:00', 60),
-	(8, 'Pache Colis', '2005-08-08 00:00:00', 50),
-	(9, 'Ruiru 11	', '2005-01-02 00:00:00', 50),
-	(10, 'Sarchimor', '2000-03-03 00:00:00', 50),
-	(11, 'SL34	', '1999-02-02 00:00:00', 50);
-/*!40000 ALTER TABLE `coffee` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.excersice_tables
 DROP TABLE IF EXISTS `excersice_tables`;
@@ -133,20 +47,16 @@ CREATE TABLE IF NOT EXISTS `excersice_tables` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `table_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=224 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=246 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.excersice_tables: ~9 rows (approximately)
+-- Dumping data for table diplwmatiki.excersice_tables: ~5 rows (approximately)
 /*!40000 ALTER TABLE `excersice_tables` DISABLE KEYS */;
 REPLACE INTO `excersice_tables` (`id`, `table_name`) VALUES
 	(116, 'asdsad'),
-	(201, 'actors'),
-	(203, 'movies'),
-	(206, 'games'),
-	(207, 'gamers'),
-	(220, 'coffee'),
-	(221, 'cafe'),
-	(222, 'writters'),
-	(223, 'books');
+	(242, 'actors'),
+	(243, 'movies'),
+	(244, 'gamers'),
+	(245, 'games');
 /*!40000 ALTER TABLE `excersice_tables` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.fill_fields_questions
@@ -200,25 +110,24 @@ DROP TABLE IF EXISTS `gamers`;
 CREATE TABLE IF NOT EXISTS `gamers` (
   `idgamer` int(12) NOT NULL,
   `name` varchar(22) COLLATE utf8_bin NOT NULL,
-  `surname` varchar(22) COLLATE utf8_bin NOT NULL,
-  `gameid` int(12) DEFAULT NULL,
+  `brithdate` datetime DEFAULT NULL,
+  `sex` varchar(22) COLLATE utf8_bin NOT NULL,
+  `isActive` tinyint(4) NOT NULL,
   PRIMARY KEY (`idgamer`),
-  KEY `gameid` (`gameid`),
-  CONSTRAINT `gameid` FOREIGN KEY (`gameid`) REFERENCES `games` (`idgame`)
+  KEY `idgamer` (`idgamer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.gamers: ~8 rows (approximately)
 /*!40000 ALTER TABLE `gamers` DISABLE KEYS */;
-REPLACE INTO `gamers` (`idgamer`, `name`, `surname`, `gameid`) VALUES
-	(1, 'Dimitris', 'Motsios', 2),
-	(2, 'Kostas', 'Mixas', NULL),
-	(3, 'Ilias', 'Pappas', 4),
-	(4, 'Ilianna', 'pappa', 9),
-	(5, 'Kostas', 'Kefis', 2),
-	(6, 'Dionisis', 'Katsimixas', NULL),
-	(7, 'Elpida', 'Koyti', 4),
-	(8, 'Makis', 'Kotsampasis', 10),
-	(9, 'Elpida', 'Bert', 10);
+REPLACE INTO `gamers` (`idgamer`, `name`, `brithdate`, `sex`, `isActive`) VALUES
+	(1, 'gamer1', '1999-02-02 00:00:00', 'male', 1),
+	(2, 'gamer2', '1956-03-03 00:00:00', 'male', 1),
+	(3, 'gamer3', '2000-03-03 00:00:00', 'female', 0),
+	(4, 'gamer4', '2001-02-02 00:00:00', 'male', 1),
+	(5, 'gamer5', '2001-02-02 00:00:00', 'male', 1),
+	(6, 'ga,er6', NULL, 'female', 0),
+	(7, 'gamer7', '2009-02-02 00:00:00', 'male', 0),
+	(8, 'gamer8', '1999-02-02 00:00:00', 'male', 1);
 /*!40000 ALTER TABLE `gamers` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.games
@@ -226,32 +135,24 @@ DROP TABLE IF EXISTS `games`;
 CREATE TABLE IF NOT EXISTS `games` (
   `idgame` int(12) NOT NULL,
   `title` varchar(22) COLLATE utf8_bin NOT NULL,
-  `multiplayer` tinyint(4) DEFAULT NULL,
-  `released` datetime DEFAULT NULL,
+  `hoursPlayed` int(33) DEFAULT NULL,
+  `idGamer` int(12) DEFAULT NULL,
   PRIMARY KEY (`idgame`),
-  KEY `idgame` (`idgame`)
+  KEY `idGamer` (`idGamer`),
+  CONSTRAINT `idGamer` FOREIGN KEY (`idGamer`) REFERENCES `gamers` (`idgamer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.games: ~17 rows (approximately)
+-- Dumping data for table diplwmatiki.games: ~8 rows (approximately)
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-REPLACE INTO `games` (`idgame`, `title`, `multiplayer`, `released`) VALUES
-	(1, 'Lol', 1, '2000-02-02 00:00:00'),
-	(2, 'Battlefield', 1, '1995-03-03 00:00:00'),
-	(3, 'Pro evolution 2010', 0, '2010-01-01 00:00:00'),
-	(4, 'Game4', 0, '2000-02-02 00:00:00'),
-	(5, 'The last of us', 1, '2000-02-02 00:00:00'),
-	(6, 'Amnisia 1', 0, '2000-02-12 00:00:00'),
-	(7, 'Amnisia 2', 0, '2005-03-03 00:00:00'),
-	(8, 'NBA', 1, '2021-02-02 00:00:00'),
-	(9, 'Fifa 2021', 1, '2021-06-11 00:00:00'),
-	(10, 'The sims 1', 0, '2000-05-05 00:00:00'),
-	(11, 'The sims 2', 0, '2000-02-01 00:00:00'),
-	(12, 'The sims 3', 1, '2000-02-01 00:00:00'),
-	(13, 'Hearthstone', 1, '2000-02-01 00:00:00'),
-	(14, 'Rocket Leage', 1, '2000-02-01 00:00:00'),
-	(15, 'Game 2024', 1, NULL),
-	(16, 'Game 2029', 0, NULL),
-	(17, 'amnisia', 0, '2000-02-01 00:00:00');
+REPLACE INTO `games` (`idgame`, `title`, `hoursPlayed`, `idGamer`) VALUES
+	(1, 'GameTitle1', 25, 3),
+	(2, 'GameTitle2', 10, 5),
+	(3, 'GameTitle3', 50, 5),
+	(4, 'GameTitle4', 10, 2),
+	(5, 'GameTitle5', 14, 2),
+	(6, 'GameTitle6', 66, 4),
+	(7, 'GameTitle7', 77, 1),
+	(8, 'GameTitle8', 55, 6);
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.movies
@@ -259,22 +160,24 @@ DROP TABLE IF EXISTS `movies`;
 CREATE TABLE IF NOT EXISTS `movies` (
   `idmovie` int(12) NOT NULL,
   `title` varchar(22) COLLATE utf8_bin NOT NULL,
-  `released` datetime DEFAULT NULL,
-  `actorid` int(12) DEFAULT NULL,
+  `views` int(33) DEFAULT NULL,
+  `releasedDate` datetime DEFAULT NULL,
+  `actorId` int(12) DEFAULT NULL,
   PRIMARY KEY (`idmovie`),
-  KEY `actorid` (`actorid`),
-  CONSTRAINT `actorid` FOREIGN KEY (`actorid`) REFERENCES `actors` (`idactor`)
+  KEY `actorId` (`actorId`),
+  CONSTRAINT `actorId` FOREIGN KEY (`actorId`) REFERENCES `actors` (`idactor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.movies: ~6 rows (approximately)
 /*!40000 ALTER TABLE `movies` DISABLE KEYS */;
-REPLACE INTO `movies` (`idmovie`, `title`, `released`, `actorid`) VALUES
-	(1, 'title1', '2005-01-01 00:00:00', 2),
-	(2, 'title2', '1999-01-05 00:00:00', NULL),
-	(3, 'title3', '2336-05-12 00:00:00', 2),
-	(4, 'title44', '1996-02-03 00:00:00', 5),
-	(5, 'title5', '1236-11-11 00:00:00', 6),
-	(7, 'title7', '2003-12-22 00:00:00', 3);
+REPLACE INTO `movies` (`idmovie`, `title`, `views`, `releasedDate`, `actorId`) VALUES
+	(1, 'title1', 11, '1999-02-02 00:00:00', 3),
+	(2, 'tite2', 22, '1999-02-03 00:00:00', 1),
+	(3, 'title3', 33, '1236-03-03 00:00:00', 6),
+	(4, 'title4', 44, '1999-03-06 00:00:00', 2),
+	(5, 'title5', 55, NULL, NULL),
+	(6, 'title6', 66, '2525-03-03 00:00:00', 7),
+	(7, 'title7', 77, '1525-02-05 00:00:00', 6);
 /*!40000 ALTER TABLE `movies` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.score_table
@@ -291,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `score_table` (
   PRIMARY KEY (`id`),
   KEY `student_id_idx` (`student_id`),
   CONSTRAINT `student_id` FOREIGN KEY (`student_id`) REFERENCES `user_table` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=218 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=219 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.score_table: ~40 rows (approximately)
 /*!40000 ALTER TABLE `score_table` DISABLE KEYS */;
@@ -340,7 +243,8 @@ REPLACE INTO `score_table` (`id`, `student_id`, `score`, `time`, `category`, `di
 	(214, 22, 30, '00:00:37', '15 Questions', 'easy', '2021-05-10 14:34:52', '2021-05-10 14:34:52'),
 	(215, 22, 45, '00:00:59', '25 Questions', 'easy', '2021-05-10 14:48:45', '2021-05-10 14:48:45'),
 	(216, 5, 51, '00:00:33', '15 Questions', 'hard', '2021-05-15 18:01:22', '2021-05-15 18:01:22'),
-	(217, 28, 15, '00:00:19', '15 Questions', 'easy', '2021-05-19 18:12:12', '2021-05-19 18:12:12');
+	(217, 28, 15, '00:00:19', '15 Questions', 'easy', '2021-05-19 18:12:12', '2021-05-19 18:12:12'),
+	(218, 5, 127, '00:02:07', '15 Questions', 'hard', '2021-05-25 19:44:57', '2021-05-25 19:44:57');
 /*!40000 ALTER TABLE `score_table` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.sql_questions
@@ -430,131 +334,71 @@ CREATE TABLE IF NOT EXISTS `sql_random_queries` (
   PRIMARY KEY (`id`),
   KEY `table_id_idx` (`table_id`),
   CONSTRAINT `table_id` FOREIGN KEY (`table_id`) REFERENCES `excersice_tables` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1500 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=1810 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.sql_random_queries: ~115 rows (approximately)
+-- Dumping data for table diplwmatiki.sql_random_queries: ~57 rows (approximately)
 /*!40000 ALTER TABLE `sql_random_queries` DISABLE KEYS */;
 REPLACE INTO `sql_random_queries` (`id`, `sql_query`, `hideWord`, `table_id`) VALUES
-	(1179, 'SELECT * FROM actors', '*,actors', 201),
-	(1180, 'SELECT idactor, name FROM actors', 'idactor,name', 201),
-	(1181, 'SELECT DISTINCT surname FROM actors', 'DISTINCT', 201),
-	(1182, 'SELECT COUNT(address) FROM actors', 'COUNT,FROM', 201),
-	(1183, 'SELECT COUNT(DISTINCT surname) FROM actors', 'DISTINCT', 201),
-	(1184, 'SELECT * FROM actors WHERE idactor=7', 'WHERE,idactor', 201),
-	(1185, 'SELECT * FROM actors WHERE idactor IN ("1","4")', 'IN', 201),
-	(1186, 'SELECT * FROM actors WHERE idactor BETWEEN 2 AND 7', 'BETWEEN,AND', 201),
-	(1187, 'SELECT * FROM actors ORDER BY address', 'ORDER BY', 201),
-	(1188, 'SELECT * FROM actors ORDER BY surname DESC', 'ORDER BY,DESC', 201),
-	(1189, 'SELECT * FROM actors ORDER BY surname ASC, address DESC', 'ORDER BY,ASC,DESC', 201),
-	(1190, 'SELECT * FROM actors LIMIT 3', 'LIMIT', 201),
-	(1191, 'SELECT MIN(idactor) FROM actors', 'MIN', 201),
-	(1192, 'SELECT MAX(idactor) FROM actors', 'MAX', 201),
-	(1193, 'SELECT COUNT(surname), address FROM actors GROUP BY address', 'COUNT,GROUP BY', 201),
-	(1194, 'SELECT COUNT(idactor), name FROM actors GROUP BY name ORDER BY COUNT(idactor) DESC', 'ORDER BY,DESC', 201),
-	(1195, 'SELECT COUNT(surname) FROM actors GROUP BY address HAVING COUNT(surname) >3', 'GROUP BY,HAVING COUNT', 201),
-	(1196, 'SELECT SUM(idactor) FROM actors', 'SUM', 201),
-	(1197, 'SELECT AVG(idactor) FROM actors', 'AVG', 201),
-	(1198, 'SELECT * FROM actors WHERE address IS NULL', 'IS NULL', 201),
-	(1209, 'SELECT actors.idactor, actors.name, movies.title, movies.released FROM actors, movies WHERE actors.idactor=movies.actorid', 'actors,idactor,=', 203),
-	(1210, 'SELECT actors.idactor, actors.name, movies.title FROM actors INNER JOIN movies ON actors.idactor=movies.actorid', 'INNER,JOIN', 203),
-	(1211, 'SELECT actors.name, movies.actorid FROM actors LEFT JOIN movies ON actors.idactor=movies.actorid ORDER BY actors.name', 'LEFT,ORDER BY', 203),
-	(1212, 'SELECT actors.idactor, movies.title, movies.released FROM actors RIGHT JOIN movies ON actors.idactor=movies.actorid ORDER BY actors.idactor DESC', 'RIGHT,DESC', 203),
-	(1213, 'SELECT actors.idactor, actors.name, movies.title FROM actors INNER JOIN movies ON actors.idactor=movies.actorid WHERE actors.idactor>3', 'WHERE,>', 203),
-	(1214, 'SELECT * FROM movies CROSS JOIN actors', 'CROSS', 203),
-	(1215, 'SELECT idactor FROM actors UNION SELECT actorid FROM movies', 'UNION', 203),
-	(1216, 'SELECT address FROM actors WHERE idactor = ANY ( SELECT actorid FROM movies WHERE actorid>3 )', 'ANY', 203),
-	(1217, 'SELECT idactor FROM actors WHERE idactor = ALL ( SELECT actorid FROM movies WHERE actorid=3 )', 'ALL', 203),
-	(1218, 'SELECT surname FROM actors WHERE idactor IN ( SELECT actorid FROM movies WHERE actorid>2 )', 'IN', 203),
-	(1249, 'SELECT * FROM games', '*,games', 206),
-	(1250, 'SELECT idgame, title FROM games', 'idgame,title', 206),
-	(1251, 'SELECT DISTINCT multiplayer FROM games', 'DISTINCT', 206),
-	(1252, 'SELECT COUNT(released) FROM games', 'COUNT,FROM', 206),
-	(1253, 'SELECT COUNT(DISTINCT multiplayer) FROM games', 'DISTINCT', 206),
-	(1254, 'SELECT * FROM games WHERE idgame=7', 'WHERE,idgame', 206),
-	(1255, 'SELECT * FROM games WHERE idgame IN ("1","4")', 'IN', 206),
-	(1256, 'SELECT * FROM games WHERE idgame BETWEEN 2 AND 7', 'BETWEEN,AND', 206),
-	(1257, 'SELECT * FROM games ORDER BY released', 'ORDER BY', 206),
-	(1258, 'SELECT * FROM games ORDER BY multiplayer DESC', 'ORDER BY,DESC', 206),
-	(1259, 'SELECT * FROM games ORDER BY multiplayer ASC, released DESC', 'ORDER BY,ASC,DESC', 206),
-	(1260, 'SELECT * FROM games LIMIT 3', 'LIMIT', 206),
-	(1261, 'SELECT MIN(idgame) FROM games', 'MIN', 206),
-	(1262, 'SELECT MAX(idgame) FROM games', 'MAX', 206),
-	(1263, 'SELECT COUNT(multiplayer), released FROM games GROUP BY released', 'COUNT,GROUP BY', 206),
-	(1264, 'SELECT COUNT(idgame), title FROM games GROUP BY title ORDER BY COUNT(idgame) DESC', 'ORDER BY,DESC', 206),
-	(1265, 'SELECT COUNT(multiplayer) FROM games GROUP BY released HAVING COUNT(multiplayer) >3', 'GROUP BY,HAVING COUNT', 206),
-	(1266, 'SELECT SUM(idgame) FROM games', 'SUM', 206),
-	(1267, 'SELECT AVG(idgame) FROM games', 'AVG', 206),
-	(1268, 'SELECT * FROM games WHERE released IS NULL', 'IS NULL', 206),
-	(1269, 'SELECT games.idgame, games.title, gamers.name, gamers.surname FROM games, gamers WHERE games.idgame=gamers.gameid', 'games,idgame,=', 207),
-	(1270, 'SELECT games.idgame, games.title, gamers.name FROM games INNER JOIN gamers ON games.idgame=gamers.gameid', 'INNER,JOIN', 207),
-	(1271, 'SELECT games.title, gamers.gameid FROM games LEFT JOIN gamers ON games.idgame=gamers.gameid ORDER BY games.title', 'LEFT,ORDER BY', 207),
-	(1272, 'SELECT games.idgame, gamers.name, gamers.surname FROM games RIGHT JOIN gamers ON games.idgame=gamers.gameid ORDER BY games.idgame DESC', 'RIGHT,DESC', 207),
-	(1273, 'SELECT games.idgame, games.title, gamers.name FROM games INNER JOIN gamers ON games.idgame=gamers.gameid WHERE games.idgame>3', 'WHERE,>', 207),
-	(1274, 'SELECT * FROM gamers CROSS JOIN games', 'CROSS', 207),
-	(1275, 'SELECT idgame FROM games UNION SELECT gameid FROM gamers', 'UNION', 207),
-	(1276, 'SELECT released FROM games WHERE idgame = ANY ( SELECT gameid FROM gamers WHERE gameid>3 )', 'ANY', 207),
-	(1277, 'SELECT idgame FROM games WHERE idgame = ALL ( SELECT gameid FROM gamers WHERE gameid=3 )', 'ALL', 207),
-	(1278, 'SELECT multiplayer FROM games WHERE idgame IN ( SELECT gameid FROM gamers WHERE gameid>2 )', 'IN', 207),
-	(1439, 'SELECT * FROM coffee', '*,coffee', 220),
-	(1440, 'SELECT idCoffee, brand FROM coffee', 'idCoffee,brand', 220),
-	(1441, 'SELECT DISTINCT productiondate FROM coffee', 'DISTINCT', 220),
-	(1442, 'SELECT COUNT(kg) FROM coffee', 'COUNT,FROM', 220),
-	(1443, 'SELECT COUNT(DISTINCT productiondate) FROM coffee', 'DISTINCT', 220),
-	(1444, 'SELECT * FROM coffee WHERE idCoffee=7', 'WHERE,idCoffee', 220),
-	(1445, 'SELECT * FROM coffee WHERE idCoffee IN ("1","4")', 'IN', 220),
-	(1446, 'SELECT * FROM coffee WHERE idCoffee BETWEEN 2 AND 7', 'BETWEEN,AND', 220),
-	(1447, 'SELECT * FROM coffee ORDER BY kg', 'ORDER BY', 220),
-	(1448, 'SELECT * FROM coffee ORDER BY productiondate DESC', 'ORDER BY,DESC', 220),
-	(1449, 'SELECT * FROM coffee ORDER BY productiondate ASC, kg DESC', 'ORDER BY,ASC,DESC', 220),
-	(1450, 'SELECT * FROM coffee LIMIT 3', 'LIMIT', 220),
-	(1451, 'SELECT MIN(idCoffee) FROM coffee', 'MIN', 220),
-	(1452, 'SELECT MAX(idCoffee) FROM coffee', 'MAX', 220),
-	(1453, 'SELECT COUNT(productiondate), kg FROM coffee GROUP BY kg', 'COUNT,GROUP BY', 220),
-	(1454, 'SELECT COUNT(idCoffee), brand FROM coffee GROUP BY brand ORDER BY COUNT(idCoffee) DESC', 'ORDER BY,DESC', 220),
-	(1455, 'SELECT COUNT(productiondate) FROM coffee GROUP BY kg HAVING COUNT(productiondate) >3', 'GROUP BY,HAVING COUNT', 220),
-	(1456, 'SELECT SUM(idCoffee) FROM coffee', 'SUM', 220),
-	(1457, 'SELECT AVG(idCoffee) FROM coffee', 'AVG', 220),
-	(1458, 'SELECT * FROM coffee WHERE kg IS NULL', 'IS NULL', 220),
-	(1459, 'SELECT coffee.idCoffee, coffee.brand, cafe.name_cafe, cafe.cafesize FROM coffee, cafe WHERE coffee.idCoffee=cafe.coffeeid', 'coffee,idCoffee,=', 221),
-	(1460, 'SELECT coffee.idCoffee, coffee.brand, cafe.name_cafe FROM coffee INNER JOIN cafe ON coffee.idCoffee=cafe.coffeeid', 'INNER,JOIN', 221),
-	(1461, 'SELECT coffee.brand, cafe.coffeeid FROM coffee LEFT JOIN cafe ON coffee.idCoffee=cafe.coffeeid ORDER BY coffee.brand', 'LEFT,ORDER BY', 221),
-	(1462, 'SELECT coffee.idCoffee, cafe.name_cafe, cafe.cafesize FROM coffee RIGHT JOIN cafe ON coffee.idCoffee=cafe.coffeeid ORDER BY coffee.idCoffee DESC', 'RIGHT,DESC', 221),
-	(1463, 'SELECT coffee.idCoffee, coffee.brand, cafe.name_cafe FROM coffee INNER JOIN cafe ON coffee.idCoffee=cafe.coffeeid WHERE coffee.idCoffee>3', 'WHERE,>', 221),
-	(1464, 'SELECT * FROM cafe CROSS JOIN coffee', 'CROSS', 221),
-	(1465, 'SELECT idCoffee FROM coffee UNION SELECT coffeeid FROM cafe', 'UNION', 221),
-	(1466, 'SELECT kg FROM coffee WHERE idCoffee = ANY ( SELECT coffeeid FROM cafe WHERE coffeeid>3 )', 'ANY', 221),
-	(1467, 'SELECT idCoffee FROM coffee WHERE idCoffee = ALL ( SELECT coffeeid FROM cafe WHERE coffeeid=3 )', 'ALL', 221),
-	(1468, 'SELECT productiondate FROM coffee WHERE idCoffee IN ( SELECT coffeeid FROM cafe WHERE coffeeid>2 )', 'IN', 221),
-	(1470, 'SELECT * FROM writters', '*,writters', 222),
-	(1471, 'SELECT idwritter, name FROM writters', 'idwritter,name', 222),
-	(1472, 'SELECT DISTINCT surname FROM writters', 'DISTINCT', 222),
-	(1473, 'SELECT COUNT(gender) FROM writters', 'COUNT,FROM', 222),
-	(1474, 'SELECT COUNT(DISTINCT surname) FROM writters', 'DISTINCT', 222),
-	(1475, 'SELECT * FROM writters WHERE idwritter=7', 'WHERE,idwritter', 222),
-	(1476, 'SELECT * FROM writters WHERE idwritter IN ("1","4")', 'IN', 222),
-	(1477, 'SELECT * FROM writters WHERE idwritter BETWEEN 2 AND 7', 'BETWEEN,AND', 222),
-	(1478, 'SELECT * FROM writters ORDER BY gender', 'ORDER BY', 222),
-	(1479, 'SELECT * FROM writters ORDER BY surname DESC', 'ORDER BY,DESC', 222),
-	(1480, 'SELECT * FROM writters ORDER BY surname ASC, gender DESC', 'ORDER BY,ASC,DESC', 222),
-	(1481, 'SELECT * FROM writters LIMIT 3', 'LIMIT', 222),
-	(1482, 'SELECT MIN(idwritter) FROM writters', 'MIN', 222),
-	(1483, 'SELECT MAX(idwritter) FROM writters', 'MAX', 222),
-	(1484, 'SELECT COUNT(idwritter), name FROM writters GROUP BY name', 'COUNT,GROUP BY', 222),
-	(1485, 'SELECT COUNT(birthdate), isAlive FROM writters GROUP BY isAlive ORDER BY COUNT(birthdate) DESC', 'ORDER BY,DESC', 222),
-	(1486, 'SELECT COUNT(surname) FROM writters GROUP BY gender HAVING COUNT(surname) >3', 'GROUP BY,HAVING COUNT', 222),
-	(1487, 'SELECT SUM(idwritter) FROM writters', 'SUM', 222),
-	(1488, 'SELECT AVG(idwritter) FROM writters', 'AVG', 222),
-	(1489, 'SELECT * FROM writters WHERE gender IS NULL', 'IS NULL', 222),
-	(1490, 'SELECT writters.idwritter, writters.name, books.title, books.views FROM writters, books WHERE writters.idwritter=books.writterid', 'writters,idwritter,=', 223),
-	(1491, 'SELECT writters.idwritter, writters.name, books.title FROM writters INNER JOIN books ON writters.idwritter=books.writterid', 'INNER,JOIN', 223),
-	(1492, 'SELECT writters.name, books.writterid FROM writters LEFT JOIN books ON writters.idwritter=books.writterid ORDER BY writters.name', 'LEFT,ORDER BY', 223),
-	(1493, 'SELECT writters.idwritter, books.title, books.views FROM writters RIGHT JOIN books ON writters.idwritter=books.writterid ORDER BY writters.idwritter DESC', 'RIGHT,DESC', 223),
-	(1494, 'SELECT writters.idwritter, writters.name, books.title FROM writters INNER JOIN books ON writters.idwritter=books.writterid WHERE writters.idwritter>3', 'WHERE,>', 223),
-	(1495, 'SELECT * FROM books CROSS JOIN writters', 'CROSS', 223),
-	(1496, 'SELECT birthdate FROM writters UNION SELECT releaseDate FROM books', 'UNION', 223),
-	(1497, 'SELECT gender FROM writters WHERE idwritter = ANY ( SELECT writterid FROM books WHERE writterid>3 )', 'ANY', 223),
-	(1498, 'SELECT birthdate FROM writters WHERE idwritter = ALL ( SELECT writterid FROM books WHERE writterid=3 )', 'ALL', 223),
-	(1499, 'SELECT surname FROM writters WHERE idwritter IN ( SELECT writterid FROM books WHERE writterid>2 )', 'IN', 223);
+	(1750, 'SELECT * FROM actors', '*,actors', 242),
+	(1751, 'SELECT idactor, name FROM actors', 'idactor,name', 242),
+	(1752, 'SELECT DISTINCT surname FROM actors', 'DISTINCT', 242),
+	(1753, 'SELECT COUNT(surname) FROM actors', 'COUNT,FROM', 242),
+	(1754, 'SELECT COUNT(DISTINCT birthdate) FROM actors', 'DISTINCT', 242),
+	(1755, 'SELECT * FROM actors WHERE idactor=2', 'WHERE,idactor', 242),
+	(1756, 'SELECT * FROM actors WHERE idactor IN ("1","4")', 'IN', 242),
+	(1757, 'SELECT * FROM actors WHERE idactor BETWEEN 0 AND 6', 'BETWEEN,AND', 242),
+	(1758, 'SELECT * FROM actors ORDER BY name', 'ORDER BY', 242),
+	(1759, 'SELECT * FROM actors ORDER BY surname DESC', 'ORDER BY,DESC', 242),
+	(1760, 'SELECT * FROM actors ORDER BY idactor ASC, name DESC', 'ORDER BY,ASC,DESC', 242),
+	(1761, 'SELECT * FROM actors LIMIT 2', 'LIMIT', 242),
+	(1762, 'SELECT MIN(idactor) FROM actors', 'MIN', 242),
+	(1763, 'SELECT MAX(idactor) FROM actors', 'MAX', 242),
+	(1764, 'SELECT COUNT(birthdate), isPlayed FROM actors GROUP BY isPlayed', 'COUNT,GROUP BY', 242),
+	(1765, 'SELECT COUNT(idactor), name FROM actors GROUP BY name ORDER BY COUNT(idactor) DESC', 'ORDER BY,DESC', 242),
+	(1766, 'SELECT COUNT(surname) FROM actors GROUP BY isPlayed HAVING COUNT(surname) >2', 'GROUP BY,HAVING COUNT', 242),
+	(1767, 'SELECT SUM(idactor) FROM actors', 'SUM', 242),
+	(1768, 'SELECT AVG(idactor) FROM actors', 'AVG', 242),
+	(1769, 'SELECT * FROM actors WHERE birthdate IS NULL', 'IS NULL', 242),
+	(1770, 'SELECT actors.idactor, actors.name, movies.title, movies.views FROM actors, movies WHERE actors.idactor=movies.actorId', 'actors,idactor,=', 243),
+	(1771, 'SELECT actors.idactor, actors.name, movies.title FROM actors INNER JOIN movies ON actors.idactor=movies.actorId', 'INNER,JOIN', 243),
+	(1772, 'SELECT actors.name, movies.actorId FROM actors LEFT JOIN movies ON actors.idactor=movies.actorId ORDER BY actors.name', 'LEFT,ORDER BY', 243),
+	(1773, 'SELECT actors.idactor, movies.title, movies.views FROM actors RIGHT JOIN movies ON actors.idactor=movies.actorId ORDER BY actors.idactor DESC', 'RIGHT,DESC', 243),
+	(1774, 'SELECT actors.idactor, actors.name, movies.title FROM actors INNER JOIN movies ON actors.idactor=movies.actorId WHERE actors.idactor>3', 'WHERE,>', 243),
+	(1775, 'SELECT * FROM movies CROSS JOIN actors', 'CROSS', 243),
+	(1776, 'SELECT name FROM actors UNION SELECT releasedDate FROM movies', 'UNION', 243),
+	(1777, 'SELECT isPlayed FROM actors WHERE idactor = ANY ( SELECT actorId FROM movies WHERE actorId>4 )', 'ANY', 243),
+	(1778, 'SELECT isPlayed FROM actors WHERE idactor = ALL ( SELECT actorId FROM movies WHERE actorId=8 )', 'ALL', 243),
+	(1779, 'SELECT surname FROM actors WHERE idactor IN ( SELECT actorId FROM movies WHERE actorId>4)', 'IN', 243),
+	(1780, 'SELECT * FROM gamers', '*,gamers', 244),
+	(1781, 'SELECT idgamer, name FROM gamers', 'idgamer,name', 244),
+	(1782, 'SELECT DISTINCT sex FROM gamers', 'DISTINCT', 244),
+	(1783, 'SELECT COUNT(name) FROM gamers', 'COUNT,FROM', 244),
+	(1784, 'SELECT COUNT(DISTINCT isActive) FROM gamers', 'DISTINCT', 244),
+	(1785, 'SELECT * FROM gamers WHERE idgamer=1', 'WHERE,idgamer', 244),
+	(1786, 'SELECT * FROM gamers WHERE idgamer IN ("1","4")', 'IN', 244),
+	(1787, 'SELECT * FROM gamers WHERE idgamer BETWEEN 0 AND 6', 'BETWEEN,AND', 244),
+	(1788, 'SELECT * FROM gamers ORDER BY idgamer', 'ORDER BY', 244),
+	(1789, 'SELECT * FROM gamers ORDER BY brithdate DESC', 'ORDER BY,DESC', 244),
+	(1790, 'SELECT * FROM gamers ORDER BY brithdate ASC, sex DESC', 'ORDER BY,ASC,DESC', 244),
+	(1791, 'SELECT * FROM gamers LIMIT 7', 'LIMIT', 244),
+	(1792, 'SELECT MIN(idgamer) FROM gamers', 'MIN', 244),
+	(1793, 'SELECT MAX(idgamer) FROM gamers', 'MAX', 244),
+	(1794, 'SELECT COUNT(brithdate), sex FROM gamers GROUP BY sex', 'COUNT,GROUP BY', 244),
+	(1795, 'SELECT COUNT(brithdate), sex FROM gamers GROUP BY sex ORDER BY COUNT(brithdate) DESC', 'ORDER BY,DESC', 244),
+	(1796, 'SELECT COUNT(brithdate) FROM gamers GROUP BY isActive HAVING COUNT(brithdate) >3', 'GROUP BY,HAVING COUNT', 244),
+	(1797, 'SELECT SUM(idgamer) FROM gamers', 'SUM', 244),
+	(1798, 'SELECT AVG(idgamer) FROM gamers', 'AVG', 244),
+	(1799, 'SELECT * FROM gamers WHERE sex IS NULL', 'IS NULL', 244),
+	(1800, 'SELECT gamers.idgamer, gamers.name, games.title, games.hoursPlayed FROM gamers, games WHERE gamers.idgamer=games.idGamer', 'gamers,idgamer,=', 245),
+	(1801, 'SELECT gamers.idgamer, gamers.name, games.title FROM gamers INNER JOIN games ON gamers.idgamer=games.idGamer', 'INNER,JOIN', 245),
+	(1802, 'SELECT gamers.name, games.idGamer FROM gamers LEFT JOIN games ON gamers.idgamer=games.idGamer ORDER BY gamers.name', 'LEFT,ORDER BY', 245),
+	(1803, 'SELECT gamers.idgamer, games.title, games.hoursPlayed FROM gamers RIGHT JOIN games ON gamers.idgamer=games.idGamer ORDER BY gamers.idgamer DESC', 'RIGHT,DESC', 245),
+	(1804, 'SELECT gamers.idgamer, gamers.name, games.title FROM gamers INNER JOIN games ON gamers.idgamer=games.idGamer WHERE gamers.idgamer>1', 'WHERE,>', 245),
+	(1805, 'SELECT * FROM games CROSS JOIN gamers', 'CROSS', 245),
+	(1806, 'SELECT isActive FROM gamers UNION SELECT hoursPlayed FROM games', 'UNION', 245),
+	(1807, 'SELECT name FROM gamers WHERE idgamer = ANY ( SELECT idGamer FROM games WHERE idGamer>2 )', 'ANY', 245),
+	(1808, 'SELECT idgamer FROM gamers WHERE idgamer = ALL ( SELECT idGamer FROM games WHERE idGamer=2 )', 'ALL', 245),
+	(1809, 'SELECT name FROM gamers WHERE idgamer IN ( SELECT idGamer FROM games WHERE idGamer>5)', 'IN', 245);
 /*!40000 ALTER TABLE `sql_random_queries` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.sql_random_queries_true_or_false
@@ -566,131 +410,71 @@ CREATE TABLE IF NOT EXISTS `sql_random_queries_true_or_false` (
   PRIMARY KEY (`id`),
   KEY `exersice_table_id_idx` (`exersice_table_id`),
   CONSTRAINT `exersice_table_id` FOREIGN KEY (`exersice_table_id`) REFERENCES `excersice_tables` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=384 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=694 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.sql_random_queries_true_or_false: ~115 rows (approximately)
+-- Dumping data for table diplwmatiki.sql_random_queries_true_or_false: ~57 rows (approximately)
 /*!40000 ALTER TABLE `sql_random_queries_true_or_false` DISABLE KEYS */;
 REPLACE INTO `sql_random_queries_true_or_false` (`id`, `sql_query_true_or_false`, `exersice_table_id`) VALUES
-	(60, 'SELECT * FROM actors', 201),
-	(61, 'SELECT * FROM actors WHERE idactor>1', 201),
-	(62, 'SELECT DISTINCT address FROM actors', 201),
-	(63, 'SELECT address FROM actors WHERE idactor=2', 201),
-	(64, 'SELECT MIN(idactor) FROM actors', 201),
-	(65, 'SELECT COUNT(name) FROM actors', 201),
-	(66, 'SELECT COUNT(name) FROM actors WHERE idactor BETWEEN 1 AND 5', 201),
-	(67, 'SELECT name, surname FROM actors WHERE idactor=6 OR idactor=3', 201),
-	(68, 'SELECT * FROM actors ORDER BY idactor ASC', 201),
-	(69, 'SELECT * FROM actors ORDER BY idactor DESC', 201),
-	(70, 'SELECT * FROM actors ORDER BY address ASC, name DESC', 201),
-	(71, 'SELECT * FROM actors GROUP BY surname', 201),
-	(72, 'SELECT AVG(idactor) FROM actors WHERE idactor>2', 201),
-	(73, 'SELECT SUM(idactor) FROM actors WHERE idactor>2', 201),
-	(74, 'SELECT address, idactor FROM actors WHERE NOT idactor>2', 201),
-	(75, 'SELECT COUNT(DISTINCT address)  FROM actors', 201),
-	(76, 'SELECT address FROM actors WHERE surname LIKE \'a%\'', 201),
-	(77, 'SELECT MAX(idactor)  FROM actors WHERE idactor<3', 201),
-	(78, 'SELECT surname AS test FROM actors', 201),
-	(79, 'SELECT * FROM actors WHERE surname LIKE \'%a%\'', 201),
-	(90, 'SELECT actors.name, movies.title, movies.released FROM actors INNER JOIN movies ON actors.idactor=movies.actorid ORDER BY actors.idactor DESC', 203),
-	(91, 'SELECT actors.name, movies.title, movies.released FROM actors INNER JOIN movies ON actors.idactor=movies.actorid ORDER BY actors.idactor ASC, actors.address DESC', 203),
-	(92, 'SELECT actors.name, movies.title, movies.released FROM actors RIGHT JOIN movies ON actors.idactor=movies.actorid WHERE actors.idactor>3', 203),
-	(93, 'SELECT actors.name, movies.title, movies.released FROM actors RIGHT JOIN movies ON actors.idactor=movies.actorid WHERE actors.idactor<5', 203),
-	(94, 'SELECT actors.name, movies.title, movies.released FROM actors LEFT JOIN movies ON actors.idactor=movies.actorid WHERE movies.title LIKE \'%3%\'', 203),
-	(95, 'SELECT * FROM movies CROSS JOIN actors WHERE movies.actorid>1 AND movies.actorid<7', 203),
-	(96, 'SELECT actors.name, movies.title, movies.released FROM actors LEFT JOIN movies ON actors.idactor=movies.actorid', 203),
-	(97, 'SELECT name FROM actors WHERE idactor IN ( SELECT actorid FROM movies WHERE actorid<4 )', 203),
-	(98, 'SELECT surname, address FROM actors UNION SELECT released, actorid FROM movies', 203),
-	(99, 'SELECT actors.surname, actors.address FROM actors RIGHT JOIN movies ON actors.idactor=movies.actorid WHERE NOT movies.actorid=5', 203),
-	(132, 'SELECT * FROM games', 206),
-	(133, 'SELECT * FROM games WHERE idgame>1', 206),
-	(134, 'SELECT DISTINCT released FROM games', 206),
-	(135, 'SELECT released FROM games WHERE idgame=2', 206),
-	(136, 'SELECT MIN(idgame) FROM games', 206),
-	(137, 'SELECT COUNT(title) FROM games', 206),
-	(138, 'SELECT COUNT(title) FROM games WHERE idgame BETWEEN 1 AND 5', 206),
-	(139, 'SELECT title, multiplayer FROM games WHERE idgame=6 OR idgame=3', 206),
-	(140, 'SELECT * FROM games ORDER BY idgame ASC', 206),
-	(141, 'SELECT * FROM games ORDER BY idgame DESC', 206),
-	(142, 'SELECT * FROM games ORDER BY released ASC, title DESC', 206),
-	(143, 'SELECT * FROM games GROUP BY multiplayer', 206),
-	(144, 'SELECT AVG(idgame) FROM games WHERE idgame>2', 206),
-	(145, 'SELECT SUM(idgame) FROM games WHERE idgame>2', 206),
-	(146, 'SELECT released, idgame FROM games WHERE NOT idgame>2', 206),
-	(147, 'SELECT COUNT(DISTINCT released)  FROM games', 206),
-	(148, 'SELECT released FROM games WHERE title LIKE \'a%\'', 206),
-	(149, 'SELECT MAX(idgame)  FROM games WHERE idgame<3', 206),
-	(150, 'SELECT multiplayer AS test FROM games', 206),
-	(151, 'SELECT * FROM games WHERE title LIKE \'%a%\'', 206),
-	(152, 'SELECT games.title, gamers.name, gamers.surname FROM games INNER JOIN gamers ON games.idgame=gamers.gameid ORDER BY games.idgame DESC', 207),
-	(153, 'SELECT games.title, gamers.name, gamers.surname FROM games INNER JOIN gamers ON games.idgame=gamers.gameid ORDER BY games.idgame ASC, games.released DESC', 207),
-	(154, 'SELECT games.title, gamers.name, gamers.surname FROM games RIGHT JOIN gamers ON games.idgame=gamers.gameid WHERE games.idgame>3', 207),
-	(155, 'SELECT games.title, gamers.name, gamers.surname FROM games RIGHT JOIN gamers ON games.idgame=gamers.gameid WHERE games.idgame<5', 207),
-	(156, 'SELECT games.title, gamers.name, gamers.surname FROM games LEFT JOIN gamers ON games.idgame=gamers.gameid WHERE gamers.surname LIKE \'%e%\'', 207),
-	(157, 'SELECT * FROM gamers CROSS JOIN games WHERE gamers.gameid>1 AND gamers.gameid<7', 207),
-	(158, 'SELECT games.title, gamers.name, gamers.surname FROM games LEFT JOIN gamers ON games.idgame=gamers.gameid', 207),
-	(159, 'SELECT title FROM games WHERE idgame IN ( SELECT gameid FROM gamers WHERE gameid<4 )', 207),
-	(160, 'SELECT multiplayer, released FROM games UNION SELECT surname, gameid FROM gamers', 207),
-	(161, 'SELECT games.multiplayer, games.released FROM games RIGHT JOIN gamers ON games.idgame=gamers.gameid WHERE NOT gamers.gameid=5', 207),
-	(323, 'SELECT * FROM coffee', 220),
-	(324, 'SELECT * FROM coffee WHERE idCoffee>1', 220),
-	(325, 'SELECT DISTINCT kg FROM coffee', 220),
-	(326, 'SELECT kg FROM coffee WHERE idCoffee=2', 220),
-	(327, 'SELECT MIN(idCoffee) FROM coffee', 220),
-	(328, 'SELECT COUNT(brand) FROM coffee', 220),
-	(329, 'SELECT COUNT(brand) FROM coffee WHERE idCoffee BETWEEN 1 AND 5', 220),
-	(330, 'SELECT brand, productiondate FROM coffee WHERE idCoffee=6 OR idCoffee=3', 220),
-	(331, 'SELECT * FROM coffee ORDER BY idCoffee ASC', 220),
-	(332, 'SELECT * FROM coffee ORDER BY idCoffee DESC', 220),
-	(333, 'SELECT * FROM coffee ORDER BY kg ASC, brand DESC', 220),
-	(334, 'SELECT * FROM coffee GROUP BY productiondate', 220),
-	(335, 'SELECT AVG(idCoffee) FROM coffee WHERE idCoffee>2', 220),
-	(336, 'SELECT SUM(idCoffee) FROM coffee WHERE idCoffee>2', 220),
-	(337, 'SELECT kg, idCoffee FROM coffee WHERE NOT idCoffee>2', 220),
-	(338, 'SELECT COUNT(DISTINCT kg)  FROM coffee', 220),
-	(339, 'SELECT kg FROM coffee WHERE productiondate LIKE \'2%\'', 220),
-	(340, 'SELECT MAX(idCoffee)  FROM coffee WHERE idCoffee<3', 220),
-	(341, 'SELECT productiondate AS test FROM coffee', 220),
-	(342, 'SELECT * FROM coffee WHERE productiondate LIKE \'%20%\'', 220),
-	(343, 'SELECT coffee.brand, cafe.name_cafe, cafe.cafesize FROM coffee INNER JOIN cafe ON coffee.idCoffee=cafe.coffeeid ORDER BY coffee.idCoffee DESC', 221),
-	(344, 'SELECT coffee.brand, cafe.name_cafe, cafe.cafesize FROM coffee INNER JOIN cafe ON coffee.idCoffee=cafe.coffeeid ORDER BY coffee.idCoffee ASC, coffee.kg DESC', 221),
-	(345, 'SELECT coffee.brand, cafe.name_cafe, cafe.cafesize FROM coffee RIGHT JOIN cafe ON coffee.idCoffee=cafe.coffeeid WHERE coffee.idCoffee>3', 221),
-	(346, 'SELECT coffee.brand, cafe.name_cafe, cafe.cafesize FROM coffee RIGHT JOIN cafe ON coffee.idCoffee=cafe.coffeeid WHERE coffee.idCoffee<5', 221),
-	(347, 'SELECT coffee.brand, cafe.name_cafe, cafe.cafesize FROM coffee LEFT JOIN cafe ON coffee.idCoffee=cafe.coffeeid WHERE cafe.cafesize LIKE \'%2%\'', 221),
-	(348, 'SELECT * FROM cafe CROSS JOIN coffee WHERE cafe.coffeeid>1 AND cafe.coffeeid<7', 221),
-	(349, 'SELECT coffee.brand, cafe.name_cafe, cafe.cafesize FROM coffee LEFT JOIN cafe ON coffee.idCoffee=cafe.coffeeid', 221),
-	(350, 'SELECT brand FROM coffee WHERE idCoffee IN ( SELECT coffeeid FROM cafe WHERE coffeeid<4 )', 221),
-	(351, 'SELECT productiondate, kg FROM coffee UNION SELECT cafesize, coffeeid FROM cafe', 221),
-	(352, 'SELECT coffee.productiondate, coffee.kg FROM coffee RIGHT JOIN cafe ON coffee.idCoffee=cafe.coffeeid WHERE NOT cafe.coffeeid=5', 221),
-	(354, 'SELECT * FROM writters', 222),
-	(355, 'SELECT * FROM writters WHERE idwritter>1', 222),
-	(356, 'SELECT DISTINCT gender FROM writters', 222),
-	(357, 'SELECT gender FROM writters WHERE idwritter=2', 222),
-	(358, 'SELECT MIN(idwritter) FROM writters', 222),
-	(359, 'SELECT COUNT(name) FROM writters', 222),
-	(360, 'SELECT COUNT(name) FROM writters WHERE idwritter BETWEEN 1 AND 5', 222),
-	(361, 'SELECT name, surname FROM writters WHERE idwritter=6 OR idwritter=3', 222),
-	(362, 'SELECT * FROM writters ORDER BY birthdate ASC', 222),
-	(363, 'SELECT * FROM writters ORDER BY birthdate DESC', 222),
-	(364, 'SELECT * FROM writters ORDER BY gender ASC, name DESC', 222),
-	(365, 'SELECT * FROM writters GROUP BY surname', 222),
-	(366, 'SELECT AVG(idwritter) FROM writters WHERE idwritter>2', 222),
-	(367, 'SELECT SUM(idwritter) FROM writters WHERE idwritter>2', 222),
-	(368, 'SELECT gender, birthdate FROM writters WHERE NOT idwritter>2', 222),
-	(369, 'SELECT COUNT(DISTINCT gender)  FROM writters', 222),
-	(370, 'SELECT gender FROM writters WHERE surname LIKE \'a%\'', 222),
-	(371, 'SELECT MAX(idwritter)  FROM writters WHERE idwritter<3', 222),
-	(372, 'SELECT surname AS test FROM writters', 222),
-	(373, 'SELECT * FROM writters WHERE surname LIKE \'%a%\'', 222),
-	(374, 'SELECT writters.name, books.title, books.views FROM writters INNER JOIN books ON writters.idwritter=books.writterid ORDER BY writters.idwritter DESC', 223),
-	(375, 'SELECT writters.name, books.title, books.views FROM writters INNER JOIN books ON writters.idwritter=books.writterid ORDER BY writters.idwritter ASC, writters.gender DESC', 223),
-	(376, 'SELECT writters.name, books.title, books.views FROM writters RIGHT JOIN books ON writters.idwritter=books.writterid WHERE writters.idwritter>3', 223),
-	(377, 'SELECT writters.name, books.title, books.views FROM writters RIGHT JOIN books ON writters.idwritter=books.writterid WHERE writters.idwritter<5', 223),
-	(378, 'SELECT writters.name, books.title, books.views FROM writters LEFT JOIN books ON writters.idwritter=books.writterid WHERE books.title LIKE \'%e%\'', 223),
-	(379, 'SELECT * FROM books CROSS JOIN writters WHERE books.writterid>1 AND books.writterid<7', 223),
-	(380, 'SELECT writters.name, books.title, books.views FROM writters LEFT JOIN books ON writters.idwritter=books.writterid', 223),
-	(381, 'SELECT name FROM writters WHERE idwritter IN ( SELECT writterid FROM books WHERE writterid<4 )', 223),
-	(382, 'SELECT surname, gender FROM writters UNION SELECT views, releaseDate FROM books', 223),
-	(383, 'SELECT writters.surname, writters.gender FROM writters RIGHT JOIN books ON writters.idwritter=books.writterid WHERE NOT books.writterid=5', 223);
+	(634, 'SELECT * FROM actors', 242),
+	(635, 'SELECT * FROM actors WHERE idactor>2', 242),
+	(636, 'SELECT DISTINCT idactor FROM actors', 242),
+	(637, 'SELECT idactor FROM actors WHERE idactor=3', 242),
+	(638, 'SELECT MIN(idactor) FROM actors', 242),
+	(639, 'SELECT COUNT(idactor) FROM actors', 242),
+	(640, 'SELECT AVG(idactor) FROM actors WHERE idactor>1', 242),
+	(641, 'SELECT SUM(idactor) FROM actors WHERE idactor>1', 242),
+	(642, 'SELECT idactor FROM actors WHERE NOT idactor>6', 242),
+	(643, 'SELECT COUNT(name) FROM actors WHERE idactor BETWEEN 0 AND 4', 242),
+	(644, 'SELECT COUNT(DISTINCT name)  FROM actors', 242),
+	(645, 'SELECT * FROM actors WHERE idactor=0 OR idactor=6', 242),
+	(646, 'SELECT * FROM actors ORDER BY name ASC', 242),
+	(647, 'SELECT * FROM actors ORDER BY isPlayed DESC', 242),
+	(648, 'SELECT * FROM actors ORDER BY birthdate ASC, isPlayed DESC', 242),
+	(649, 'SELECT * FROM actors GROUP BY isPlayed', 242),
+	(650, 'SELECT name AS test FROM actors WHERE surname LIKE \'s%\'', 242),
+	(651, 'SELECT MAX(idactor) AS test FROM actors WHERE idactor<8', 242),
+	(652, 'SELECT surname AS test FROM actors', 242),
+	(653, 'SELECT * FROM actors WHERE idactor LIKE \'%1%\'', 242),
+	(654, 'SELECT actors.name, movies.title, movies.views FROM actors INNER JOIN movies ON actors.idactor=movies.actorId ORDER BY actors.idactor DESC', 243),
+	(655, 'SELECT actors.name, movies.title, movies.views FROM actors INNER JOIN movies ON actors.idactor=movies.actorId ORDER BY actors.idactor ASC, actors.birthdate DESC', 243),
+	(656, 'SELECT actors.name, movies.title, movies.views FROM actors RIGHT JOIN movies ON actors.idactor=movies.actorId WHERE actors.idactor>4', 243),
+	(657, 'SELECT actors.name, movies.title, movies.views FROM actors RIGHT JOIN movies ON actors.idactor=movies.actorId WHERE actors.idactor<6', 243),
+	(658, 'SELECT actors.name, movies.title, movies.views FROM actors LEFT JOIN movies ON actors.idactor=movies.actorId WHERE movies.releasedDate LIKE \'%2%\'', 243),
+	(659, 'SELECT actors.name, movies.title, movies.views FROM actors LEFT JOIN movies ON actors.idactor=movies.actorId', 243),
+	(660, 'SELECT * FROM movies CROSS JOIN actors WHERE movies.actorId>5 AND movies.actorId<12', 243),
+	(661, 'SELECT surname, birthdate FROM actors WHERE idactor IN ( SELECT actorId FROM movies WHERE actorId<4 )', 243),
+	(662, 'SELECT surname, birthdate FROM actors UNION SELECT views, releasedDate FROM movies', 243),
+	(663, 'SELECT actors.surname, actors.birthdate FROM actors RIGHT JOIN movies ON actors.idactor=movies.actorId WHERE NOT movies.actorId=0', 243),
+	(664, 'SELECT * FROM gamers', 244),
+	(665, 'SELECT * FROM gamers WHERE idgamer>1', 244),
+	(666, 'SELECT DISTINCT idgamer FROM gamers', 244),
+	(667, 'SELECT idgamer FROM gamers WHERE idgamer=3', 244),
+	(668, 'SELECT MIN(idgamer) FROM gamers', 244),
+	(669, 'SELECT COUNT(idgamer) FROM gamers', 244),
+	(670, 'SELECT AVG(idgamer) FROM gamers WHERE idgamer>7', 244),
+	(671, 'SELECT SUM(idgamer) FROM gamers WHERE idgamer>1', 244),
+	(672, 'SELECT idgamer FROM gamers WHERE NOT idgamer>7', 244),
+	(673, 'SELECT COUNT(name) FROM gamers WHERE idgamer BETWEEN 0 AND 4', 244),
+	(674, 'SELECT COUNT(DISTINCT name)  FROM gamers', 244),
+	(675, 'SELECT * FROM gamers WHERE idgamer=0 OR idgamer=6', 244),
+	(676, 'SELECT * FROM gamers ORDER BY isActive ASC', 244),
+	(677, 'SELECT * FROM gamers ORDER BY idgamer DESC', 244),
+	(678, 'SELECT * FROM gamers ORDER BY brithdate ASC, sex DESC', 244),
+	(679, 'SELECT * FROM gamers GROUP BY idgamer', 244),
+	(680, 'SELECT name AS test FROM gamers WHERE name LIKE \'g%\'', 244),
+	(681, 'SELECT MAX(idgamer) AS test FROM gamers WHERE idgamer<7', 244),
+	(682, 'SELECT isActive AS test FROM gamers', 244),
+	(683, 'SELECT * FROM gamers WHERE isActive LIKE \'%1%\'', 244),
+	(684, 'SELECT gamers.name, games.title, games.hoursPlayed FROM gamers INNER JOIN games ON gamers.idgamer=games.idGamer ORDER BY gamers.idgamer DESC', 245),
+	(685, 'SELECT gamers.name, games.title, games.hoursPlayed FROM gamers INNER JOIN games ON gamers.idgamer=games.idGamer ORDER BY gamers.idgamer ASC, gamers.sex DESC', 245),
+	(686, 'SELECT gamers.name, games.title, games.hoursPlayed FROM gamers RIGHT JOIN games ON gamers.idgamer=games.idGamer WHERE gamers.idgamer>4', 245),
+	(687, 'SELECT gamers.name, games.title, games.hoursPlayed FROM gamers RIGHT JOIN games ON gamers.idgamer=games.idGamer WHERE gamers.idgamer<9', 245),
+	(688, 'SELECT gamers.name, games.title, games.hoursPlayed FROM gamers LEFT JOIN games ON gamers.idgamer=games.idGamer WHERE games.hoursPlayed LIKE \'%2%\'', 245),
+	(689, 'SELECT gamers.name, games.title, games.hoursPlayed FROM gamers LEFT JOIN games ON gamers.idgamer=games.idGamer', 245),
+	(690, 'SELECT * FROM games CROSS JOIN gamers WHERE games.idGamer>4 AND games.idGamer<14', 245),
+	(691, 'SELECT brithdate, sex FROM gamers WHERE idgamer IN ( SELECT idGamer FROM games WHERE idGamer<4 )', 245),
+	(692, 'SELECT brithdate, sex FROM gamers UNION SELECT hoursPlayed, idGamer FROM games', 245),
+	(693, 'SELECT gamers.brithdate, gamers.sex FROM gamers RIGHT JOIN games ON gamers.idgamer=games.idGamer WHERE NOT games.idGamer=8', 245);
 /*!40000 ALTER TABLE `sql_random_queries_true_or_false` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.success_rate
@@ -707,9 +491,9 @@ CREATE TABLE IF NOT EXISTS `success_rate` (
   PRIMARY KEY (`id`),
   KEY `id_student_idx` (`id_student`),
   CONSTRAINT `id_student` FOREIGN KEY (`id_student`) REFERENCES `user_table` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.success_rate: ~47 rows (approximately)
+-- Dumping data for table diplwmatiki.success_rate: ~66 rows (approximately)
 /*!40000 ALTER TABLE `success_rate` DISABLE KEYS */;
 REPLACE INTO `success_rate` (`id`, `id_student`, `rate`, `time`, `table_name`, `created_at`, `updated_at`, `type_excersice`) VALUES
 	(52, 5, 'Σωστές 0 στις 10', '00:00:16', 'books', '2021-04-26 15:39:58', '2021-04-26 15:39:58', 'Συμπλήρωσης-Κενού'),
@@ -766,7 +550,20 @@ REPLACE INTO `success_rate` (`id`, `id_student`, `rate`, `time`, `table_name`, `
 	(103, 28, 'Σωστές 18 στις 20', '00:01:40', 'writters', '2021-05-19 18:14:08', '2021-05-19 18:14:08', 'Συμπλήρωση-κενού σε 1 πίνακα'),
 	(104, 28, 'Σωστές 9 στις 10', '00:00:40', 'books', '2021-05-19 18:15:22', '2021-05-19 18:15:22', 'Συμπλήρωση-κενού σε 2 πίνακες'),
 	(105, 28, 'Σωστές 10 στις 10', '00:00:26', 'books', '2021-05-19 18:15:59', '2021-05-19 18:15:59', 'Σωστό-λάθος σε 2 πίνακες'),
-	(106, 28, 'Σωστές 17 στις 20', '00:00:43', 'writters', '2021-05-19 18:16:49', '2021-05-19 18:16:49', 'Σωστό-λάθος σε 1 πίνακα');
+	(106, 28, 'Σωστές 17 στις 20', '00:00:43', 'writters', '2021-05-19 18:16:49', '2021-05-19 18:16:49', 'Σωστό-λάθος σε 1 πίνακα'),
+	(107, 5, 'Σωστές 5 στις 10', '00:01:47', 'movies', '2021-05-24 22:02:29', '2021-05-24 22:02:29', 'Συμπλήρωση-κενού σε 2 πίνακες'),
+	(108, 5, 'Σωστές 19 στις 20', '00:02:57', 'actors', '2021-05-24 22:18:34', '2021-05-24 22:18:34', 'Σωστό-λάθος σε 1 πίνακα'),
+	(109, 5, 'Σωστές 10 στις 10', '00:00:59', 'movies', '2021-05-24 22:21:39', '2021-05-24 22:21:39', 'Σωστό-λάθος σε 2 πίνακες'),
+	(110, 5, 'Σωστές 8 στις 10', '00:01:13', 'movies', '2021-05-24 23:25:53', '2021-05-24 23:25:53', 'Σωστό-λάθος σε 2 πίνακες'),
+	(111, 5, 'Σωστές 18 στις 20', '00:01:29', 'actors', '2021-05-25 13:50:51', '2021-05-25 13:50:51', 'Σωστό-λάθος σε 1 πίνακα'),
+	(112, 5, 'Σωστές 10 στις 10', '00:00:46', 'movies', '2021-05-25 13:52:08', '2021-05-25 13:52:08', 'Σωστό-λάθος σε 2 πίνακες'),
+	(113, 5, 'Σωστές 2 στις 20', '00:00:41', 'actors', '2021-05-25 13:53:02', '2021-05-25 13:53:02', 'Συμπλήρωση-κενού σε 1 πίνακα'),
+	(114, 5, 'Σωστές 8 στις 10', '00:00:55', 'movies', '2021-05-25 13:54:06', '2021-05-25 13:54:06', 'Συμπλήρωση-κενού σε 2 πίνακες'),
+	(115, 5, 'Σωστές 20 στις 20', '00:01:38', 'gamers', '2021-05-25 21:21:39', '2021-05-25 21:21:39', 'Συμπλήρωση-κενού σε 1 πίνακα'),
+	(116, 5, 'Σωστές 9 στις 10', '00:00:58', 'games', '2021-05-25 21:22:43', '2021-05-25 21:22:43', 'Συμπλήρωση-κενού σε 2 πίνακες'),
+	(117, 5, 'Σωστές 10 στις 10', '00:00:49', 'games', '2021-05-25 21:23:38', '2021-05-25 21:23:38', 'Σωστό-λάθος σε 2 πίνακες'),
+	(118, 5, 'Σωστές 9 στις 10', '00:00:50', 'games', '2021-05-25 21:24:44', '2021-05-25 21:24:44', 'Σωστό-λάθος σε 2 πίνακες'),
+	(119, 5, 'Σωστές 20 στις 20', '00:03:31', 'gamers', '2021-05-25 21:28:29', '2021-05-25 21:28:29', 'Σωστό-λάθος σε 1 πίνακα');
 /*!40000 ALTER TABLE `success_rate` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.user_table
@@ -789,7 +586,7 @@ CREATE TABLE IF NOT EXISTS `user_table` (
 -- Dumping data for table diplwmatiki.user_table: ~11 rows (approximately)
 /*!40000 ALTER TABLE `user_table` DISABLE KEYS */;
 REPLACE INTO `user_table` (`id`, `first_name`, `last_name`, `sex`, `phone`, `email`, `username`, `password`, `role`, `verification_code`) VALUES
-	(3, 'Dimitris', 'Motsios', 'male', '6395612353', 'www.motsios@hotmail.com', 'motsios', '$2a$10$ONRj/ZAx3inK8XdHbvaz6eR3WawOpKqG4zdLdhLzUa1.Y7lOZD3Yq', 'teacher', '3e248e1e-7a92-4873-908a-93f1a36a4785'),
+	(3, 'Dimitris', 'Motsios', 'male', '6395612353', 'www.motsios@hotmail.com', 'motsios', '$2a$10$5ZWYv2AnCN8KvVUxqEVQ3OoM6NIasexDsAgk/VYTo7TN/9E.2PJXO', 'teacher', ''),
 	(4, 'giorgos', 'pappas', 'male', '6935146987', 'giorgos@gmail.com', 'giorgos', '$2a$10$1X8vht1REou23F.xMl51reymvMVky653wd7ElT5q/JEHGRpuZOFxy', 'teacher', NULL),
 	(5, 'Kostas', 'kakkos', 'male', '6935123697', 'kostas@gmail.com', 'kostas', '$2a$10$mezTsIwg.Md7Guklprtk6uLrxmIQy4iUfsu5LxD15DutxhIM9yldq', 'student', '4c2b079d-42bf-4d14-b541-cfd688f22f5c'),
 	(16, 'dionisis', 'papakwstas', 'male', '6936547892', 'dionisis@gmail.com', 'dioni', '$2a$10$AJQJhxAZVVTDbJwU75qGm.BW9LDld1qvaGy/n7dkU9Jw2j9jDSMbq', 'student', NULL),
@@ -801,34 +598,6 @@ REPLACE INTO `user_table` (`id`, `first_name`, `last_name`, `sex`, `phone`, `ema
 	(28, 'Ηλιάνα', 'Παππά', 'female', '6354123456', 'iliana94@gmail.com', 'iliana94', '$2a$10$/Bwak6vP6USgEEpWeOMO6OIkcYnL5Za1omurjzU7c.Gmj6/87QPAO', 'student', NULL),
 	(36, 'adsd', 'asdasd', 'male', '12321313', 'asddad', 'kost', '$2a$10$f5vxpmGcGfyPpTk/RHg28e6wzUXAdbjOM7KQ2a4ObKcjZiFJgiv1a', 'teacher', NULL);
 /*!40000 ALTER TABLE `user_table` ENABLE KEYS */;
-
--- Dumping structure for table diplwmatiki.writters
-DROP TABLE IF EXISTS `writters`;
-CREATE TABLE IF NOT EXISTS `writters` (
-  `idwritter` int(12) NOT NULL,
-  `name` varchar(22) COLLATE utf8_bin NOT NULL,
-  `surname` varchar(22) COLLATE utf8_bin NOT NULL,
-  `gender` varchar(22) COLLATE utf8_bin DEFAULT NULL,
-  `birthdate` datetime DEFAULT NULL,
-  `isAlive` tinyint(4) NOT NULL,
-  PRIMARY KEY (`idwritter`),
-  KEY `idwritter` (`idwritter`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- Dumping data for table diplwmatiki.writters: ~8 rows (approximately)
-/*!40000 ALTER TABLE `writters` DISABLE KEYS */;
-REPLACE INTO `writters` (`idwritter`, `name`, `surname`, `gender`, `birthdate`, `isAlive`) VALUES
-	(1, 'dimitris', 'motsios', 'male', '1994-01-01 00:00:00', 1),
-	(2, 'kostas', 'mixas', 'male', NULL, 1),
-	(3, 'ilianna', 'pappa', 'female', '1993-01-03 00:00:00', 1),
-	(4, 'panagiota', 'pappa', 'female', '2001-03-06 00:00:00', 1),
-	(5, 'konstantina', 'pournara', 'female', NULL, 0),
-	(6, 'georgia', 'iliados', 'female', '1965-03-03 00:00:00', 0),
-	(7, 'kostas', 'kakkos', 'male', '1999-03-03 00:00:00', 0),
-	(8, 'dimitris', 'poli', 'male', '1999-03-03 00:00:00', 1),
-	(9, 'panorea', 'pappa', 'female', '2001-02-03 00:00:00', 1),
-	(10, 'dimitra', 'apostolidi', 'female', NULL, 0);
-/*!40000 ALTER TABLE `writters` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
