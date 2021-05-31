@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `excersice_tables` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `table_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=254 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=255 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.excersice_tables: ~7 rows (approximately)
 /*!40000 ALTER TABLE `excersice_tables` DISABLE KEYS */;
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `fill_fields_questions` (
   `fill_field_question` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `hideWord` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.fill_fields_questions: ~31 rows (approximately)
 /*!40000 ALTER TABLE `fill_fields_questions` DISABLE KEYS */;
@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `score_table` (
   PRIMARY KEY (`id`),
   KEY `student_id_idx` (`student_id`),
   CONSTRAINT `student_id` FOREIGN KEY (`student_id`) REFERENCES `user_table` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=219 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=220 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.score_table: ~40 rows (approximately)
 /*!40000 ALTER TABLE `score_table` DISABLE KEYS */;
@@ -165,7 +165,8 @@ REPLACE INTO `score_table` (`id`, `student_id`, `score`, `time`, `category`, `di
 	(214, 22, 30, '00:00:37', '15 Questions', 'easy', '2021-05-10 14:34:52', '2021-05-10 14:34:52'),
 	(215, 22, 45, '00:00:59', '25 Questions', 'easy', '2021-05-10 14:48:45', '2021-05-10 14:48:45'),
 	(216, 5, 51, '00:00:33', '15 Questions', 'hard', '2021-05-15 18:01:22', '2021-05-15 18:01:22'),
-	(217, 28, 15, '00:00:19', '15 Questions', 'easy', '2021-05-19 18:12:12', '2021-05-19 18:12:12');
+	(217, 28, 15, '00:00:19', '15 Questions', 'easy', '2021-05-19 18:12:12', '2021-05-19 18:12:12'),
+	(219, 5, 121, '00:01:02', '15 Questions', 'hard', '2021-05-31 15:16:56', '2021-05-31 15:16:56');
 /*!40000 ALTER TABLE `score_table` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.sql_questions
@@ -181,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `sql_questions` (
   `score` int(11) NOT NULL,
   `difficulty` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.sql_questions: ~58 rows (approximately)
 /*!40000 ALTER TABLE `sql_questions` DISABLE KEYS */;
@@ -251,7 +252,7 @@ CREATE TABLE IF NOT EXISTS `sql_random_queries` (
   PRIMARY KEY (`id`),
   KEY `table_id_idx` (`table_id`),
   CONSTRAINT `table_id` FOREIGN KEY (`table_id`) REFERENCES `excersice_tables` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1942 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=1963 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.sql_random_queries: ~61 rows (approximately)
 /*!40000 ALTER TABLE `sql_random_queries` DISABLE KEYS */;
@@ -297,7 +298,7 @@ CREATE TABLE IF NOT EXISTS `sql_random_queries_true_or_false` (
   PRIMARY KEY (`id`),
   KEY `exersice_table_id_idx` (`exersice_table_id`),
   CONSTRAINT `exersice_table_id` FOREIGN KEY (`exersice_table_id`) REFERENCES `excersice_tables` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=824 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=844 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.sql_random_queries_true_or_false: ~60 rows (approximately)
 /*!40000 ALTER TABLE `sql_random_queries_true_or_false` DISABLE KEYS */;
@@ -348,7 +349,7 @@ CREATE TABLE IF NOT EXISTS `success_rate` (
   PRIMARY KEY (`id`),
   KEY `id_student_idx` (`id_student`),
   CONSTRAINT `id_student` FOREIGN KEY (`id_student`) REFERENCES `user_table` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.success_rate: ~66 rows (approximately)
 /*!40000 ALTER TABLE `success_rate` DISABLE KEYS */;
@@ -383,7 +384,8 @@ REPLACE INTO `success_rate` (`id`, `id_student`, `rate`, `time`, `table_name`, `
 	(104, 28, 'Σωστές 9 στις 10', '00:00:40', 'books', '2021-05-19 18:15:22', '2021-05-19 18:15:22', 'Συμπλήρωση-κενού σε 2 πίνακες'),
 	(105, 28, 'Σωστές 10 στις 10', '00:00:26', 'books', '2021-05-19 18:15:59', '2021-05-19 18:15:59', 'Σωστό-λάθος σε 2 πίνακες'),
 	(106, 28, 'Σωστές 17 στις 20', '00:00:43', 'writters', '2021-05-19 18:16:49', '2021-05-19 18:16:49', 'Σωστό-λάθος σε 1 πίνακα'),
-	(107, 5, 'Σωστές 5 στις 10', '00:01:47', 'movies', '2021-05-24 22:02:29', '2021-05-24 22:02:29', 'Συμπλήρωση-κενού σε 2 πίνακες');
+	(107, 5, 'Σωστές 5 στις 10', '00:01:47', 'movies', '2021-05-24 22:02:29', '2021-05-24 22:02:29', 'Συμπλήρωση-κενού σε 2 πίνακες'),
+	(120, 5, 'Σωστές 17 στις 20', '00:02:17', 'actors', '2021-05-31 15:21:44', '2021-05-31 15:21:44', 'Σωστό-λάθος σε 1 πίνακα');
 /*!40000 ALTER TABLE `success_rate` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.user_table
@@ -406,7 +408,7 @@ CREATE TABLE IF NOT EXISTS `user_table` (
 -- Dumping data for table diplwmatiki.user_table: ~11 rows (approximately)
 /*!40000 ALTER TABLE `user_table` DISABLE KEYS */;
 REPLACE INTO `user_table` (`id`, `first_name`, `last_name`, `sex`, `phone`, `email`, `username`, `password`, `role`, `verification_code`) VALUES
-	(3, 'Dimitris', 'Motsios', 'male', '6395612353', 'www.motsios@hotmail.com', 'motsios', '$2a$10$5ZWYv2AnCN8KvVUxqEVQ3OoM6NIasexDsAgk/VYTo7TN/9E.2PJXO', 'teacher', ''),
+	(3, 'Dimitris', 'Motsios', 'male', '6395612353', 'www.motsios@hotmail.com', 'motsios', '$2a$10$.G9gCfc1Hvd.rIL4yXTbOOus5stN2Xw1lTwygfJZFAPncqJuMMYQK', 'teacher', ''),
 	(4, 'giorgos', 'pappas', 'male', '6935146987', 'giorgos@gmail.com', 'giorgos', '$2a$10$1X8vht1REou23F.xMl51reymvMVky653wd7ElT5q/JEHGRpuZOFxy', 'teacher', NULL),
 	(5, 'Kostas', 'kakkos', 'male', '6935123697', 'kostas@gmail.com', 'kostas', '$2a$10$mezTsIwg.Md7Guklprtk6uLrxmIQy4iUfsu5LxD15DutxhIM9yldq', 'student', NULL),
 	(16, 'dionisis', 'papakwstas', 'male', '6936547892', 'dionisis@gmail.com', 'dioni', '$2a$10$AJQJhxAZVVTDbJwU75qGm.BW9LDld1qvaGy/n7dkU9Jw2j9jDSMbq', 'student', NULL),
