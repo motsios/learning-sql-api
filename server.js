@@ -5,7 +5,7 @@ var upload=require('express-fileupload')
 var sql_api = require('./routes/api')
 var cors = require('cors')
 
-var port = 3000
+var port =process.env.PORT || 3000
 
 var app = express()
 app.use(upload())
