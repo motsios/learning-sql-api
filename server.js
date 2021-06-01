@@ -13,7 +13,10 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
-app.use('/api',sql_api)
+//app.get('/api',sql_api)
+app.get('/',function(request,response){
+    response.send('Heloooooooo')
+})
 app.listen(port,function() {
     console.log('Server started on port '+ port)
 })
