@@ -16,4 +16,4 @@ const sequelize= new Sequelize('diplwmatiki','root','m19941994', {
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
-module.exports = db
+module.exports = db 
