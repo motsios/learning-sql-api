@@ -363,7 +363,7 @@ var dbOperations = {
         var sqlQueryString = req.body.sqlQueryString
         const exists = await db.sequelize.query(`SELECT *
             FROM INFORMATION_SCHEMA.TABLES
-            WHERE TABLE_SCHEMA = 'diplwmatiki'
+            WHERE TABLE_SCHEMA = 'heroku_f7049074a296508'
             AND TABLE_NAME = '${tablename}';`)
         if (exists[0].length == 1 && exists[1].length == 1)
             return 'Table already exists'
@@ -382,7 +382,7 @@ var dbOperations = {
     getAllTeachersTables: async (req, res) => {
         var tablenamelist = [];
         var tablecolumnslist = [];
-        const alltables = await db.sequelize.query(`SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE' AND TABLE_SCHEMA='diplwmatiki'`)
+        const alltables = await db.sequelize.query(`SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE' AND TABLE_SCHEMA='heroku_f7049074a296508'`)
         for (i in alltables[0]) {
             if (alltables[0][i].TABLE_NAME != 'score_table' && alltables[0][i].TABLE_NAME != 'sql_questions' && alltables[0][i].TABLE_NAME != 'user_table' && alltables[0][i].TABLE_NAME != 'sql_random_queries' && alltables[0][i].TABLE_NAME != 'excersice_tables' && alltables[0][i].TABLE_NAME != 'fill_fields_questions' && alltables[0][i].TABLE_NAME != 'success_rate' && alltables[0][i].TABLE_NAME != 'sql_random_queries_true_or_false') {
                 tablenamelist.push(alltables[0][i].TABLE_NAME)
