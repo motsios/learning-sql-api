@@ -102,6 +102,15 @@ router.post('/upload', async (req, res) => {
 //  PDF ENDS
 // *******************************************************************************************************
 
+//get all users
+router.get('/users', function (req, res, next) {
+    sqldb_Web_App.getAllUsers(req, res)
+        .then(result => {
+            res.send({ result: result });
+        })
+        .catch(error => console.log(error));
+});
+
 
 //create a user
 router.post('/register', function (req, res, next) {
