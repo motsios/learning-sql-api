@@ -74,7 +74,7 @@ router.get('/allfiles', verifyTeacherAndStudentToken, async (req, res, next) => 
 });
 
 router.get('/readfile/:file', verifyTeacherAndStudentToken, async (req, res, next) => {
-    fs.readFile('uploads/' + req.params.file, function read(err, data) {
+    fs.readFile(dir+'/' + req.params.file, function read(err, data) {
         if (err) {
             throw err;
         }
@@ -83,7 +83,7 @@ router.get('/readfile/:file', verifyTeacherAndStudentToken, async (req, res, nex
 });
 
 router.get('/deletefile/:file', verifyTeacherToken, async (req, res, next) => {
-    var deletefile = fs.unlinkSync('uploads/' + req.params.file)
+    var deletefile = fs.unlinkSync(dir+'/' + req.params.file)
     console.log(deletefile)
     res.send({ result: 'Success' })
 });
