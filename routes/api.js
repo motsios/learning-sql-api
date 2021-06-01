@@ -5,8 +5,10 @@ const cors = require("cors")
 const jwt = require("jsonwebtoken")
 const jwt_decode = require('jwt-decode');
 const fs = require('fs');
-const dir = __dirname.substring(0, __dirname.indexOf("\\routes"))+ '/uploads';
+//const dir = __dirname.substring(0, __dirname.indexOf("\\routes"))+ '/uploads';
 //const dir = 'C:/Users/Pc/Desktop/diplwmatiki/learning-sql-api/uploads'
+const path = require('path');
+const dir = path.join(__dirname, '/uploads');
 process.env.SECRETE_KEY = 'secret'
 
 router.use(cors())

@@ -36,4 +36,4 @@ const sequelize= new Sequelize('heroku_f7049074a296508','ba1982a523b6c5','cf4138
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
-module.exports = db 
+module.exports = db
