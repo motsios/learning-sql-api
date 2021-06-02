@@ -99,8 +99,8 @@ var dbOperations = {
             await users.update({ verification_code }, { where: { id: findUser.id } });
             let transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
-                port: 587,
-                secure: false, // true for 465, false for other ports
+                port: 465,
+                secure: true, // true for 465, false for other ports
                 auth: {
                     user: 'dimitristerracom@gmail.com', // generated ethereal user
                     pass: 'dimitristerracom1!', // generated ethereal password
@@ -113,7 +113,7 @@ var dbOperations = {
                 subject: 'Reset Password ✔', // Subject line
                 text: 'Καλησπέρα σας,', // plain text body
                 html:
-                    '<p>Πατήστε <a href="http://localhost:4200/resetpassword' +
+                    '<p>Πατήστε <a href="https://learning-sql-web-app.web.app/resetpassword' +
                     '/' +
                     findUser.id +
                     '/' +
