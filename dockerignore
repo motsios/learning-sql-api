@@ -1,0 +1,7 @@
+.git
+*.md
+.zip 
+*.tar
+.sql
+node_modules/
+npm-debug.log

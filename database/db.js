@@ -21,11 +21,11 @@ module.exports = db*/
 const Sequelize = require('sequelize')
 const db = {}
 const sequelize= new Sequelize('heroku_f7049074a296508','ba1982a523b6c5','cf4138f6', {
-    host :'us-cdbr-east-04.cleardb.com',
+    host :'db',
+    port:3306,
     dialect:'mysql',
     timezone: "+02:00",
-    operatorsAliases: false,
-    
+
     pool:{
         max:5,
         min:0,

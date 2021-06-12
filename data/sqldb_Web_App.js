@@ -113,7 +113,7 @@ var dbOperations = {
                 subject: 'Reset Password ✔', // Subject line
                 text: 'Καλησπέρα σας,', // plain text body
                 html:
-                    '<p>Πατήστε <a href="https://learning-sql-web-app.web.app/resetpassword' +
+                    '<p>Πατήστε <a href="http://178.62.245.116:3000/resetpassword' +
                     '/' +
                     findUser.id +
                     '/' +
