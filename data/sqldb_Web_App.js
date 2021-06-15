@@ -99,11 +99,11 @@ var dbOperations = {
             await users.update({ verification_code }, { where: { id: findUser.id } });
             let transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
-                port: 587,
-                secure: false, // true for 465, false for other ports
+                port: 465,
+                secure: true, // true for 465, false for other ports
                 auth: {
-                    user: 'dimitristerracom@gmail.com', // generated ethereal user
-                    pass: 'dimitristerracom1!', // generated ethereal password
+                    user: 'diplwmatikisql@gmail.com', // generated ethereal user
+                    pass: 'xrisiDiplwmatikis!', // generated ethereal password
                 },
             });
 

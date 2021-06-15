@@ -5,7 +5,10 @@ const cors = require("cors")
 const jwt = require("jsonwebtoken")
 const jwt_decode = require('jwt-decode');
 const fs = require('fs');
+//const dir = __dirname.substring(0, __dirname.indexOf("\\routes"))+ '/uploads';
 const dir = 'C:/Users/Pc/Desktop/diplwmatiki/learning-sql-api/uploads'
+//const path = require('path');
+//const dir = path.join(__dirname, '/uploads');
 process.env.SECRETE_KEY = 'secret'
 
 router.use(cors())
@@ -71,7 +74,7 @@ router.get('/allfiles', verifyTeacherAndStudentToken, async (req, res, next) => 
 });
 
 router.get('/readfile/:file', verifyTeacherAndStudentToken, async (req, res, next) => {
-    fs.readFile('uploads/' + req.params.file, function read(err, data) {
+    fs.readFile(dir+'/' + req.params.file, function read(err, data) {
         if (err) {
             throw err;
         }
@@ -80,7 +83,7 @@ router.get('/readfile/:file', verifyTeacherAndStudentToken, async (req, res, nex
 });
 
 router.get('/deletefile/:file', verifyTeacherToken, async (req, res, next) => {
-    var deletefile = fs.unlinkSync('uploads/' + req.params.file)
+    var deletefile = fs.unlinkSync(dir+'/' + req.params.file)
     console.log(deletefile)
     res.send({ result: 'Success' })
 });
@@ -101,6 +104,15 @@ router.post('/upload', async (req, res) => {
 // *******************************************************************************************************
 //  PDF ENDS
 // *******************************************************************************************************
+
+//get all users
+router.get('/users', function (req, res, next) {
+    sqldb_Web_App.getAllUsers(req, res)
+        .then(result => {
+            res.send({ result: result });
+        })
+        .catch(error => console.log(error));
+});
 
 
 //create a user
