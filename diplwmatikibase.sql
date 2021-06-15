@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `excersice_tables` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=255 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.excersice_tables: ~7 rows (approximately)
+-- Dumping data for table diplwmatiki.excersice_tables: ~2 rows (approximately)
 /*!40000 ALTER TABLE `excersice_tables` DISABLE KEYS */;
 REPLACE INTO `excersice_tables` (`id`, `table_name`) VALUES
 	(249, 'actors'),
@@ -78,8 +78,8 @@ REPLACE INTO `fill_fields_questions` (`id`, `question`, `fill_field_question`, `
 	(16, 'Επιλέξτε όλες τις εγγραφές όπου η στήλη City έχει την τιμή \'Berlin\'.', 'SELECT * FROM Customers WHERE City = \'Berlin\'', 'WHERE,City,\'Berlin\''),
 	(17, 'Χρησιμοποιήστε τη λέξη-κλειδί NOT για να επιλέξετε όλες τις εγγραφές όπου η στήλη City ΔΕΝ είναι \'Berlin\'.', 'SELECT * FROM Customers WHERE NOT City =  \'Berlin\'', 'WHERE,NOT,City,\'Berlin\''),
 	(18, 'Επιλέξτε όλες τις εγγραφές όπου η στήλη CustomerID έχει την τιμή 32.', 'SELECT * FROM Customers WHERE CustomerID = 32', 'WHERE,=,32'),
-	(19, 'Επιλέξτε όλες τις εγγραφές από τον πίνακα Customers, ταξινομήστε το αποτέλεσμα που αντιστρέφεται αλφαβητικά από τη στήλη City.', 'SELECT * FROM Customers ORDER BY City DESC', 'ORDER BY,City,DESC'),
-	(20, 'Εισάγετε μια νέα εγγραφή στον πίνακα Customers.', 'INSERT INTO Customers (CustomerName ) VALUES (\'Hekkan Burger\')', 'INSERT INTO,(,),VALUES,(,)'),
+	(19, 'Επιλέξτε όλες τις εγγραφές από τον πίνακα Customers, ταξινομήστε το αποτέλεσμα που αντιστρέφεται αλφαβητικά από τη στήλη City.', 'SELECT * FROM Customers ORDER BY City DESC', 'ORDER,BY,City,DESC'),
+	(20, 'Εισάγετε μια νέα εγγραφή στον πίνακα Customers.', 'INSERT INTO Customers (CustomerName ) VALUES (\'Hekkan Burger\')', 'INSERT,INTO,(,),VALUES,(,)'),
 	(21, 'Επιλέξτε όλες τις εγγραφές από τους Customers όπου η στήλη PostalCode ΔΕΝ είναι κενή', 'SELECT * FROM Customers WHERE PostalCode IS NOT NULL', 'PostalCode,IS,NOT,NULL'),
 	(22, 'Ορίστε την τιμή των στηλών City σε \'Oslo\', αλλά μόνο εκείνες όπου η στήλη Country έχει την τιμή "Norway".', 'UPDATE Customers SET City = \'Oslo\' WHERE Country=\'Norway\';', 'UPDATE,SET,WHERE'),
 	(23, 'Διαγράψτε όλες τις εγγραφές από τον πίνακα Customers.', 'DELETE FROM Customers', 'DELETE,FROM'),
@@ -96,9 +96,9 @@ REPLACE INTO `fill_fields_questions` (`id`, `question`, `fill_field_question`, `
 	(34, 'Χρησιμοποιήστε τον χειριστή BETWEEN για να επιλέξετε όλες τις εγγραφές όπου η τιμή της στήλης Price ΔΕΝ είναι μεταξύ 10 και 20.', 'SELECT * FROM Products WHERE Price NOT BETWEEN 10 AND 20', 'NOT,BETWEEN'),
 	(35, 'Κατά την εμφάνιση του πίνακα Customers, δημιουργήστε ένα ALIAS της στήλης PostalCode, η στήλη θα πρέπει να ονομάζεται Pno.', 'SELECT CustomerName,Address,PostalCode AS Pno FROM Customers;', 'AS,Pno'),
 	(36, 'Εισάγετε τα μέρη που λείπουν στον όρο JOIN για να ενώσετε τους δύο πίνακες Orders και Customers, χρησιμοποιώντας το πεδίο CustomerID και στους δύο πίνακες ως σχέση μεταξύ των δύο πινάκων.', 'SELECT * FROM Orders LEFT JOIN Customers ON Orders.CustomerID=Customers.CustomerID', 'ON,Orders.CustomerID,Customers.CustomerID'),
-	(37, 'Επιλέξτε τη σωστή ρήτρα JOIN για να επιλέξετε όλες τις εγγραφές από τους δύο πίνακες όπου υπάρχει αντιστοιχία και στους δύο πίνακες.', 'SELECT * FROM Orders INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;', 'INNER JOIN,Customers'),
-	(38, 'Επιλέξτε τη σωστή ρήτρα JOIN για να επιλέξετε όλες τις εγγραφές από τον πίνακα Customers συν όλους τους αγώνες στον πίνακα Orders.', 'SELECT * FROM Orders RIGHT JOIN Customers ON Orders.CustomerID=Customers.CustomerID;', 'RIGHT JOIN,Customers'),
-	(39, 'Αναφέρετε τον αριθμό των Customers σε κάθε Country.', 'SELECT COUNT (CustomerID),Country FROM Customers GROUP BY Country', 'COUNT,GROUP BY,Country'),
+	(37, 'Επιλέξτε τη σωστή ρήτρα JOIN για να επιλέξετε όλες τις εγγραφές από τους δύο πίνακες όπου υπάρχει αντιστοιχία και στους δύο πίνακες.', 'SELECT * FROM Orders INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;', 'INNER,JOIN,Customers'),
+	(38, 'Επιλέξτε τη σωστή ρήτρα JOIN για να επιλέξετε όλες τις εγγραφές από τον πίνακα Customers συν όλους τους αγώνες στον πίνακα Orders.', 'SELECT * FROM Orders RIGHT JOIN Customers ON Orders.CustomerID=Customers.CustomerID;', 'RIGHT,JOIN,Customers'),
+	(39, 'Αναφέρετε τον αριθμό των Customers σε κάθε Country.', 'SELECT COUNT (CustomerID),Country FROM Customers GROUP BY Country', 'COUNT,GROUP,BY,Country'),
 	(40, 'Αναφέρετε πρώτα τον αριθμό των Customers σε κάθε Country, εμφανίζοντας πάνω-πάνω τους περισσότερους Customers.', 'SELECT COUNT (CustomerID),Country FROM Customers GROUP BY Country ORDER BY COUNT(CustomerID) DESC', 'COUNT,GROUP BY,ORDER BY,DESC'),
 	(43, 'Εμφάνισε όλα τα δεδομένα του πίνακα Scores', 'SELECT * FROM Scores', 'SELECT,*'),
 	(44, 'Διαγράψτε από τον πίνακα users όσες εγγραφές έχουν id μεγαλύτερο του 5', 'DELETE FROM users WHERE id>5', 'DELETE,FROM,>');
@@ -125,7 +125,8 @@ REPLACE INTO `movies` (`idmovie`, `title`, `releasedDate`, `idActor`) VALUES
 	(4, 'title4', '1999-02-01 00:00:00', 5),
 	(5, 'title5', NULL, 7),
 	(6, 'title6', '2000-01-02 00:00:00', 6),
-	(7, 'title7', '1999-02-02 00:00:00', 2);
+	(7, 'title7', '1999-02-02 00:00:00', 2),
+	(8, 'title8', NULL, 5);
 /*!40000 ALTER TABLE `movies` ENABLE KEYS */;
 
 -- Dumping structure for table diplwmatiki.score_table
@@ -144,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `score_table` (
   CONSTRAINT `student_id` FOREIGN KEY (`student_id`) REFERENCES `user_table` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=220 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.score_table: ~40 rows (approximately)
+-- Dumping data for table diplwmatiki.score_table: ~18 rows (approximately)
 /*!40000 ALTER TABLE `score_table` DISABLE KEYS */;
 REPLACE INTO `score_table` (`id`, `student_id`, `score`, `time`, `category`, `difficulty`, `created_at`, `updated_at`) VALUES
 	(20, 5, 65, '00:01:22', '15 Questions', 'hard', '2020-12-08 17:24:31', '2020-12-08 17:24:31'),
@@ -181,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `sql_questions` (
   `score` int(11) NOT NULL,
   `difficulty` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.sql_questions: ~58 rows (approximately)
 /*!40000 ALTER TABLE `sql_questions` DISABLE KEYS */;
@@ -253,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `sql_random_queries` (
   CONSTRAINT `table_id` FOREIGN KEY (`table_id`) REFERENCES `excersice_tables` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1963 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.sql_random_queries: ~61 rows (approximately)
+-- Dumping data for table diplwmatiki.sql_random_queries: ~30 rows (approximately)
 /*!40000 ALTER TABLE `sql_random_queries` DISABLE KEYS */;
 REPLACE INTO `sql_random_queries` (`id`, `sql_query`, `hideWord`, `table_id`) VALUES
 	(1852, 'SELECT * FROM actors', '*,actors', 249),
@@ -264,21 +265,21 @@ REPLACE INTO `sql_random_queries` (`id`, `sql_query`, `hideWord`, `table_id`) VA
 	(1857, 'SELECT * FROM actors WHERE idactor=6', 'WHERE,idactor', 249),
 	(1858, 'SELECT * FROM actors WHERE idactor IN ("1","4")', 'IN', 249),
 	(1859, 'SELECT * FROM actors WHERE idactor BETWEEN 3 AND 9', 'BETWEEN,AND', 249),
-	(1860, 'SELECT * FROM actors ORDER BY birthDate', 'ORDER BY', 249),
-	(1861, 'SELECT * FROM actors ORDER BY birthDate DESC', 'ORDER BY,DESC', 249),
-	(1862, 'SELECT * FROM actors ORDER BY isPlayed ASC, idactor DESC', 'ORDER BY,ASC,DESC', 249),
+	(1860, 'SELECT * FROM actors ORDER BY birthDate', 'ORDER,BY', 249),
+	(1861, 'SELECT * FROM actors ORDER BY birthDate DESC', 'ORDER,BY,DESC', 249),
+	(1862, 'SELECT * FROM actors ORDER BY isPlayed ASC, idactor DESC', 'ORDER,BY,ASC,DESC', 249),
 	(1863, 'SELECT * FROM actors LIMIT 8', 'LIMIT', 249),
 	(1864, 'SELECT MIN(idactor) FROM actors', 'MIN', 249),
 	(1865, 'SELECT MAX(idactor) FROM actors', 'MAX', 249),
-	(1866, 'SELECT COUNT(surname), birthDate FROM actors GROUP BY birthDate', 'COUNT,GROUP BY', 249),
-	(1867, 'SELECT COUNT(isPlayed), idactor FROM actors GROUP BY idactor ORDER BY COUNT(isPlayed) DESC', 'ORDER BY,DESC', 249),
-	(1868, 'SELECT COUNT(surname) FROM actors GROUP BY isPlayed HAVING COUNT(surname) >3', 'GROUP BY,HAVING COUNT', 249),
+	(1866, 'SELECT COUNT(surname), birthDate FROM actors GROUP BY birthDate', 'COUNT,GROUP,BY', 249),
+	(1867, 'SELECT COUNT(isPlayed), idactor FROM actors GROUP BY idactor ORDER BY COUNT(isPlayed) DESC', 'ORDER,BY,DESC', 249),
+	(1868, 'SELECT COUNT(surname) FROM actors GROUP BY isPlayed HAVING COUNT(surname) >3', 'GROUP,BY,HAVING,COUNT', 249),
 	(1869, 'SELECT SUM(idactor) FROM actors', 'SUM', 249),
 	(1870, 'SELECT AVG(idactor) FROM actors', 'AVG', 249),
-	(1871, 'SELECT * FROM actors WHERE name IS NULL', 'IS NULL', 249),
+	(1871, 'SELECT * FROM actors WHERE name IS NULL', 'IS,NULL', 249),
 	(1872, 'SELECT actors.idactor, actors.idactor, movies.idmovie, movies.releasedDate FROM actors, movies WHERE actors.idactor=movies.idActor', 'actors,idactor,=', 250),
 	(1873, 'SELECT actors.idactor, actors.idactor, movies.idmovie FROM actors INNER JOIN movies ON actors.idactor=movies.idActor', 'INNER,JOIN', 250),
-	(1874, 'SELECT actors.idactor, movies.idActor FROM actors LEFT JOIN movies ON actors.idactor=movies.idActor ORDER BY actors.idactor', 'LEFT,ORDER BY', 250),
+	(1874, 'SELECT actors.idactor, movies.idActor FROM actors LEFT JOIN movies ON actors.idactor=movies.idActor ORDER BY actors.idactor', 'LEFT,ORDER,BY', 250),
 	(1875, 'SELECT actors.idactor, movies.idmovie, movies.releasedDate FROM actors RIGHT JOIN movies ON actors.idactor=movies.idActor ORDER BY actors.idactor DESC', 'RIGHT,DESC', 250),
 	(1876, 'SELECT actors.idactor, actors.idactor, movies.idmovie FROM actors INNER JOIN movies ON actors.idactor=movies.idActor WHERE actors.idactor>1', 'WHERE,>', 250),
 	(1877, 'SELECT * FROM movies CROSS JOIN actors', 'CROSS', 250),
@@ -299,7 +300,7 @@ CREATE TABLE IF NOT EXISTS `sql_random_queries_true_or_false` (
   CONSTRAINT `exersice_table_id` FOREIGN KEY (`exersice_table_id`) REFERENCES `excersice_tables` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=844 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.sql_random_queries_true_or_false: ~60 rows (approximately)
+-- Dumping data for table diplwmatiki.sql_random_queries_true_or_false: ~30 rows (approximately)
 /*!40000 ALTER TABLE `sql_random_queries_true_or_false` DISABLE KEYS */;
 REPLACE INTO `sql_random_queries_true_or_false` (`id`, `sql_query_true_or_false`, `exersice_table_id`) VALUES
 	(734, 'SELECT * FROM actors', 249),
@@ -350,7 +351,7 @@ CREATE TABLE IF NOT EXISTS `success_rate` (
   CONSTRAINT `id_student` FOREIGN KEY (`id_student`) REFERENCES `user_table` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table diplwmatiki.success_rate: ~66 rows (approximately)
+-- Dumping data for table diplwmatiki.success_rate: ~31 rows (approximately)
 /*!40000 ALTER TABLE `success_rate` DISABLE KEYS */;
 REPLACE INTO `success_rate` (`id`, `id_student`, `rate`, `time`, `table_name`, `created_at`, `updated_at`, `type_excersice`) VALUES
 	(63, 5, 'Σωστές 17 στις 20', '00:01:37', 'actors', '2021-04-27 17:32:57', '2021-04-27 17:32:57', 'Σωστό-λάθος σε 1 πίνακα'),
@@ -402,12 +403,12 @@ CREATE TABLE IF NOT EXISTS `user_table` (
   `verification_code` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Dumping data for table diplwmatiki.user_table: ~11 rows (approximately)
 /*!40000 ALTER TABLE `user_table` DISABLE KEYS */;
 REPLACE INTO `user_table` (`id`, `first_name`, `last_name`, `sex`, `phone`, `email`, `username`, `password`, `role`, `verification_code`) VALUES
-	(3, 'Dimitris', 'Motsios', 'male', '6395612353', 'www.motsios@hotmail.com', 'motsios', '$2a$10$.G9gCfc1Hvd.rIL4yXTbOOus5stN2Xw1lTwygfJZFAPncqJuMMYQK', 'teacher', ''),
+	(3, 'Dimitris', 'Motsios', 'male', '6395612353', 'www.motsios@hotmail.com', 'motsios', '$2a$10$AvNWn/Ea25vkJ41fGMicDOOWepN57qpGcFZB3ijK4UEjQrf0jhYLy', 'teacher', ''),
 	(4, 'giorgos', 'pappas', 'male', '6935146987', 'giorgos@gmail.com', 'giorgos', '$2a$10$1X8vht1REou23F.xMl51reymvMVky653wd7ElT5q/JEHGRpuZOFxy', 'teacher', NULL),
 	(5, 'Kostas', 'kakkos', 'male', '6935123697', 'kostas@gmail.com', 'kostas', '$2a$10$mezTsIwg.Md7Guklprtk6uLrxmIQy4iUfsu5LxD15DutxhIM9yldq', 'student', NULL),
 	(16, 'dionisis', 'papakwstas', 'male', '6936547892', 'dionisis@gmail.com', 'dioni', '$2a$10$AJQJhxAZVVTDbJwU75qGm.BW9LDld1qvaGy/n7dkU9Jw2j9jDSMbq', 'student', NULL),
@@ -416,7 +417,8 @@ REPLACE INTO `user_table` (`id`, `first_name`, `last_name`, `sex`, `phone`, `ema
 	(24, 'Iliana', 'papanikou', 'female', '6945611212', 'iliana@gmail.com', 'iliana', '$2a$10$kaBhe10ytWP.RhUxuYwgbe3x1cSG6/R0TUe.MsoMZf77BPAHwJyyi', 'student', NULL),
 	(26, 'George', 'Andreou', 'male', '6354567891', 'giorgos@yahoo.gr', 'giorgos93', '$2a$10$m9YdINIylv4V6Rs0NSim3uJJhgGlPb89rRfbMd9SsRXFZU9T14xKa', 'student', NULL),
 	(27, 'Γιώργος', 'Κοτσάμπασης', 'male', '6956212345', 'giorgos@hotmail.com', 'giorgakis', '$2a$10$6UjAGNlAT0l7yyFvMUe5m.cNFjkuiyOySqOX3BYHlR2f8oeGWGiju', 'teacher', NULL),
-	(28, 'Ηλιάνα', 'Παππά', 'female', '6354123456', 'iliana94@gmail.com', 'iliana94', '$2a$10$/Bwak6vP6USgEEpWeOMO6OIkcYnL5Za1omurjzU7c.Gmj6/87QPAO', 'student', NULL);
+	(28, 'Ηλιάνα', 'Παππά', 'female', '6354123456', 'iliana94@gmail.com', 'iliana94', '$2a$10$/Bwak6vP6USgEEpWeOMO6OIkcYnL5Za1omurjzU7c.Gmj6/87QPAO', 'student', NULL),
+	(39, 'asdds', 'sadasdasds', 'male', '63651236', 'asdsd', 'dadasdsd', '$2a$10$57WsG0CIvBa4TQaxacj6lOs7OCOxo0mFD61zlWa7hdzPawxvCUNhm', 'student', NULL);
 /*!40000 ALTER TABLE `user_table` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
