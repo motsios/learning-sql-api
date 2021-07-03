@@ -391,8 +391,8 @@ var dbOperations = {
         for (i in tablenamelist) {
             var temparray = []
             var temparray2 = []
-            var getcolumns = await db.sequelize.query(`SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='${tablenamelist[i]}';`)
-            var getForeignKeys = await db.sequelize.query(`SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME='${tablenamelist[i]}';`)
+            var getcolumns = await db.sequelize.query(`SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='${tablenamelist[i]}' AND TABLE_SCHEMA='heroku_f7049074a296508';`)
+            var getForeignKeys = await db.sequelize.query(`SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME='${tablenamelist[i]}' AND TABLE_SCHEMA='heroku_f7049074a296508';`)
 
             for (j in getcolumns[0]) {
                 temparray.push({
