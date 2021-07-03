@@ -102,8 +102,8 @@ var dbOperations = {
                 port: 465,
                 secure: true, // true for 465, false for other ports
                 auth: {
-                    user: 'diplwmatikisql@gmail.com', // generated ethereal user
-                    pass: 'xrisiDiplwmatikis!', // generated ethereal password
+                    user: 'diplwmatikisql@gmail.com', 
+                    pass: 'xrisiDiplwmatikis!', 
                 },
             });
 
