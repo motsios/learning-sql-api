@@ -60,7 +60,7 @@ function verifyTeacherAndStudentToken(req, res, next) {
 
 
 // *******************************************************************************************************
-//  PDF START
+//  PDF STORE STARTS
 // *******************************************************************************************************
 
 router.get('/allfiles', verifyTeacherAndStudentToken, async (req, res, next) => {
@@ -74,7 +74,7 @@ router.get('/allfiles', verifyTeacherAndStudentToken, async (req, res, next) => 
 });
 
 router.get('/readfile/:file', verifyTeacherAndStudentToken, async (req, res, next) => {
-    fs.readFile(dir+'/' + req.params.file, function read(err, data) {
+    fs.readFile(dir + '/' + req.params.file, function read(err, data) {
         if (err) {
             throw err;
         }
@@ -83,7 +83,7 @@ router.get('/readfile/:file', verifyTeacherAndStudentToken, async (req, res, nex
 });
 
 router.get('/deletefile/:file', verifyTeacherToken, async (req, res, next) => {
-    var deletefile = fs.unlinkSync(dir+'/' + req.params.file)
+    var deletefile = fs.unlinkSync(dir + '/' + req.params.file)
     console.log(deletefile)
     res.send({ result: 'Success' })
 });
@@ -102,8 +102,9 @@ router.post('/upload', async (req, res) => {
 });
 
 // *******************************************************************************************************
-//  PDF ENDS
+//  PDF STORE ENDS
 // *******************************************************************************************************
+
 
 //get all users
 router.get('/users', function (req, res, next) {
@@ -163,8 +164,11 @@ router.get('/allusers', verifyTeacherToken, async (req, res, next) => {
             }));
 });
 
-/*************************************/
-//Einai ta calls gia to reset password
+
+// *******************************************************************************************************
+//  ENPOINTS ABOUT RESET PASSWORD STARTS
+// *******************************************************************************************************
+
 router.get('/findUser/:username', async (req, res, next) => {
     sqldb_Web_App.findUser(req, res)
         .then(result => {
@@ -184,9 +188,13 @@ router.put('/resetpassword/:userid/:code', async (req, res, next) => {
         })
         .catch(error => error => console.log(error));
 });
-/********************************************/
 
-//Edw tha deixnei ton pinaka me to profile kathe xristi
+// *******************************************************************************************************
+//  ENPOINTS ABOUT RESET PASSWORD ENDS
+// *******************************************************************************************************
+
+
+//get profile of each user
 router.get('/profile/:userid', verifyTeacherAndStudentToken, async (req, res, next) => {
     sqldb_Web_App.showProfileOfUser(req, res)
         .then(result => {
@@ -197,7 +205,7 @@ router.get('/profile/:userid', verifyTeacherAndStudentToken, async (req, res, ne
         }));
 });
 
-//Edw tha deixnei ta sinolika score kathe xristi
+//get Quiz-scores of each user
 router.get('/scores/:userid', verifyTeacherAndStudentToken, async (req, res, next) => {
     sqldb_Web_App.scoreOfOneUser(req, res)
         .then(result => {
@@ -208,7 +216,7 @@ router.get('/scores/:userid', verifyTeacherAndStudentToken, async (req, res, nex
         }));
 });
 
-//Edw tha deixnei ta sinolika rate kathe xristi
+//get Test-rates of each user
 router.get('/rates/:userid', verifyTeacherAndStudentToken, async (req, res, next) => {
     sqldb_Web_App.rateOfOneUser(req, res)
         .then(result => {
@@ -219,7 +227,7 @@ router.get('/rates/:userid', verifyTeacherAndStudentToken, async (req, res, next
         }));
 });
 
-//Edw tha deixnei ton pinaka me ta sinolika score kathe xristi
+//get Best Quiz-scores of all users 
 router.get('/bestscores/:category', verifyTeacherAndStudentToken, async (req, res, next) => {
     sqldb_Web_App.bestScoresOfAllUsers(req, res)
         .then(result => {
@@ -228,7 +236,7 @@ router.get('/bestscores/:category', verifyTeacherAndStudentToken, async (req, re
         .catch(error => error => console.log(error));
 });
 
-//add a score
+//add a Quiz-score
 router.post('/addascore/:userid', verifyStudentToken, async (req, res, next) => {
     sqldb_Web_App.addScore(req, res)
         .then(result => {
@@ -239,7 +247,7 @@ router.post('/addascore/:userid', verifyStudentToken, async (req, res, next) => 
         }));
 });
 
-//add a rate
+//add a Test-rate
 router.post('/addarate/:userid', verifyStudentToken, async (req, res, next) => {
     sqldb_Web_App.addRate(req, res)
         .then(result => {
@@ -250,7 +258,7 @@ router.post('/addarate/:userid', verifyStudentToken, async (req, res, next) => {
         }));
 });
 
-//get all questions by difficulty
+//get all Quiz-questions by difficulty
 router.get('/getquestions/:difficulty', verifyTeacherAndStudentToken, async (req, res, next) => {
     sqldb_Web_App.getQuestionsByDifficulty(req, res)
         .then(result => {
@@ -264,7 +272,7 @@ router.get('/getquestions/:difficulty', verifyTeacherAndStudentToken, async (req
             console.log(error));
 });
 
-//get all questions by difficulty
+//get 15 Quiz-questions by difficulty
 router.get('/get15quizquestions/:difficulty', verifyStudentToken, async (req, res, next) => {
     sqldb_Web_App.get15QuizQuestionsByDifficulty(req, res)
         .then(result => {
@@ -278,7 +286,7 @@ router.get('/get15quizquestions/:difficulty', verifyStudentToken, async (req, re
             console.log(error));
 });
 
-//get all questions by difficulty
+//get 25 Quiz-questions by difficulty
 router.get('/get25quizquestions/:difficulty', verifyStudentToken, async (req, res, next) => {
     sqldb_Web_App.get25QuizQuestionsByDifficulty(req, res)
         .then(result => {
@@ -292,7 +300,7 @@ router.get('/get25quizquestions/:difficulty', verifyStudentToken, async (req, re
             console.log(error));
 });
 
-//add a question
+//add a Quiz-question
 router.post('/addquestion', verifyTeacherToken, async (req, res, next) => {
     sqldb_Web_App.addQuestion(req, res)
         .then(result => {
@@ -303,7 +311,7 @@ router.post('/addquestion', verifyTeacherToken, async (req, res, next) => {
         }));
 });
 
-//update a question
+//update a Quiz-question
 router.put('/editquestion/:questionid', verifyTeacherToken, async (req, res, next) => {
     sqldb_Web_App.editSqlQuestion(req)
         .then(result => {
@@ -312,7 +320,7 @@ router.put('/editquestion/:questionid', verifyTeacherToken, async (req, res, nex
         .catch(error => error => console.log(error));
 });
 
-//delete a question
+//delete a Quiz-question
 router.delete('/question/:questionid', verifyTeacherToken, async (req, res, next) => {
     sqldb_Web_App.deleteSqlQuestion(req)
         .then(result => {
@@ -374,7 +382,7 @@ router.post('/deleteatable', verifyTeacherToken, async (req, res, next) => {
             res.send({ error: error }));
 });
 
-//add random queries
+//add random SQL-queries fill-field type for a table editing from a teacher 
 router.post('/addarrayofqueries', verifyTeacherToken, async (req, res, next) => {
     sqldb_Web_App.addRandomSqlQueries(req, res)
         .then(result => {
@@ -383,7 +391,7 @@ router.post('/addarrayofqueries', verifyTeacherToken, async (req, res, next) => 
         .catch(error => console.log(error));
 });
 
-//add random queries true or false
+//add random SQL-queries true or false type for a table editing from a teacher 
 router.post('/addarrayofqueriestrueorfalse', verifyTeacherToken, async (req, res, next) => {
     sqldb_Web_App.addRandomSqlQueriesTrueOrFalse(req, res)
         .then(result => {
@@ -392,7 +400,7 @@ router.post('/addarrayofqueriestrueorfalse', verifyTeacherToken, async (req, res
         .catch(error => console.log(error));
 });
 
-//get all random queries about specific table 
+//get all random SQL-queries fill-field type for table editing from a teacher  
 router.post('/getallsqlqueriesfromspecifictable', verifyTeacherAndStudentToken, async (req, res, next) => {
     sqldb_Web_App.getSqlRandomQueriesForSpecificTable(req, res)
         .then(result => {
@@ -401,7 +409,7 @@ router.post('/getallsqlqueriesfromspecifictable', verifyTeacherAndStudentToken, 
         .catch(error => console.log(error));
 });
 
-//get all random queries true or false about specific table 
+//get all random SQL-queries true or false type for table editing from a teacher  
 router.post('/getallsqlqueriestrueorfalsefromspecifictable', verifyTeacherAndStudentToken, async (req, res, next) => {
     sqldb_Web_App.getSqlRandomQueriesTrueOrFalseForSpecificTable(req, res)
         .then(result => {
@@ -410,7 +418,7 @@ router.post('/getallsqlqueriestrueorfalsefromspecifictable', verifyTeacherAndStu
         .catch(error => console.log(error));
 });
 
-//delete all random queries and true or false about specific table
+//delete all random SQL-queries about specific table
 router.delete('/deleteallsqlqueriesfromspecifictable/:tablename', verifyTeacherToken, async (req, res, next) => {
     sqldb_Web_App.deleteSqlRandomQueriesForSpecificTable(req, res)
         .then(result => {
@@ -420,29 +428,29 @@ router.delete('/deleteallsqlqueriesfromspecifictable/:tablename', verifyTeacherT
 });
 
 
-//update one random query about specific table
+//update one SQL-query fill-field type for table editing from a teacher
 router.put('/updateonesqlqueryfromspecifictable/:id', verifyTeacherToken, async (req, res, next) => {
     sqldb_Web_App.updateSqlRandomQueryForSpecificTable(req, res)
         .then(result => {
             res.send({ result: result });
         })
-        .catch( error => res.json({
+        .catch(error => res.json({
             error: error
         }));
 });
 
-//update one random query true or false about specific table
+//update one SQL-query true or false type for table editing from a teacher  
 router.put('/updateonesqlquerytrueorfalsefromspecifictable/:id', verifyTeacherToken, async (req, res, next) => {
     sqldb_Web_App.updateSqlRandomQueryTrueOrFalseForSpecificTable(req, res)
         .then(result => {
             res.send({ result: result });
         })
-        .catch( error => res.json({
+        .catch(error => res.json({
             error: error
         }));
 });
 
-//delete one random query about specific table
+//delete one SQL-query fill-field type for table editing from a teacher
 router.delete('/deleteonesqlqueryfromspecifictable/:id', verifyTeacherToken, async (req, res, next) => {
     sqldb_Web_App.deleteSqlRandomQueryForSpecificTable(req, res)
         .then(result => {
@@ -453,7 +461,7 @@ router.delete('/deleteonesqlqueryfromspecifictable/:id', verifyTeacherToken, asy
         }));
 });
 
-//delete one random query true or false about specific table
+//delete one SQL-query true or false type for table editing from a teacher  
 router.delete('/deleteonesqlquerytrueorfalsefromspecifictable/:id', verifyTeacherToken, async (req, res, next) => {
     sqldb_Web_App.deleteSqlRandomQueryTrueOrFalseForSpecificTable(req, res)
         .then(result => {
@@ -464,7 +472,7 @@ router.delete('/deleteonesqlquerytrueorfalsefromspecifictable/:id', verifyTeache
         }));
 });
 
-//add one random queriy about specific table
+//add one SQL-query fill-field type for table editing from a teacher
 router.post('/addonesqlqueryfromspecifictable', verifyTeacherToken, async (req, res, next) => {
     sqldb_Web_App.addSqlRandomQueryForSpecificTable(req, res)
         .then(result => {
@@ -475,7 +483,7 @@ router.post('/addonesqlqueryfromspecifictable', verifyTeacherToken, async (req, 
         }));
 });
 
-//add one random query true or false about specific table
+//add one SQL-query true or false type for table editing from a teacher  
 router.post('/addonesqlquerytrueorfalsefromspecifictable', verifyTeacherToken, async (req, res, next) => {
     sqldb_Web_App.addSqlRandomQueryTrueOrFalseForSpecificTable(req, res)
         .then(result => {
@@ -486,7 +494,7 @@ router.post('/addonesqlquerytrueorfalsefromspecifictable', verifyTeacherToken, a
         }));
 });
 
-//execute a sql query to dynamic tables
+//execute a sql query to table editing from a teacher  
 router.post('/executesqlquery', verifyTeacherAndStudentToken, async (req, res, next) => {
     sqldb_Web_App.executeSQLQuery(req, res)
         .then(result => {
@@ -497,7 +505,7 @@ router.post('/executesqlquery', verifyTeacherAndStudentToken, async (req, res, n
         }));
 });
 
-//execute a sql query to from Student and check  if exists in Test
+//execute a sql SQL-query from Student and check if exists in Test
 router.post('/executesqlquerystudent', verifyTeacherAndStudentToken, async (req, res, next) => {
     sqldb_Web_App.executeSQLQueryFromStudent(req, res)
         .then(result => {
@@ -536,7 +544,7 @@ router.get('/getonefillfieldquestions/:id', verifyTeacherAndStudentToken, async 
             console.log(error));
 });
 
-//add new question and hide word into fill_field_questions
+//add new question into fill_field_questions table
 router.post('/addfillfieldquestion', verifyTeacherToken, async (req, res, next) => {
     sqldb_Web_App.addFillFieldQuestion(req, res)
         .then(result => {

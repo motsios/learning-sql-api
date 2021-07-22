@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const db = require('../database/db.js')
 const { use } = require('../routes/api.js')
 
-const sql_questions= db.sequelize.define('sql_questions',
+const sql_questions = db.sequelize.define('sql_questions',
     {
         id: {
             type: Sequelize.INTEGER,

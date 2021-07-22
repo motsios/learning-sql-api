@@ -102,8 +102,8 @@ var dbOperations = {
                 port: 465,
                 secure: true, // true for 465, false for other ports
                 auth: {
-                    user: 'diplwmatikisql@gmail.com', 
-                    pass: 'xrisiDiplwmatikis!', 
+                    user: 'diplwmatikisql@gmail.com',
+                    pass: 'xrisiDiplwmatikis!',
                 },
             });
 
@@ -217,23 +217,6 @@ var dbOperations = {
         }
         const ascentingArray = lowestToHighest.sort((a, b) => (a.score_tables[0].score < b.score_tables[0].score) ? 1 : -1)
         return ascentingArray
-    },
-
-    dynamicsort(property) {
-        console.log(property)
-        var sort_order = 1;
-        return function (a, b) {
-            // a should come before b in the sorted order
-            if (a[property.score] < b[property.score]) {
-                return -1 * sort_order;
-                // a should come after b in the sorted order
-            } else if (a[property.score] > b[property.score]) {
-                return 1 * sort_order;
-                // a and b are the same
-            } else {
-                return 0 * sort_order;
-            }
-        }
     },
 
     addScore: async (req, res) => {
@@ -667,23 +650,6 @@ var dbOperations = {
             return "Question not exists";
         }
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 module.exports = dbOperations;

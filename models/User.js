@@ -1,11 +1,11 @@
 const Sequelize = require('sequelize')
 const db = require('../database/db.js')
 const { use } = require('../routes/api.js')
-const Scores=require('./Score')
-const SuccessRates=require('./SuccessRate')
+const Scores = require('./Score')
+const SuccessRates = require('./SuccessRate')
 
 
-const Users= db.sequelize.define('user_table',
+const Users = db.sequelize.define('user_table',
     {
         id: {
             type: Sequelize.INTEGER,
@@ -57,11 +57,11 @@ const Users= db.sequelize.define('user_table',
         timestamps: false
     },
 )
-    Users.hasMany(Scores, {
-        foreignKey: "student_id"
-    });
-    Users.hasMany(SuccessRates, {
-        foreignKey: "id_student"
-    });
+Users.hasMany(Scores, {
+    foreignKey: "student_id"
+});
+Users.hasMany(SuccessRates, {
+    foreignKey: "id_student"
+});
 
 module.exports = Users

@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize')
 const db = require('../database/db.js')
 const { use } = require('../routes/api.js')
-const Scores=require('./Score')
+const Scores = require('./Score')
 
-const FillFields= db.sequelize.define('fill_fields_questions',
+const FillFields = db.sequelize.define('fill_fields_questions',
     {
         id: {
             type: Sequelize.INTEGER,

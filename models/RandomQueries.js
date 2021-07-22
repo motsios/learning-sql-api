@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../database/db.js')
 const { use } = require('../routes/api.js')
-const sql_random_queries= db.sequelize.define('sql_random_queries',
+const sql_random_queries = db.sequelize.define('sql_random_queries',
     {
         id: {
             type: Sequelize.INTEGER,

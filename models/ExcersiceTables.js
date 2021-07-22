@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize')
 const db = require('../database/db.js')
-const sql_random_queries=require('./RandomQueries');
+const sql_random_queries = require('./RandomQueries');
 const sql_random_queries_true_or_false = require('./RandomQueriesTrueOrFalse.js');
-const Tables= db.sequelize.define('excersice_tables',
+const Tables = db.sequelize.define('excersice_tables',
     {
         id: {
             type: Sequelize.INTEGER,
